@@ -55,11 +55,13 @@ Apollo then takes care of:
 
 ## 🚀 Interesting, how can I try it?
 
+- Reach out to adrian@apolloapi.io
+
 <!-- Let's setup your first Integration in 2 minutes!
 
 It will pull from your local database (and keep it in sync). -->
 
-Test sending your content to our API!
+<!-- Test sending your content to our API! -->
 
 <!--
 Clone the repo and start Apollo locally...
@@ -71,14 +73,14 @@ cd apolloapi && docker compose up
 
 <!-- ...and create a Integration with a simple CURL command: -->
 
-```bash
+<!-- ```bash
 curl --request POST \
     --url http://api.apolloapi.io/api/v1/content/ \
     --header "Content-type: application/json" \
-    --data '{"content_id": "1234567", "user_id": "user123", "contenttype": "Post", "content": { "text": "some text posted on your platform or community"}}'
+    --data '{"content_id": "1234567", "user_id": "user123", "contenttype": "Post", "content": { "text": "some text posted on your platform or community"}}' -->
 ```
 
-That's all it takes!
+<!-- That's all it takes! -->
 
 <!-- That's all it takes! You can check out [the list of all Pokémons in your local database](http://localhost:8080/?pgsql=nango-db&username=nango&db=nango&ns=public&select=_nango_raw) (password is `nango`). -->
 
