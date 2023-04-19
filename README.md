@@ -55,9 +55,11 @@ Apollo then takes care of:
 
 ## 🚀 Interesting, how can I try it?
 
-Let's setup your first Integration in 2 minutes!
+<!-- Let's setup your first Integration in 2 minutes!
 
-It will pull from your local database (and keep it in sync).
+It will pull from your local database (and keep it in sync). -->
+
+Test sending your content to our API!
 
 <!--
 Clone the repo and start Apollo locally...
