@@ -71,8 +71,6 @@ cd apolloapi && docker compose up
 
 <!-- ...and create a Integration with a simple CURL command: -->
 
-Test content against our api.
-
 ```bash
 curl --request POST \
     --url http://api.apolloapi.io/api/v1/content/ \
