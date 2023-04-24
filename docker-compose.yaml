@@ -1,0 +1,32 @@
+---
+services:
+  api:
+    build: .
+    image: apolloapi
+    ports:
+      - 8080:8080
+    volumes:
+      - ./:/home/django/api
+    env_file: .env
+    environment:
+      DEBUG: ${DEBUG:-1}
+    stdin_open: true
+    tty: true
+    command: [python, manage.py, runserver, 0.0.0.0:8080]
+    depends_on:
+      - db
+
+  db:
+    image: postgres:bullseye
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql@14/data/
+      - ./:/api
+
+volumes:
+  postgres_data:
