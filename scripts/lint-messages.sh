@@ -5,7 +5,7 @@ DIR=$(dirname $(realpath $0))
 
 # The start of the range can be bumped up over time to something that
 # all live branches include. Currently pointing to initial commit.
-LINT_COMMITS_RANGE="39c44180d01086df34f7edc21353bf4e72264b30..HEAD"
+LINT_COMMITS_RANGE="9b161411b6cb68afa611a448436db93fbdc7f69c..HEAD"
 
 function lint_commits_in_range {
     while read -r rev; do
