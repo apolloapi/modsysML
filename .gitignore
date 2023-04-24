@@ -3,7 +3,11 @@ __pycache__/
 *.py[cod]
 *$py.class
 .vscode
+
+# django
 .env
+django_apolloapi/*
+django_apolloapi/
 
 # C extensions
 *.so

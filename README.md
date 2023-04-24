@@ -77,7 +77,7 @@ cd apolloapi && docker compose up
 curl --request POST \
     --url http://api.apolloapi.io/api/v1/content/ \
     --header "Content-type: application/json" \
-    --data '{"content_id": "1234567", "user_id": "user123", "contenttype": "Post", "content": { "text": "some text posted on your platform or community"}}' 
+    --data '{"content_id": "1234567", "user_id": "user123", "contenttype": "Post", "content": { "text": "some text posted on your platform or community"}}'
 ``` -->
 
 <!-- That's all it takes! -->
