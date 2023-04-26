@@ -140,11 +140,11 @@ Apollo uses commit messages for automated generation of project changelog. For e
 ```
 
 Accepted `<type>` values:
-new - newly implemented user-facing features
-chg - changes in existing user-facing features
-fix - user-facing bugfixes
-oth - other changes which users should know about
-dev - any developer-facing changes, regardless of new/chg/fix status
+- new = newly implemented user-facing features
+- chg = changes in existing user-facing features
+- fix = user-facing bugfixes
+- oth = other changes which users should know about
+- dev = any developer-facing changes, regardless of new/chg/fix status
 
 #### Summary (The first line)
 
