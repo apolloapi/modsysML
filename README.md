@@ -29,15 +29,20 @@ Apollo gives you access to custom machine learning models, no-code platform and 
 In your code you can write:
 
 ```ts
-Apollo.connect('postgres://username:password@hostname:port/database', ...) // Starts syncing content forever!
+Apollo.connect('postgres://username:password@hostnam...', ...) // Starts syncing content forever!
 
-Apollo.use('HiveAI', "bullying", ...) // Connect to existing providers!
+Apollo.use('OpenAI', "moderation", ...) // Connect to existing providers!
 
-Apollo.detectText('Phrase1', '>=', '0.8') // Create custom rules!
+Apollo.rule('Phrase1', '>=', '0.8') // Create custom rules!
 
-Apollo.use('Custom', "violence", ...) // Connect with our internal models!
+Apollo.use('Apollo', "violence", ...) // Connect with our internal models!
 
-Apollo.detectImage('Image1', 'contains', 'VERY_LIKELY') // Detect bad actors at scale!
+// Detect bad actors at scale!
+Apollo.detectImage('Image1', 'contains', 'VERY_LIKELY') // Image Analysis/OCR
+Apollo.detectSpeech('Audio1', 'contains', 'UNLIKELY') // Audio Processing
+Apollo.detectVideo('Video1', 'contains', 'POSSIBLE') // Video Analysis
+Apollo.detectText('Phrase1', 'contains', 'UNKNOWN') // Text Analysis
+
 ```
 
 Apollo then takes care of:
@@ -55,51 +60,99 @@ Apollo then takes care of:
 
 ## 🚀 Interesting, how can I try it?
 
-- Reach out to adrian@apolloapi.io
+Let's setup your first Integration in 2 minutes!
 
-<!-- Let's setup your first Integration in 2 minutes!
+It will pull from your local database (and keep it in sync).
 
-It will pull from your local database (and keep it in sync). -->
+To start:
 
-<!-- Test sending your content to our API! -->
+```bash
+# install the cli-toolkit
+pip install apollo-sdk
 
-<!--
+# enter a python repl or create a python file, up to you! (repl is easiest)
+python3
+```
+
+```python
+# import the package
+from apollo.client import Apollo
+
+# sync data from your database instance
+# (we support supabase at the current moment or postgresql via uri format)
+Apollo.connect("postgres://username:password@hostname:port/database_name")
+
+# If you want to test out operation on your external connection
+Apollo.fetch_tables()
+Apollo.query("desc", "table", "column")
+```
+
+Test sending your content to our API!
+
+...and create a workflow with a simple command:
+
+```python
+# import the package
+from apollo.client import Apollo
+
+# Use our custom model to test building decisions
+Apollo.use("Apollo")
+
+# We support video, speech, image and text. Try text!
+Apollo.detectText("Phrase1", "contains", "Threats")
+```
+
+That's all it takes!
+
+That's all it takes! You can check out [more on our notion page](https://cloudguruab.notion.site/Apollo-e5e347745c1e43798d849d79cce90aba).
+
+In practice, you probably want to use one of our native SDKs to interact with Apollo's API or use our custom browser client so you dont have to write code. If so, ping us at adrian@apolloapi.io!
+
+## Contributing
+
+### 📦 pre-commit config
+
+As an open source project, Apollo welcomes contributions from the community at large. This isn’t an exhaustive reference and is a living document subject to change as needed when the project formalizes any practice or pattern.
+
 Clone the repo and start Apollo locally...
 
 ```bash
 git clone https://github.com/apolloapi/apolloapi.git
-cd apolloapi && docker compose up
-``` -->
+cd apolloapi && python3 -m venv env && source env/bin/activate && pip install -r requirements.txt
+```
 
-<!-- ...and create a Integration with a simple CURL command: -->
+- After installing system dependencies be sure to install pre-commit for lint checks
 
-<!-- ```bash
-curl --request POST \
-    --url http://api.apolloapi.io/api/v1/content/ \
-    --header "Content-type: application/json" \
-    --data '{"content_id": "1234567", "user_id": "user123", "contenttype": "Post", "content": { "text": "some text posted on your platform or community"}}' 
-``` -->
+```bash
+pip install pre-commit
 
-<!-- That's all it takes! -->
+pre-commit install
 
-<!-- That's all it takes! You can check out [the list of all Pokémons in your local database](http://localhost:8080/?pgsql=nango-db&username=nango&db=nango&ns=public&select=_nango_raw) (password is `nango`). -->
+pre-commit run --all-files
+```
 
-In practice, you probably want to use one of our native SDKs to interact with Apollo's API or use our custom browser client so you dont have to write code.
+Apollo uses commit messages for automated generation of project changelog. For every pull request we request contributors to be compliant with the following commit message notation.
 
-<!-- ```js
-import { Nango } from "@nangohq/node-client";
-let config = {
-  response_path: "results", // The path to the Pokémons objects in the response.
-  paging_url_path: "next", // The path to the next page's url in the response.
-};
-await Nango.sync("https://pokeapi.co/api/v2/pokemon", config);
-``` -->
+```
+<type>: <summary>
+
+<body>
+```
+
+Accepted `<type>` values:
+new - newly implemented user-facing features
+chg - changes in existing user-facing features
+fix - user-facing bugfixes
+oth - other changes which users should know about
+dev - any developer-facing changes, regardless of new/chg/fix status
+
+#### Summary (The first line)
+
+The first line should not be longer than 75 characters, the second line is always blank and other lines should be wrapped at 80 characters.
 
 ## 🔍 Neat, I would like to learn more
 
 ⭐ Follow our development by starring us here on GitHub ⭐
-
-<!-- - Explore some [Real world examples](https://www.thebriefnewsletter.com) -->
 
 - Share feedback or ask questions on the [Discord community](https://discord.gg/ZUH7f7AzUY)
 - [Chat with a member of the team](https://apolloapi.io) 👋

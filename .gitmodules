@@ -1,0 +1,3 @@
+[submodule "apollo/models/custom"]
+	path = apollo/models/custom
+	url = https://github.com/apolloapi/models
