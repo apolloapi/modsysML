@@ -27,7 +27,7 @@ setup(
     install_requires=[
         "Django==4.1.2",
         "firebase-admin==6.1.0",
-        "grpcio==1.53.0",
+        "grpcio==1.54.0",
         "httplib2==0.21.0",
         "protobuf==4.22.3",
         "psycopg2-binary==2.9.6",
