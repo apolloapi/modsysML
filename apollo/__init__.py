@@ -25,9 +25,11 @@ def get_supabase_client(connection_string) -> AbstractSupabaseClient:
     client = import_string(SUPABASE_CLIENT_CLASS)
     return client(connection_string)
 
+
 def get_firebase_client(service_account_key) -> AbstractFirebaseClient:
     client = import_string(FIREBASE_CLIENT_CLASS)
     return client(service_account_key)
+
 
 def get_json_client() -> AbstractRestClient:
     client = import_string(REST_CLIENT_CLASS)

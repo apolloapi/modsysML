@@ -13,8 +13,10 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+
 class SDKException(Exception):
     """The base exception class for all exceptions this library raises."""
+
     def __init__(self, message=None):
         message = self.__class__.__name__ if message is None else message
         super(Exception, self).__init__(message)
@@ -22,27 +24,22 @@ class SDKException(Exception):
 
 class AuthorizationFailure(SDKException):
     """Cannot authorize API client."""
-    pass
 
 
 class EndpointException(SDKException):
     """Something is rotten in Service Catalog."""
-    pass
 
 
 class EndpointNotFound(EndpointException):
     """Could not find requested endpoint in Service Catalog."""
-    pass
 
 
 class EmptyCatalog(EndpointNotFound):
     """The service catalog is empty."""
-    pass
 
 
 class NoMatchingPlugin(SDKException):
     """No matching plugins could be created with the provided parameters."""
-    pass
 
 
 class InvalidResponse(SDKException):
@@ -61,17 +58,14 @@ class HttpException(SDKException):
 
 class MethodNotSupported(SDKException):
     """The resource does not support this operation type."""
-    pass
 
 
 class ResourceNotFound(SDKException):
     """The requested resource was not found."""
-    pass
 
 
 class DuplicateResource(SDKException):
     """More than one resource exists with that name."""
-    pass
 
 
 class FirebaseConnectionError(Exception):
@@ -100,7 +94,7 @@ class PostgresConnectionError(Exception):
 
     def __str__(self):
         return f"{self.obj} [ERR] - {self.message}"
-    
+
 
 class PostgresExecutionError(Exception):
     """
@@ -151,9 +145,7 @@ class EmptyResultsWarning(Exception):
     There were no results found.
     """
 
-    def __init__(
-        self, obj, message="Empty query results detected"
-    ):
+    def __init__(self, obj, message="Empty query results detected"):
         self.obj = obj
         self.message = message
         super().__init__(self.message)

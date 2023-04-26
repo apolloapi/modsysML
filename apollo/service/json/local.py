@@ -15,9 +15,10 @@
 
 from apollo.service.json.base import AbstractRestClient
 
+
 class FakeRestClient(AbstractRestClient):
     def make_http_request(self, body, header, endpoint):
         pass
-    
+
     def make_https_request(self, body, header, endpoint):
         pass

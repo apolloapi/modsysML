@@ -16,6 +16,7 @@
 from apollo import get_supabase_client, get_firebase_client, get_json_client
 from apollo.exceptions import EmptyResultsWarning
 
+
 class PostgresConnectionManager:
     @staticmethod
     def connect_to_prefix(uri):
@@ -38,7 +39,7 @@ class FirebaseConnectionManager:
     @staticmethod
     def connect_to_prefix(service_account_key):
         return get_firebase_client(service_account_key)
-    
+
 
 class JSONConnectionManager:
     @staticmethod

@@ -13,9 +13,10 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+
 class AbstractRestClient:
     def make_http_request(self, body, header, endpoint):
         return NotImplementedError
-    
+
     def make_https_request(self, body, header, endpoint):
         return NotImplementedError

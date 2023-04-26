@@ -25,13 +25,15 @@ SUPABASE_CLIENT_CLASS = os.environ.get(
     "SUPABASE_CLIENT_CLASS", "apollo.database.supabase.SupabaseClient"
 )
 
-# Firebase support 
+# Firebase support
 FIREBASE_CLIENT_CLASS = os.environ.get(
     "FIREBASE_CLIENT_CLASS", "apollo.database.firebase.FirebaseClient"
 )
 
 # Service client
-REST_CLIENT_CLASS = os.environ.get("REST_CLIENT_CLASS", "apollo.service.json.RestClient")
+REST_CLIENT_CLASS = os.environ.get(
+    "REST_CLIENT_CLASS", "apollo.service.json.RestClient"
+)
 
 # Hard code sql queries to prevent injection
 QUERY_CONTEXT = {
@@ -41,9 +43,7 @@ QUERY_CONTEXT = {
 }
 
 # Test account for firebase
-TEST_ACCOUNT = os.environ.get(
-    "test_account", None
-)
+TEST_ACCOUNT = os.environ.get("test_account", None)
 
-# Service SDK test token, THIS IS PUBLIC 
+# Service SDK test token, THIS IS PUBLIC
 test_token = os.environ.get("test_token", "81ecfd535e2d0c402bc84be64f31edcbed643d3e")

@@ -20,12 +20,16 @@ from apollo.const import test_token
 
 
 class RestClient(AbstractRestClient):
-
     @staticmethod
     def make_http_request():
         return None
-    
+
     @staticmethod
     def make_https_request(body):
-        response = requests.post("https://api.apolloapi.io/api/v1/content/", headers={"Authorization": f"Token {test_token}"}, json=body, timeout=10)
+        response = requests.post(
+            "https://api.apolloapi.io/api/v1/content/",
+            headers={"Authorization": f"Token {test_token}"},
+            json=body,
+            timeout=10,
+        )
         return response.json()

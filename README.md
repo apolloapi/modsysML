@@ -64,36 +64,55 @@ Let's setup your first Integration in 2 minutes!
 
 It will pull from your local database (and keep it in sync).
 
-Test sending your content to our API!
-
-...and create a Integration with a simple command:
+To start:
 
 ```bash
-pip install
+# install the cli-toolkit
+pip install apollo-sdk
+
+# enter a python repl or create a python file, up to you! (repl is easiest)
+python3
 ```
 
 ```python
+# import the package
+from apollo.client import Apollo
 
+# sync data from your database instance
+# (we support supabase at the current moment or postgresql via uri format)
+Apollo.connect("postgres://username:password@hostname:port/database_name")
+
+# If you want to test out operation on your external connection
+Apollo.fetch_tables()
+Apollo.query("desc", "table", "column")
+```
+
+Test sending your content to our API!
+
+...and create a workflow with a simple command:
+
+```python
+# import the package
+from apollo.client import Apollo
+
+# Use our custom model to test building decisions
+Apollo.use("Apollo")
+
+# We support video, speech, image and text. Try text!
+Apollo.detectText("Phrase1", "contains", "Threats")
 ```
 
 That's all it takes!
 
-That's all it takes! You can check out [the list of all Pokémons in your local database](http://localhost:8080/?pgsql=nango-db&username=nango&db=nango&ns=public&select=_nango_raw) (password is `nango`).
+That's all it takes! You can check out [more on our notion page](https://cloudguruab.notion.site/Apollo-e5e347745c1e43798d849d79cce90aba).
 
-In practice, you probably want to use one of our native SDKs to interact with Apollo's API or use our custom browser client so you dont have to write code.
-
-```js
-import { Nango } from "@nangohq/node-client";
-let config = {
-  response_path: "results", // The path to the Pokémons objects in the response.
-  paging_url_path: "next", // The path to the next page's url in the response.
-};
-await Nango.sync("https://pokeapi.co/api/v2/pokemon", config);
-```
+In practice, you probably want to use one of our native SDKs to interact with Apollo's API or use our custom browser client so you dont have to write code. If so, ping us at adrian@apolloapi.io!
 
 ## Contributing
 
 ### 📦 pre-commit config
+
+As an open source project, Apollo welcomes contributions from the community at large. This isn’t an exhaustive reference and is a living document subject to change as needed when the project formalizes any practice or pattern.
 
 Clone the repo and start Apollo locally...
 
@@ -112,11 +131,28 @@ pre-commit install
 pre-commit run --all-files
 ```
 
+Apollo uses commit messages for automated generation of project changelog. For every pull request we request contributors to be compliant with the following commit message notation.
+
+```
+<type>: <summary>
+
+<body>
+```
+
+Accepted `<type>` values:
+new - newly implemented user-facing features
+chg - changes in existing user-facing features
+fix - user-facing bugfixes
+oth - other changes which users should know about
+dev - any developer-facing changes, regardless of new/chg/fix status
+
+#### Summary (The first line)
+
+The first line should not be longer than 75 characters, the second line is always blank and other lines should be wrapped at 80 characters.
+
 ## 🔍 Neat, I would like to learn more
 
 ⭐ Follow our development by starring us here on GitHub ⭐
-
-<!-- - Explore some [Real world examples](https://www.thebriefnewsletter.com) -->
 
 - Share feedback or ask questions on the [Discord community](https://discord.gg/ZUH7f7AzUY)
 - [Chat with a member of the team](https://apolloapi.io) 👋

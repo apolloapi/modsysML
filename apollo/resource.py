@@ -13,32 +13,37 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-from apollo.manager import PostgresConnectionManager, FirebaseConnectionManager, JSONConnectionManager
+from apollo.manager import (
+    PostgresConnectionManager,
+    FirebaseConnectionManager,
+    JSONConnectionManager,
+)
 from apollo.const import QUERY_CONTEXT
 
+
 class Postgres:
-    
+
     # Specific sql queries
     _context = QUERY_CONTEXT
-    
+
     # Database utility class
     _manager = PostgresConnectionManager()
-    
+
     # curosr instance
     psql_curs = None
-    
+
 
 class Firebase:
     pass
 
 
 class JSON:
-    
+
     # Service utility class
     _service_manager = JSONConnectionManager()
-    
- 
+
+
 class General(Postgres, JSON):
-    
+
     # Current LLM to be used
     model = None

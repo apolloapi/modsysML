@@ -26,7 +26,6 @@ class FakeFirebaseClient(AbstractFirebaseClient):
         :param file_path: path to service account
         :return: firestore
         """
-        pass
 
     def init_with_project_id(self):
         """
@@ -34,7 +33,6 @@ class FakeFirebaseClient(AbstractFirebaseClient):
         :param project_id: The GCP project ID
         :return: firestore
         """
-        pass
 
     def init_with_database_url(self):
         pass

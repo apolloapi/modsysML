@@ -17,13 +17,11 @@ from apollo.resource import General
 from apollo.exceptions import ExecutionError, EmptyResultsWarning
 
 import itertools
-import json
 
 
 class Apollo(General):
-   
     @classmethod
-    def set_context(cls, query_type, table, col):   
+    def set_context(cls, query_type, table, col):
         # oldest order
         if query_type == "asc":
             cls._context[
@@ -43,13 +41,13 @@ class Apollo(General):
     def fetch_tables(cls):
         """
         Fetch all the tables for your external resource using Apollo
-        
+
         Args:
         None
-        
+
         Returns:
         list: All the available tables for your resource
-        
+
         Next steps:
         [Success]: Run a query with query
         """
@@ -65,12 +63,12 @@ class Apollo(General):
     def query(cls, query_type, table, col):
         """
         Query your external resource using Apollo
-        
+
         Args:
         query_type (str): The sort order for your query
         table (str): The table to query
         col (str): The column to sort by
-        
+
         Returns:
         dict: result of query
         """
@@ -87,34 +85,34 @@ class Apollo(General):
     def connect(cls, db_url, *args, **kwargs):
         """
         Sync data with Apollo to begin building decision trees
-        
+
         Args:
         db_url (str): The database URL to connect to
-        
+
         Returns:
         str: A message indicating that the connection was successful
-        
+
         Next steps:
-        [Success]: Syncing data to Apollo, next steps below; 
+        [Success]: Syncing data to Apollo, next steps below;
             1. Apollo.fetch_tables()
             2. Apollo.query([desc/asc], [table], [column])
         """
         cls.psql_curs = cls._manager.connect_to_prefix(db_url)
         return "Syncing data with Apollo"
-    
+
     @classmethod
     def use(cls, provider, *args, **kwargs):
-        if provider == 'Apollo':
+        if provider == "Apollo":
             cls.model = "Apollo"
             return f"Connected to {provider} provider, using Safety model"
         else:
             return f"Provider {provider} not found"
-    
+
     @classmethod
     def detectText(cls, text, operator, threshold):
         if cls.model:
             print(cls.model)
             conn = cls._service_manager.connect()
-            return conn.make_https_request({'rule': f"{text} {operator} {threshold}"})
+            return conn.make_https_request({"rule": f"{text} {operator} {threshold}"})
         else:
             return "No provider connected"
