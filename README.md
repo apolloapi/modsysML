@@ -12,11 +12,11 @@ Apollo gives you access to custom machine learning models, no-code platform and 
 
 <p align="center">
     <br />
-    <a href="https://apolloapi.io" rel="dofollow"><strong>Docs coming soon »</strong></a>
+    <a href="https://apolloapi-doc.vercel.app/" rel="dofollow"><strong>Docs »</strong></a>
     <br />
 
   <br/>
-    <!-- <a href="https://docs.nango.dev">Examples</a> -->
+    <a href="https://apolloapi-doc.vercel.app/">Examples</a>
     <a href="https://www.apolloapi.io/">Join the waitlist</a>
     ·
     <a href="https://github.com/apolloapi/apolloapi/issues">Report Bug</a>
@@ -157,3 +157,4 @@ The first line should not be longer than 75 characters, the second line is alway
 - Share feedback or ask questions on the [Discord community](https://discord.gg/ZUH7f7AzUY)
 - [Chat with a member of the team](https://apolloapi.io) 👋
 - Check our [blog on Trust & Safety](https://www.thebriefnewsletter.com)
+- Look at our docs on how to get started [here!](https://apolloapi-doc.vercel.app/)
