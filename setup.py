@@ -14,15 +14,17 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(
     name="apollo-sdk",
-    version="0.1.1",
+    version="0.1.2",
     description="Build automated decision making workflows. Aggregate your LLMs all into one place and build from there using one api.",
     author="Apollo API, Inc.",
     author_email="adrbrownx@gmail.com",
-    packages=["apollo"],
+    packages=find_packages(),
+    # package_dir={'': ''},
+    url="https://github.com/apolloapi/apolloapi",
     license="Elastic License v2",
     install_requires=[
         "Django==4.1.2",
