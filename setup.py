@@ -34,7 +34,7 @@ setup(
         "protobuf==4.22.3",
         "psycopg2-binary==2.9.6",
         "python-dotenv==1.0.0",
-        "psycopg==3.1.6",
+        "psycopg==3.1.8",
         "requests==2.28.1",
         "psycopg2==2.9.3",
         "pytest==7.2.0",
