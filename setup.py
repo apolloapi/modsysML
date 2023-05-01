@@ -41,7 +41,7 @@ setup(
         "PyJWT==2.6.0",
         "requests==2.28.1",
         "six==1.16.0",
-        "sqlparse==0.4.3",
+        "sqlparse==0.4.4",
         "urllib3==1.26.13",
     ],
     classifiers=[
