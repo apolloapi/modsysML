@@ -16,7 +16,7 @@ filelock==3.8.0
 firebase-admin==6.1.0
 grpc-google-iam-v1==0.12.4
 grpcio==1.53.0
-grpcio-status==1.53.0
+grpcio-status==1.54.0
 gunicorn==20.1.0
 httplib2==0.21.0
 identify==2.5.22
