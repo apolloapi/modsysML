@@ -18,7 +18,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="apollo-sdk",
-    version="0.1.2",
+    version="0.1.3",
     description="Build automated decision making workflows. Aggregate your LLMs all into one place and build from there using one api.",
     author="Apollo API, Inc.",
     author_email="adrbrownx@gmail.com",
