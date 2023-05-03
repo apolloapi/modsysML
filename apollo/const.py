@@ -46,4 +46,4 @@ QUERY_CONTEXT = {
 TEST_ACCOUNT = os.environ.get("test_account", None)
 
 # Service SDK test token, THIS IS PUBLIC
-test_token = os.environ.get("test_token", "81ecfd535e2d0c402bc84be64f31edcbed643d3e")
+test_token = os.environ.get("test_token", None)

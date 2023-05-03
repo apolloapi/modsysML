@@ -27,7 +27,7 @@ class RestClient(AbstractRestClient):
     @staticmethod
     def make_https_request(body):
         response = requests.post(
-            "https://api.apolloapi.io/api/v1/content/",
+            "https://api.apolloapi.io/api/v1/apollo/",
             headers={"Authorization": f"Token {test_token}"},
             json=body,
             timeout=10,
