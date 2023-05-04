@@ -96,7 +96,7 @@ Test sending your content to our API!
 from apollo.client import Apollo
 
 # Use our custom model to test building decisions
-Apollo.use("Apollo")
+Apollo.use("apollo", token="YOUR_API_TOKEN_HERE")
 
 # We support video, speech, image and text. Try text!
 Apollo.detectText("Phrase1", "contains", "Threats")
@@ -140,6 +140,7 @@ Apollo uses commit messages for automated generation of project changelog. For e
 ```
 
 Accepted `<type>` values:
+
 - new = newly implemented user-facing features
 - chg = changes in existing user-facing features
 - fix = user-facing bugfixes
