@@ -101,18 +101,22 @@ class Apollo(General):
         return "Syncing data with Apollo"
 
     @classmethod
-    def use(cls, provider, *args, **kwargs):
-        if provider == "Apollo":
+    def use(cls, provider, token=None, *args, **kwargs):
+        if provider.lower() == "apollo":
             cls.model = "Apollo"
-            return f"Connected to {provider} provider, using Safety model"
+            if token:
+                cls._auth_token = token
+                print(f"Connected to {provider} provider, using Safety model")
+            else:
+                print("Please set a auth token")
         else:
             return f"Provider {provider} not found"
 
     @classmethod
     def detectText(cls, text, operator, threshold):
         if cls.model:
-            print(cls.model)
-            conn = cls._service_manager.connect()
+            # print(cls.model)
+            conn = cls._service_manager.connect(cls._auth_token)
             return conn.make_https_request({"rule": f"{text} {operator} {threshold}"})
         else:
             return "No provider connected"

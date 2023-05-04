@@ -43,5 +43,5 @@ class FirebaseConnectionManager:
 
 class JSONConnectionManager:
     @staticmethod
-    def connect():
-        return get_json_client()
+    def connect(api_key):
+        return get_json_client(api_key)

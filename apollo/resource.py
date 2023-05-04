@@ -42,6 +42,9 @@ class JSON:
     # Service utility class
     _service_manager = JSONConnectionManager()
 
+    # Token
+    _auth_token = None
+
 
 class General(Postgres, JSON):
 

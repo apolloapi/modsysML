@@ -31,6 +31,6 @@ def get_firebase_client(service_account_key) -> AbstractFirebaseClient:
     return client(service_account_key)
 
 
-def get_json_client() -> AbstractRestClient:
+def get_json_client(api_key) -> AbstractRestClient:
     client = import_string(REST_CLIENT_CLASS)
-    return client
+    return client(api_key)
