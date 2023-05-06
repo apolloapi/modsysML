@@ -1,22 +1,21 @@
 <div align="center">
 
-![ApolloLogo](https://uploads-ssl.webflow.com/640ca38ad086fde245b76c9d/643fffb82419ac18d39e3e4e_Screenshot%202023-04-19%20at%2010.50.13%20AM.png)
+![ApolloLogo](https://uploads-ssl.webflow.com/640ca38ad086fde245b76c9d/6455b1fd3d8642575f793c94_header.png)
 
 </div>
 
-<h1 align="center">The easiest way to build custom decision making workflows</h1>
+<h1 align="center">Open-source Task Automation</h1>
 
 <div align="center">
-Apollo gives you access to custom machine learning models, no-code platform and continuously syncs data from any API or Database to centralize investigations and allow you to automate the detection of harm in images, videos, audio and text.
+Apollo is an open-source no-code platform that helps you build automated workflows in minutes. Our SDK allows you to automate tasks such as; onboarding, compliance, trust & safety, fraud detection, code generation and more.
 </div>
 
 <p align="center">
     <br />
-    <a href="https://apolloapi-doc.vercel.app/" rel="dofollow"><strong>Docs »</strong></a>
+    <a href="https://docs.apolloapi.io/" rel="dofollow"><strong>Docs »</strong></a>
     <br />
 
   <br/>
-    <a href="https://apolloapi-doc.vercel.app/">Examples</a>
     <a href="https://www.apolloapi.io/">Join the waitlist</a>
     ·
     <a href="https://github.com/apolloapi/apolloapi/issues">Report Bug</a>
@@ -24,55 +23,21 @@ Apollo gives you access to custom machine learning models, no-code platform and 
     <a href="https://discord.gg/ZUH7f7AzUY">Community Discord</a>
 </p>
 
-## ⭐ Can you show me an example?
+## Why Apollo API?
 
-In your code you can write:
-
-```ts
-Apollo.connect('postgres://username:password@hostnam...', ...) // Starts syncing content forever!
-
-Apollo.use('OpenAI', "moderation", ...) // Connect to existing providers!
-
-Apollo.rule('Phrase1', '>=', '0.8') // Create custom rules!
-
-Apollo.use('Apollo', "violence", ...) // Connect with our internal models!
-
-// Detect bad actors at scale!
-Apollo.detectImage('Image1', 'contains', 'VERY_LIKELY') // Image Analysis/OCR
-Apollo.detectSpeech('Audio1', 'contains', 'UNLIKELY') // Audio Processing
-Apollo.detectVideo('Video1', 'contains', 'POSSIBLE') // Video Analysis
-Apollo.detectText('Phrase1', 'contains', 'UNKNOWN') // Text Analysis
-
-```
-
-Apollo then takes care of:
-
-- Detecting real-time changes in user experience
-- Automated detection against image, video, audio or text
-- Connecting policy to product
-- Making sure your integration is robust, so you never again have to worry about stuck/stale data or false-positives
-
-## 🧑‍💻 Cool, what can I build with it?
-
-- Trust & Safety teams in companies use Apollo to **build native in-app connections** related to active response, content moderation, fraud detection, etc.
-- Some **automate their personal lives** with Apollo by integrating against discord communities or other decentralized networks for safety
-- Apollo can help you **quickly build trust** for hobby projects, communities or business
+Before Apollo, integrating AI models and building automated workflows could be time-consuming and complex, with Apollo, teams can simplify and accelerate the process, making it easier to deploy AI models, sync data, and develop insights in minutes.
 
 ## 🚀 Interesting, how can I try it?
 
-Let's setup your first Integration in 2 minutes!
-
-It will pull from your local database (and keep it in sync).
-
-To start:
+Lets install the SDK first...
 
 ```bash
-# install the cli-toolkit
 pip install apollo-sdk
-
-# enter a python repl or create a python file, up to you! (repl is easiest)
-python3
 ```
+
+Let's setup your first Integration!
+
+It will pull from your local database (and keep it in sync).
 
 ```python
 # import the package
@@ -87,9 +52,9 @@ Apollo.fetch_tables()
 Apollo.query("desc", "table", "column")
 ```
 
-Test sending your content to our API!
-
 ...and create a workflow with a simple command:
+
+_Note: you can obtain a Auth token [here](https://docs.apolloapi.io/docs/api/authentication), sign up today on our [Site](https://app.apolloapi.io/)_
 
 ```python
 # import the package
@@ -98,15 +63,37 @@ from apollo.client import Apollo
 # Use our custom model to test building decisions
 Apollo.use("apollo", token="YOUR_API_TOKEN_HERE")
 
-# We support video, speech, image and text. Try text!
+# Lets check to see if a phrase contains threats
 Apollo.detectText("Phrase1", "contains", "Threats")
+
+# Create custom rules which creates a task!
+Apollo.rule('Phrase1', '>=', '0.8')
+
+# Connect with other models!
+Apollo.use('Google', "violence", ...)
+
+Apollo.detectImage('Image1', 'contains', 'VERY_LIKELY') # Image Analysis/OCR
+Apollo.detectSpeech('Audio1', 'contains', 'UNLIKELY') # Audio Processing
+Apollo.detectVideo('Video1', 'contains', 'POSSIBLE') # Video Analysis
+Apollo.detectText('Phrase1', 'contains', 'UNKNOWN') # Text Analysis
 ```
 
 That's all it takes!
 
-That's all it takes! You can check out [more on our notion page](https://cloudguruab.notion.site/Apollo-e5e347745c1e43798d849d79cce90aba).
+## Apollo then takes care of:
 
-In practice, you probably want to use one of our native SDKs to interact with Apollo's API or use our custom browser client so you dont have to write code. If so, ping us at adrian@apolloapi.io!
+- Detecting real-time changes in your data
+- Automating tasks against image, video, audio or text
+- Simplifying the process of deploying AI models
+- Making sure your integration is robust, so you never again have to worry about stuck/stale data or false-positives
+
+In practice, you probably want to use one of our native SDKs to interact with Apollo's API or use our custom browser client so you dont have to write code. If so, sign up at [Apollo API](https://app.apolloapi.io/signup)!
+
+## 🧑‍💻 Cool, what can I build with it?
+
+- Trust & Safety teams can use Apollo to **build native in-app connections** related to active response, content moderation, fraud detection, etc.
+- Some **automate their personal lives** with Apollo by integrating against discord communities or their personal lives
+- Apollo can help you **quickly automate tasks** for hobby projects, communities or business
 
 ## Contributing
 
