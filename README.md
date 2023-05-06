@@ -25,7 +25,7 @@ Apollo is an open-source no-code platform that helps you build automated workflo
 
 ## Why Apollo API?
 
-Before Apollo, integrating AI models and building automated workflows could be time-consuming and complex, with Apollo, teams can simplify and accelerate the process, making it easier to deploy AI models, sync data, and develop insights in minutes.
+Before Apollo, integrating AI models and building automated workflows could be time-consuming, with Apollo, you can simplify and accelerate the process, making it easier to deploy AI models, sync data, and develop insights in minutes.
 
 ## 🚀 Interesting, how can I try it?
 
