@@ -42,7 +42,7 @@ setup(
         "requests==2.28.1",
         "six==1.16.0",
         "sqlparse==0.4.3",
-        "urllib3==1.26.13",
+        "urllib3==2.0.2",
     ],
     classifiers=[
         "Intended Audience :: Developers",
