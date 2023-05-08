@@ -19,7 +19,7 @@ grpcio==1.53.0
 grpcio-status==1.53.0
 gunicorn==20.1.0
 httplib2==0.21.0
-identify==2.5.22
+identify==2.5.24
 idna==3.4
 iniconfig==1.1.1
 libcst==0.4.9
