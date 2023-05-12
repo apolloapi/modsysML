@@ -27,7 +27,7 @@ Apollo is an open-source no-code platform that helps you build automated workflo
 
 Before Apollo, integrating AI models and building automated workflows could be time-consuming, with Apollo, you can simplify and accelerate the process, making it easier to deploy AI models, sync data, and develop insights in minutes.
 
-![HowItWorks](https://uploads-ssl.webflow.com/640ca38ad086fde245b76c9d/645dc26cdf0f35f3368ede16_GraphicOne.png)
+![HowItWorks](https://uploads-ssl.webflow.com/640ca38ad086fde245b76c9d/645e8d8ad611b140135e11bb_GraphicOne.png)
 
 
 ## 🚀 Interesting, how can I try it?
