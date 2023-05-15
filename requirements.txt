@@ -39,7 +39,7 @@ psycopg2==2.9.3
 psycopg2-binary==2.9.6
 py==1.11.0
 pyasn1==0.4.8
-pyasn1-modules==0.2.8
+pyasn1-modules==0.3.0
 pycparser==2.21
 PyJWT==2.6.0
 pyparsing==3.0.9
