@@ -63,5 +63,5 @@ typing_extensions==4.4.0
 tzdata==2022.7
 uritemplate==4.1.1
 urllib3==1.26.13
-virtualenv==20.21.0
+virtualenv==20.23.0
 wait-for-it==2.2.1
