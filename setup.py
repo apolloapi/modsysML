@@ -36,7 +36,7 @@ setup(
         "python-dotenv==1.0.0",
         "psycopg==3.1.6",
         "requests==2.28.1",
-        "psycopg2==2.9.3",
+        "psycopg2==2.9.6",
         "pytest==7.2.0",
         "PyJWT==2.6.0",
         "requests==2.28.1",
