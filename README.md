@@ -4,7 +4,7 @@
 
 </div>
 
-<h1 align="center">Open-source Task Automation</h1>
+<h1 align="center">Open-source Automation</h1>
 
 <div align="center">
 Apollo is an open-source no-code platform that helps you build automated workflows in minutes. Our SDK allows you to automate tasks such as; onboarding, compliance, trust & safety, fraud detection, code generation and more.
