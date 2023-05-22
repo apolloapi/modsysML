@@ -14,9 +14,15 @@
 #    under the License.
 
 
-from .cloud import OpenAiGenericProvider
+class AbstractApiProvider:
+    def __init__(self, api_key: str) -> None:
+        self.api_key = api_key
 
-# from .local import FakeSupabaseClient
+    def id(self) -> str:
+        raise NotImplementedError
 
-# __all__ = ["SupabaseClient", "FakeSupabaseClient"]
-__all__ = ["OpenAiGenericProvider"]
+    def to_string(self) -> str:
+        raise NotImplementedError
+
+    def call_api(self, prompt: str):
+        raise NotImplementedError
