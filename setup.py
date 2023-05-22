@@ -38,7 +38,7 @@ setup(
         "requests==2.28.1",
         "psycopg2==2.9.3",
         "pytest==7.2.0",
-        "PyJWT==2.6.0",
+        "PyJWT==2.7.0",
         "requests==2.28.1",
         "six==1.16.0",
         "sqlparse==0.4.3",
