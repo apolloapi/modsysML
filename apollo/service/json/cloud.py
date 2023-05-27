@@ -33,8 +33,8 @@ class RestClient(AbstractRestClient):
 
     def make_https_request(self, body):
         response = requests.post(
-            "https://api.apolloapi.io/api/v1/apollo/",
-            headers={"Authorization": f"Token {self.api_key}"},
+            "https://api.apolloapi.io/api/v1/sandbox/",  # Access to sandbox env
+            # headers={"Authorization": f"Token {self.api_key}"},
             json=body,
             timeout=10,
         )

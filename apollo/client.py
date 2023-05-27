@@ -63,7 +63,7 @@ class Apollo(General):
 
         return list(itertools.chain.from_iterable(response))
 
-    # # execute a sql query
+    # execute a sql query
     @classmethod
     def query(cls, query_type, table, col):
         """
@@ -106,7 +106,7 @@ class Apollo(General):
         return "Syncing data with Apollo"
 
     @classmethod
-    def use(cls, provider, token=None, *args, **kwargs):
+    def use(cls, provider, token="Beta_token123", *args, **kwargs):
         provider = provider.lower()
         # TODO: Move apollo connection to its own
         # method like openai once integrated
@@ -116,7 +116,9 @@ class Apollo(General):
                 cls._auth_token = token
                 print(f"Connected to {provider} provider, using Safety model")
             else:
-                print("Please set a auth token")
+                print(
+                    "Please set a auth token or use the sandbox: Apollo.sandbox_test()"
+                )
         elif provider.startswith("openai:"):
             cls.model = "OpenAI"
             cls._provider_path = provider
