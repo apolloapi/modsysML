@@ -12,3 +12,19 @@
 #    WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 #    License for the specific language governing permissions and limitations
 #    under the License.
+
+from apollo.connectors.openai.base import AbstractOpenAIProvider
+
+
+class FakeAbstractOpenAIProvider(AbstractOpenAIProvider):
+    def id(self) -> str:
+        pass
+
+    def to_string(self) -> str:
+        pass
+
+    def token_settings(self) -> str:
+        pass
+
+    def temp_settings(self) -> str:
+        pass

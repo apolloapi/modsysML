@@ -1,4 +1,0 @@
-{
-    "provider": "openai:chat",
-    "vars": "/Users/abpyguru/Desktop/2023/apollo/apolloapi/apollo/module_utils/vars.csv"
-}

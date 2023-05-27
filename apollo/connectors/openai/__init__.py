@@ -15,8 +15,6 @@
 
 
 from .cloud import OpenAiGenericProvider
+from .local import FakeAbstractOpenAIProvider
 
-# from .local import FakeSupabaseClient
-
-# __all__ = ["SupabaseClient", "FakeSupabaseClient"]
-__all__ = ["OpenAiGenericProvider"]
+__all__ = ["OpenAiGenericProvider", "FakeAbstractOpenAIProvider"]

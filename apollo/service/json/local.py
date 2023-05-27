@@ -22,3 +22,6 @@ class FakeRestClient(AbstractRestClient):
 
     def make_https_request(self, body, header, endpoint):
         pass
+
+    def call_api(self):
+        pass

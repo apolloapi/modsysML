@@ -27,6 +27,10 @@ class RestClient(AbstractRestClient):
     def make_http_request():
         return None
 
+    @staticmethod
+    def call_api(self):
+        return None
+
     def make_https_request(self, body):
         response = requests.post(
             "https://api.apolloapi.io/api/v1/apollo/",

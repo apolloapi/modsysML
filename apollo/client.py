@@ -16,6 +16,11 @@
 from apollo.resource import General
 from apollo.exceptions import ExecutionError, EmptyResultsWarning
 
+# from evaluator import evaluate as do_evaluate
+# from providers import load_api_provider
+
+# from typing import List, Optional, Union
+
 import itertools
 
 
@@ -102,13 +107,20 @@ class Apollo(General):
 
     @classmethod
     def use(cls, provider, token=None, *args, **kwargs):
-        if provider.lower() == "apollo":
+        provider = provider.lower()
+        # TODO: Move apollo connection to its own
+        # method like openai once integrated
+        if provider == "apollo":
             cls.model = "Apollo"
             if token:
                 cls._auth_token = token
                 print(f"Connected to {provider} provider, using Safety model")
             else:
                 print("Please set a auth token")
+        elif provider.startswith("openai:"):
+            cls.model = "OpenAI"
+            cls._provider_path = provider
+            return cls._openai_manager.load_openai_provider(cls._provider_path)
         else:
             return f"Provider {provider} not found"
 
@@ -120,3 +132,31 @@ class Apollo(General):
             return conn.make_https_request({"rule": f"{text} {operator} {threshold}"})
         else:
             return "No provider connected"
+
+    @classmethod
+    def evaluate(providers, options):
+        """Evaluates prompts using the specified providers.
+
+        Args:
+            providers: The providers to use. Can be a string, a list of strings, or a list of `ApiProvider` objects.
+            options: Optional keyword arguments to pass to the `evaluate` function.
+        TODO:
+        """
+
+        # if not options:
+        #     options = {}
+
+        # api_providers = []
+
+        # if isinstance(providers, str):
+        #     api_providers.append(load_api_provider(providers))
+        # elif isinstance(providers, list):
+        #     for provider in providers:
+        #         if isinstance(provider, str):
+        #             api_providers.append(load_api_provider(provider))
+        #         else:
+        #             api_providers.append(provider)
+        # else:
+        #     raise ValueError(f"providers must be a string, a list of strings, or a list of ApiProvider objects, but got {providers!r}")
+
+        # return do_evaluate(options, api_providers)

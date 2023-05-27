@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 # Copyright 2022 Adrian Brown
 # Copyright 2023 Apollo API, Inc.
 #
@@ -19,17 +17,12 @@ import io
 import pathlib
 import json
 
-# from tabulate import Table
-# from termcolor import Fore, Style
+from tabulate import tabulate
+from termcolor import colored, cprint
 from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
 
-# from logger import logger
-# from providers import load_api_provider
-# from evaluator import evaluate
-# from util import read_prompts, read_vars, write_output
-from utils import read_vars, read_prompts
-
-# from types import CommandLineOptions, EvaluateOptions, VarMapping
+from .utils import read_vars, read_prompts, evaluate, write_output
+from apollo.manager import OpenAIConnectionManager
 
 
 class PromptEngine(object):
@@ -72,9 +65,7 @@ class PromptEngine(object):
         )
 
         self.args = self.parser.parse_args()
-
-    def foo(self):
-        print(self.args)
+        self.provider = OpenAIConnectionManager()
 
     def eval(self):
         config_path = self.args.config
@@ -88,45 +79,69 @@ class PromptEngine(object):
             #     config = importlib.import_module(config_path)
             else:
                 raise Error(f"Unsupported configuration file format: {ext}")
-            # print(config)
 
         vars = []
         if self.args.vars:
             vars = read_vars(self.args.vars)
-        # print(vars)
 
-        # providers = [load_api_provider(p) for p in self.args.provider]  # NOTE: in progress
+        providers = [self.provider.load_openai_provider(p) for p in self.args.provider]
         options = {
             "prompts": read_prompts(self.args.prompt),
             "vars": vars,  # NOTE: I think this is suppowed to be output not a path
-            # 'providers': providers,
+            "providers": providers,
             **config,
         }
-        # print(options)
 
-        # summary = await evaluate(options)
+        # TODO update once you support multiple providers
+        summary = evaluate(options, providers[0])
+        results = summary["results"]
+        if self.args.output:
+            print_light_grey_on_yellow = lambda x: cprint(x, "black", "on_yellow")
+            print_light_grey_on_yellow(f"Writing output to {self.args.output}")
+            table_data = [
+                [
+                    result["prompt"][:60] + "..."
+                    if len(result["prompt"]) > 60
+                    else result["prompt"],
+                    result["output"],
+                    result.get("name", ""),
+                    result["question"],
+                ]
+                for result in results
+            ]
+            write_output(self.args.output, summary["results"], summary["table"])
+        else:
+            # Output table by default
+            headers = list(results[0].keys()) + ["state [pass/fail]"]
+            print(headers)
+            table_data = [
+                [
+                    result["prompt"][:60] + "..."
+                    if len(result["prompt"]) > 60
+                    else result["prompt"],
+                    result["output"],
+                    result.get("name", ""),
+                    result["question"],
+                ]
+                for result in results
+            ]
+            num_headers = len(headers)
+            min_width = 30
+            max_width = 50
 
-        # if self.args.output:
-        #     logger.info(Fore.YELLOW(f'Writing output to {self.args.output}'))
-        #     write_output(self.args.output, summary.results, summary.table)
-        # else:
-        #     # Output table by default
-        #     max_width = sys.stdout.columns if sys.stdout.columns else 120
-        #     head = summary.table[0]
-        #     table = Table( # NOTE use tabulate here
-        #         head,
-        #         col_widths=list(map(lambda x: math.floor(max_width / len(x)), head)),
-        #         word_wrap=True,
-        #         wrap_on_word_boundary=True,
-        #     )
-        #     table.add_rows(summary.table[1:])
-        #     logger.info(table.table)
+            # Calculate the width for each column based on the number of headers
+            column_width = max(
+                min_width, min(max_width, (max_width - min_width) // num_headers)
+            )
 
-        # logger.info(Fore.GREEN + Style.BRIGHT(f'Evaluation complete: {json.dumps(summary.stats, indent=2)}'))
-        # logger.info('Done.')
+            table = tabulate(
+                table_data,
+                headers=headers,
+                # showindex="always",
+                tablefmt="rounded_grid",
+                maxcolwidths=column_width,
+            )
+            print(table)
 
-
-if __name__ == "__main__":
-    program = PromptEngine()
-    program.foo()
-    program.eval()
+        print_yellow = lambda x: cprint(x, "yellow")
+        print_yellow(f'Evaluation complete: {json.dumps(summary["stats"], indent=4)}')

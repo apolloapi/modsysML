@@ -17,6 +17,7 @@ from apollo.manager import (
     PostgresConnectionManager,
     FirebaseConnectionManager,
     JSONConnectionManager,
+    OpenAIConnectionManager,
 )
 from apollo.const import QUERY_CONTEXT
 
@@ -37,7 +38,7 @@ class Firebase:
     pass
 
 
-class JSON:
+class JSONService:
 
     # Service utility class
     _service_manager = JSONConnectionManager()
@@ -46,7 +47,16 @@ class JSON:
     _auth_token = None
 
 
-class General(Postgres, JSON):
+class OpenAI:
+
+    # connection manager
+    _openai_manager = OpenAIConnectionManager()
+
+    # model type definition
+    _provider_path = None
+
+
+class General(Postgres, JSONService, OpenAI):
 
     # Current LLM to be used
     model = None

@@ -15,18 +15,23 @@
 
 import requests
 import openai
+import os
 
-from apollo.connectors.openai.base import AbstractApiProvider
+from apollo.connectors.openai.base import AbstractOpenAIProvider
 
 # from typing import Any, Dict, List, Optional, Union
 
 
-class OpenAiGenericProvider(AbstractApiProvider):
-    model_name: str
+class OpenAiGenericProvider(AbstractOpenAIProvider):
+    temp_val = os.environ.get("OPENAI_TEMPERATURE", 0)
+    max_token_val = os.environ.get("OPENAI_MAX_TOKENS", 1024)
+    api_key_val = os.environ.get("OPENAI_API_KEY", None)
 
-    def __init__(self, model_name: str, api_key: str) -> None:
-        super().__init__(api_key)
+    def __init__(self, model_name: str) -> None:
         self.model_name = model_name
+        self.api_key = self.api_key_val
+        self.tokens = int(self.max_token_val)
+        self.temp = int(self.temp_val)
 
     def id(self) -> str:
         return f"openai:{self.model_name}"
@@ -34,12 +39,18 @@ class OpenAiGenericProvider(AbstractApiProvider):
     def to_string(self) -> str:
         return f"[OpenAI Provider {self.model_name}]"
 
+    def token_settings(self) -> str:
+        return f"Using {self.tokens} tokens"
+
+    def temp_settings(self) -> str:
+        return f"Temp set to {self.temp}"
+
     def call_api(self, prompt: str):
         body = {
             "model": self.model_name,
             "prompt": prompt,
-            "max_tokens": 1024,
-            "temperature": 0,
+            "max_tokens": self.tokens,
+            "temperature": self.temp,
         }
         headers = {
             "Content-Type": "application/json",
@@ -58,39 +69,7 @@ class OpenAiGenericProvider(AbstractApiProvider):
                     "completion": data["usage"]["completion_tokens"],
                 },
             }
-
-            # import os
-
-            # openai.api_key = os.getenv("OPENAI_API_KEY")
-
-            # response = openai.Completion.create(model="text-davinci-003", prompt="Say this is a test", temperature=0, max_tokens=7)
         else:
             raise Exception(
                 f"OpenAI API call failed with status code {response.json()}"
             )
-
-
-class OpenAiCompletionProvider(OpenAiGenericProvider):
-    def __init__(self, model_name: str, api_key: str) -> None:
-        super().__init__(model_name, api_key)
-
-
-class OpenAiChatCompletionProvider(OpenAiGenericProvider):
-    def __init__(self, model_name: str, api_key: str) -> None:
-        super().__init__(model_name, api_key)
-
-
-# Will end up supporting universal models (google, aws, firestore, etc...)
-def load_api_provider(provider_path: str):
-    if provider_path.startswith("openai:"):
-        path_parts = provider_path.split(":")
-        model_type = path_parts[1]
-        model_name = path_parts[2]
-        if model_type == "chat":
-            return OpenAiChatCompletionProvider(model_name or "gpt-3.5-turbo")
-        elif model_type == "completion":
-            return OpenAiCompletionProvider(model_name or "text-davinci-003")
-        else:
-            raise ValueError(f"Unknown OpenAI model type: {model_type}")
-    else:
-        return importlib.import_module(provider_path).default()
