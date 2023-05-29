@@ -20,3 +20,7 @@ class AbstractRestClient:
 
     def make_https_request(self, body, header, endpoint):
         return NotImplementedError
+
+    # general request module
+    def call_api(self):
+        raise NotImplementedError

@@ -35,6 +35,11 @@ REST_CLIENT_CLASS = os.environ.get(
     "REST_CLIENT_CLASS", "apollo.service.json.RestClient"
 )
 
+# OPENAI Provider
+OPENAI_CLIENT_CLASS = os.environ.get(
+    "OPENAI_CLIENT_CLASS", "apollo.connectors.openai.OpenAiGenericProvider"
+)
+
 # Hard code sql queries to prevent injection
 QUERY_CONTEXT = {
     "asc": "",

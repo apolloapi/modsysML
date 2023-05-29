@@ -149,3 +149,7 @@ The first line should not be longer than 75 characters, the second line is alway
 - [Chat with a member of the team](https://apolloapi.io) 👋
 - Check our [blog on Trust & Safety](https://www.thebriefnewsletter.com)
 - Look at our docs on how to get started [here!](https://apolloapi-doc.vercel.app/)
+
+## NOTES CLI TEST
+
+- set env variables for provider (openai) either in .env file or by exports

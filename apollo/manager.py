@@ -13,7 +13,12 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-from apollo import get_supabase_client, get_firebase_client, get_json_client
+from apollo import (
+    get_supabase_client,
+    get_firebase_client,
+    get_json_client,
+    get_openai_client,
+)
 from apollo.exceptions import EmptyResultsWarning
 
 
@@ -45,3 +50,9 @@ class JSONConnectionManager:
     @staticmethod
     def connect(api_key):
         return get_json_client(api_key)
+
+
+class OpenAIConnectionManager:
+    @staticmethod
+    def load_openai_provider(provider_path: str):
+        return get_openai_client(provider_path)

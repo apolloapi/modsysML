@@ -12,30 +12,3 @@
 #    WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 #    License for the specific language governing permissions and limitations
 #    under the License.
-
-import requests
-
-from apollo.service.json.base import AbstractRestClient
-from apollo.const import test_token
-
-
-class RestClient(AbstractRestClient):
-    def __init__(self, api_key):
-        self.api_key = api_key
-
-    @staticmethod
-    def make_http_request():
-        return None
-
-    @staticmethod
-    def call_api(self):
-        return None
-
-    def make_https_request(self, body):
-        response = requests.post(
-            "https://api.apolloapi.io/api/v1/apollo/",
-            headers={"Authorization": f"Token {self.api_key}"},
-            json=body,
-            timeout=10,
-        )
-        return response.json()

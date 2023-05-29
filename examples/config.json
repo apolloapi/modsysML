@@ -1,0 +1,4 @@
+{
+    "provider": "openai:completion",
+    "vars": "/vars.csv"
+}

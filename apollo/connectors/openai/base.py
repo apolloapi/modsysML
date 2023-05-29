@@ -13,29 +13,18 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-import requests
-
 from apollo.service.json.base import AbstractRestClient
-from apollo.const import test_token
 
 
-class RestClient(AbstractRestClient):
-    def __init__(self, api_key):
-        self.api_key = api_key
+class AbstractOpenAIProvider(AbstractRestClient):
+    def id(self) -> str:
+        raise NotImplementedError
 
-    @staticmethod
-    def make_http_request():
-        return None
+    def to_string(self) -> str:
+        raise NotImplementedError
 
-    @staticmethod
-    def call_api(self):
-        return None
+    def token_settings(self) -> str:
+        raise NotImplementedError
 
-    def make_https_request(self, body):
-        response = requests.post(
-            "https://api.apolloapi.io/api/v1/apollo/",
-            headers={"Authorization": f"Token {self.api_key}"},
-            json=body,
-            timeout=10,
-        )
-        return response.json()
+    def temp_settings(self) -> str:
+        raise NotImplementedError
