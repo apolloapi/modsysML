@@ -23,7 +23,7 @@ Apollo is an open-source automation framework to evaluate and compare LLM output
 
 ## Why Apollo API?
 
-Before Apollo, testing model quality and automating workloads was time-consuming, with Apollom, you can simplify, accelerate and backtest the entire process. This makes it easier to train classifiers, handle real-time changes and make data driven decisions.
+Before Apollo, testing model quality and automating workloads was time-consuming, with Apollo, you can simplify, accelerate and backtest the entire process. This makes it easier to train classifiers, handle real-time changes and make data driven decisions.
 
 ## 🚀 Interesting, how can I try it?
 
@@ -215,14 +215,16 @@ Apollo.query("desc", "table", "column")
 
 ...and create a workflow with a simple command:
 
-_Note: you can obtain a Auth token [here](https://docs.apolloapi.io/docs/api/authentication), sign up today on our [Site](https://app.apolloapi.io/)_
+_Note: you can use our sandbox api and skip providing a token or obtain a Auth token [here](https://docs.apolloapi.io/docs/api/authentication), sign up today on our [Site](https://app.apolloapi.io/)_
 
 ```python
 # import the package
 from apollo.client import Apollo
 
 # Use our custom model to test building decisions, *token=defaults to sandbox api if none
-Apollo.use("apollo", token="YOUR_API_TOKEN_HERE")
+Apollo.use("apollo", token="YOUR_API_TOKEN_HERE") # If you have a token
+
+Apollo.use("apollo") # If using sandbox API
 
 # Lets check to see if a phrase contains threats
 Apollo.detectText("Phrase1", "contains", "Threats")

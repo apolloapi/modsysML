@@ -84,7 +84,7 @@ class PromptEngine(object):
 
     def init(self):
         config = {
-            "provider": "openai:completion",
+            "provider": ["openai:completion"],
             "vars": "/vars.csv",
             "prompts": "/prompts.txt",
         }
