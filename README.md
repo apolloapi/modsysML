@@ -1,4 +1,4 @@
-# apollo-sdk: model-management tool
+# apollo-sdk: model management tool
 
 [![python](https://img.shields.io/pypi/pyversions/3)](https://www.python.org/downloads/)
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/apolloapi/apolloapi/pre-commit.yml)
