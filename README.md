@@ -221,7 +221,7 @@ _Note: you can obtain a Auth token [here](https://docs.apolloapi.io/docs/api/aut
 # import the package
 from apollo.client import Apollo
 
-# Use our custom model to test building decisions
+# Use our custom model to test building decisions, *token=defaults to sandbox api if none
 Apollo.use("apollo", token="YOUR_API_TOKEN_HERE")
 
 # Lets check to see if a phrase contains threats
