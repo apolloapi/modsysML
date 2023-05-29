@@ -4,10 +4,10 @@
 
 </div>
 
-<h1 align="center">Open-source Automation</h1>
+<h1 align="center">Apollo API</h1>
 
 <div align="center">
-Apollo is an open-source no-code platform that helps you build automated workflows in minutes. Our SDK allows you to automate tasks such as; onboarding, compliance, trust & safety, fraud detection, code generation and more.
+Apollo is an open-source automation framework to evaluate and compare LLM outputs and build decision making workflows. Test prompt quality, catch regressions and backtest your automated systems.
 </div>
 
 <p align="center">
@@ -25,10 +25,9 @@ Apollo is an open-source no-code platform that helps you build automated workflo
 
 ## Why Apollo API?
 
-Before Apollo, integrating AI models and building automated workflows could be time-consuming, with Apollo, you can simplify and accelerate the process, making it easier to deploy AI models, sync data, and develop insights in minutes.
+Before Apollo, testing model quality and automating workloads was time-consuming, with Apollom, you can simplify, accelerate and backtest the entire process. This makes it easier to train classifiers, handle real-time changes and make data driven decisions.
 
 ![HowItWorks](https://uploads-ssl.webflow.com/640ca38ad086fde245b76c9d/645e8d8ad611b140135e11bb_GraphicOne.png)
-
 
 ## 🚀 Interesting, how can I try it?
 
@@ -37,6 +36,49 @@ Lets install the SDK first...
 ```bash
 pip install apollo-sdk
 ```
+
+## Regression tests vs Automated pipelines
+
+### Evaluating prompt quality
+
+`apollo-sdk` helps you tune LLM prompts systematically across many relevant test cases.
+
+With Apollo, you can:
+
+- **Test multiple prompts** against predefined test cases
+- **Evaluate quality and catch regressions** by comparing LLM outputs side-by-side
+- **Speed up evaluations** with caching and concurrent tests
+- **Flag bad outputs automatically** by setting "expectations"
+- Use as a command line tool, or integrate into your workflow as a library
+- Use any AI provider, API or database under one API
+
+`apollo-sdk` produces table views that allow you to quickly review prompt outputs across many inputs. The goal: tune prompts systematically across all relevant test cases, instead of testing prompts by trial and error.
+
+Here's an example of a side-by-side comparison of multiple prompts and inputs:
+
+#### Usage (command line)
+
+_Support for user interface coming soon_
+
+**It works on the command line, you can output to [`json`, `csv`, `yaml`]:**
+![Prompt eval](https://uploads-ssl.webflow.com/640ca38ad086fde245b76c9d/6473f27e6fc6bf5f6f20b1f5_promptgif.gif)
+To get started, run the following command:
+
+```
+apollo-sdk init
+```
+
+This will create some templates in your current directory: `prompts.txt`, `vars.csv`, and `config.json`.
+
+After editing the prompts and variables to your desired state, run the `run` command to kick off an prompt evaluation test:
+
+```
+apollo-sdk run
+```
+
+If you're looking to customize your usage, you have a wide set of parameters at your disposal. See the [Configuration docs]() for more detail:
+
+### Building Automated Pipelines
 
 Let's setup your first Integration!
 
