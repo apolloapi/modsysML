@@ -1,3 +1,9 @@
+# apollo-sdk: model-management tool
+
+[![python](https://img.shields.io/pypi/pyversions/3)](https://www.python.org/downloads/)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/apolloapi/apolloapi/pre-commit.yml)
+![Release](https://img.shields.io/github/v/release/apolloapi/apolloapi)
+
 <div align="center">
 
 ![HowItWorks](https://uploads-ssl.webflow.com/640ca38ad086fde245b76c9d/645e8d8ad611b140135e11bb_GraphicOne.png)

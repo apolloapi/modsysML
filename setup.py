@@ -24,7 +24,7 @@ with open("requirements.txt") as f:
 
 setup(
     name="apollo-sdk",
-    version="0.2.8",
+    version="0.2.9",
     description="Build automated decision making workflows by aggregating your AI models and data into one api.",
     author="Apollo API",
     author_email="adrbrownx@gmail.com",
