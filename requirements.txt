@@ -88,7 +88,7 @@ tomli==2.0.0
 tqdm==4.65.0
 typing-inspect==0.8.0
 typing_extensions==4.4.0
-tzdata==2022.7
+tzdata==2023.3
 uritemplate==4.1.1
 urllib3==1.26.13
 virtualenv==20.21.0
