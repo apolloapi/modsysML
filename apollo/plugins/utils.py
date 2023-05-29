@@ -32,10 +32,10 @@ def read_prompts(path):
     return prompts
 
 
-def read_vars(path):
+def read_vars(path, delimiter):
     variables = []
     with open(path, "r") as f:
-        reader = csv.reader(f, delimiter="\t")
+        reader = csv.reader(f, delimiter=delimiter)
         header = next(reader)  # skip the header elements
         for row in reader:
             if len(row) == len(

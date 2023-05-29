@@ -16,6 +16,8 @@
 import io
 import pathlib
 import json
+import csv
+import os
 
 from tabulate import tabulate
 from termcolor import colored, cprint
@@ -63,9 +65,59 @@ class PromptEngine(object):
             type=pathlib.Path,
             help="Path to configuration file",
         )
+        self.parser.add_argument(
+            "-d",
+            "--delimiter",
+            type=pathlib.Path,
+            help="Delimiter set in the vars file, defaults to [,]",
+        )
+        self.parser.add_argument(
+            "--init",
+            action="store_const",
+            const="init",
+            default=None,
+            help="Initialize environment with configuration scripts",
+        )
 
         self.args = self.parser.parse_args()
         self.provider = OpenAIConnectionManager()
+
+    def init(self):
+        config = {
+            "provider": "openai:completion",
+            "vars": "/vars.csv",
+            "prompts": "/prompts.txt",
+        }
+        vars = [
+            ["name", "question"],
+            ["Tyler", "Can you help me find a specific product on your website?"],
+            ["Jhon", "Do you have any promotions or discounts currently available?"],
+            ["David", "What are your shipping and return policies?"],
+            [
+                "Adrian",
+                "Can you provide more information about the product specifications or features?",
+            ],
+            [
+                "User",
+                "Can you recommend products that are similar to what I've been looking at?",
+            ],
+        ]
+        prompts = [
+            'Youre a chat assistant for a company. Answer this users question: {{name}}: "{{question}}"',
+            'Youre a smart, bubbly chat assistant for a Trust & Safety team. Answer this users question: {{name}}: "{{question}}"',
+        ]
+
+        with open(os.path.join(os.getcwd(), f"prompts.txt"), "w") as f:
+            f.write("\n--- \n".join(prompts))
+
+        with open(
+            os.path.join(os.getcwd(), f"vars.csv"), mode="w", newline=""
+        ) as vars_file:
+            writer = csv.writer(vars_file)
+            writer.writerows(vars)
+
+        with open(os.path.join(os.getcwd(), f"config.json"), "w") as f:
+            json.dump(config, f)
 
     def eval(self):
         config_path = self.args.config
@@ -82,9 +134,13 @@ class PromptEngine(object):
 
         vars = []
         if self.args.vars:
-            vars = read_vars(self.args.vars)
+            vars = read_vars(
+                self.args.vars,
+                delimiter=self.args.delimiter if self.args.delimiter else ",",
+            )
 
         providers = [self.provider.load_openai_provider(p) for p in self.args.provider]
+
         options = {
             "prompts": read_prompts(self.args.prompt),
             "vars": vars,  # NOTE: I think this is suppowed to be output not a path
@@ -145,3 +201,9 @@ class PromptEngine(object):
 
         print_yellow = lambda x: cprint(x, "yellow")
         print_yellow(f'Evaluation complete: {json.dumps(summary["stats"], indent=4)}')
+
+    def setup(self):
+        if self.args.init == "init":
+            self.init()
+        else:
+            self.eval()
