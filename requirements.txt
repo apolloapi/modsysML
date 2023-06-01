@@ -63,7 +63,7 @@ pre-commit==2.20.0
 proto-plus==1.22.2
 protobuf==4.22.3
 psycopg==3.1.6
-psycopg-binary==3.1.6
+psycopg-binary==3.1.9
 psycopg-pool==3.1.7
 psycopg2==2.9.3
 py==1.11.0
