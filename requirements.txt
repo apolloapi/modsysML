@@ -20,7 +20,7 @@ Django==4.0
 django-cors-headers==3.13.0
 django-environ==0.4.5
 django-storages==1.13.1
-djangorestframework==3.13.1
+djangorestframework==3.14.0
 exceptiongroup==1.0.4
 execnet==1.9.0
 filelock==3.8.0
