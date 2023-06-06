@@ -45,6 +45,7 @@ def get_json_client(api_key) -> AbstractRestClient:
     return client(api_key)
 
 
+# NOTE: similar implementation for Apollo internal model and google perspective
 def get_openai_client(provider_path: str) -> AbstractOpenAIProvider:
     client = import_string(OPENAI_CLIENT_CLASS)
     if provider_path.startswith("openai:"):

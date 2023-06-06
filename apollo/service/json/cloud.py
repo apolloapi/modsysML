@@ -27,6 +27,7 @@ class RestClient(AbstractRestClient):
     def make_http_request():
         return None
 
+    # NOTE: implement static method
     @staticmethod
     def call_api(self):
         return None

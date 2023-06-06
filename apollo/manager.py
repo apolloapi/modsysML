@@ -52,6 +52,7 @@ class JSONConnectionManager:
         return get_json_client(api_key)
 
 
+# NOTE similar implementation to apollo and google approach
 class OpenAIConnectionManager:
     @staticmethod
     def load_openai_provider(provider_path: str):

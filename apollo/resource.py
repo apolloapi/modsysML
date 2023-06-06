@@ -47,6 +47,7 @@ class JSONService:
     _auth_token = None
 
 
+# NOTE similar implementation for Apollo & Google implementation
 class OpenAI:
 
     # connection manager

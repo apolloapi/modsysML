@@ -19,6 +19,7 @@ import os
 
 load_dotenv()
 
+# NOTE: additions for google and apollo support
 
 # Supabase support
 SUPABASE_CLIENT_CLASS = os.environ.get(

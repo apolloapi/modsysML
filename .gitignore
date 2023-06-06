@@ -4,6 +4,9 @@ __pycache__/
 *$py.class
 .vscode
 
+# tmp dir
+tmp/
+
 # django
 .env
 django_apolloapi/*

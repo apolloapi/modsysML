@@ -107,6 +107,9 @@ class Apollo(General):
 
     @classmethod
     def use(cls, provider, token="Beta_token123", *args, **kwargs):
+        # NOTE: update for internal setup for google perspective & perspective api support
+        # will need to add abstraction to apollo as a provider in the similar manner as openai
+
         provider = provider.lower()
         # TODO: Move apollo connection to its own
         # method like openai once integrated
@@ -126,6 +129,7 @@ class Apollo(General):
         else:
             return f"Provider {provider} not found"
 
+    # NOTE: will be updated for utilizing apollo model or google perspective api
     @classmethod
     def detectText(cls, text, operator, threshold):
         if cls.model:
