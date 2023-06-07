@@ -13,7 +13,18 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-from .cloud import GooglePerspectiveProvider
-from .local import FakeGooglePerspectiveProvider
+from apollo.connectors.google.base import AbstractGooglePerspectiveProvider
 
-__all__ = ["GooglePerspectiveProvider", "FakeGooglePerspectiveProvider"]
+
+class FakeGooglePerspectiveProvider(AbstractGooglePerspectiveProvider):
+    def id(self) -> str:
+        pass
+
+    def to_string(self) -> str:
+        pass
+
+    def i18n(self) -> str:
+        pass
+
+    def persist_settings(self) -> str:
+        pass

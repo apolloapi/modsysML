@@ -107,9 +107,6 @@ class Apollo(General):
 
     @classmethod
     def use(cls, provider, token="Beta_token123", *args, **kwargs):
-        # NOTE: update for internal setup for google perspective & perspective api support
-        # will need to add abstraction to apollo as a provider in the similar manner as openai
-
         provider = provider.lower()
         # TODO: Move apollo connection to its own
         # method like openai once integrated
@@ -126,16 +123,37 @@ class Apollo(General):
             cls.model = "OpenAI"
             cls._provider_path = provider
             return cls._openai_manager.load_openai_provider(cls._provider_path)
+        elif provider.startswith("google_perspective:"):
+            cls.model = "Google"
+            cls._google_perspective_provider_path = provider
+            cls._google_perspective_auth_token = (
+                kwargs["google_perspective_api_key"]
+                if "google_perspective_api_key" in kwargs
+                else None
+            )
+            return cls._googleai_manager.load_google_provider(
+                cls._google_perspective_provider_path,
+                cls._google_perspective_auth_token,
+            )
         else:
             return f"Provider {provider} not found"
 
-    # NOTE: will be updated for utilizing apollo model or google perspective api
     @classmethod
-    def detectText(cls, text, operator, threshold):
-        if cls.model:
+    def detectText(cls, text, operator, threshold, *args, **kwargs):
+        if cls.model == "Apollo":  # TODO: changes with sandbox update
             # print(cls.model)
             conn = cls._service_manager.connect(cls._auth_token)
             return conn.make_https_request({"rule": f"{text} {operator} {threshold}"})
+        elif cls.model == "Google":
+            conn = cls._googleai_manager.load_google_provider(
+                cls._google_perspective_provider_path,
+                cls._google_perspective_auth_token,
+            )
+            return conn.call_api(
+                kwargs["prompt"] if "prompt" in kwargs else None,
+                kwargs["content_id"] if "content_id" in kwargs else None,
+                kwargs["community_id"] if "community_id" in kwargs else None,
+            )
         else:
             return "No provider connected"
 

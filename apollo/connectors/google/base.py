@@ -12,3 +12,19 @@
 #    WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 #    License for the specific language governing permissions and limitations
 #    under the License.
+
+from apollo.service.json.base import AbstractRestClient
+
+
+class AbstractGooglePerspectiveProvider(AbstractRestClient):
+    def id(self) -> str:
+        raise NotImplementedError
+
+    def to_string(self) -> str:
+        raise NotImplementedError
+
+    def i18n(self) -> str:
+        raise NotImplementedError
+
+    def persist_settings(self) -> str:
+        raise NotImplementedError

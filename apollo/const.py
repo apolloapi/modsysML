@@ -19,7 +19,11 @@ import os
 
 load_dotenv()
 
-# NOTE: additions for google and apollo support
+# Google Perspective support
+GOOGLE_PERSPECTIVE_CLIENT_CLASS = os.environ.get(
+    "GOOGLE_PERSPECTIVE_CLIENT_CLASS",
+    "apollo.connectors.google.GooglePerspectiveProvider",
+)
 
 # Supabase support
 SUPABASE_CLIENT_CLASS = os.environ.get(

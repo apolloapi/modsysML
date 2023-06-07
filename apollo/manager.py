@@ -18,6 +18,7 @@ from apollo import (
     get_firebase_client,
     get_json_client,
     get_openai_client,
+    get_google_client,
 )
 from apollo.exceptions import EmptyResultsWarning
 
@@ -52,8 +53,13 @@ class JSONConnectionManager:
         return get_json_client(api_key)
 
 
-# NOTE similar implementation to apollo and google approach
 class OpenAIConnectionManager:
     @staticmethod
     def load_openai_provider(provider_path: str):
         return get_openai_client(provider_path)
+
+
+class GoogleAIConnectionManager:
+    @staticmethod
+    def load_google_provider(provider_path: str, secret=None):
+        return get_google_client(provider_path, secret)

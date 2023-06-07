@@ -19,12 +19,14 @@ from apollo.database.supabase.base import AbstractSupabaseClient
 from apollo.database.firebase.base import AbstractFirebaseClient
 from apollo.service.json.base import AbstractRestClient
 from apollo.connectors.openai.base import AbstractOpenAIProvider
+from apollo.connectors.google.base import AbstractGooglePerspectiveProvider
 
 from .const import (
     SUPABASE_CLIENT_CLASS,
     FIREBASE_CLIENT_CLASS,
     REST_CLIENT_CLASS,
     OPENAI_CLIENT_CLASS,
+    GOOGLE_PERSPECTIVE_CLIENT_CLASS,
 )
 
 from django.utils.module_loading import import_string
@@ -45,7 +47,6 @@ def get_json_client(api_key) -> AbstractRestClient:
     return client(api_key)
 
 
-# NOTE: similar implementation for Apollo internal model and google perspective
 def get_openai_client(provider_path: str) -> AbstractOpenAIProvider:
     client = import_string(OPENAI_CLIENT_CLASS)
     if provider_path.startswith("openai:"):
@@ -53,11 +54,30 @@ def get_openai_client(provider_path: str) -> AbstractOpenAIProvider:
         model_name = path_parts[0]
         model_type = path_parts[1]
         if model_type == "chat":
-            print(f"Connected to {provider_path}")
-            return client("gpt-3.5-turbo")
+            raise NotImplementedError
         elif model_type == "completion":
             print(f"Connected to {provider_path}")
             return client("text-davinci-003")
+        else:
+            raise ValueError(f"Unknown OpenAI model type: {model_type}")
+    else:
+        return importlib.import_module(provider_path).default()
+
+
+def get_google_client(
+    provider_path: str, **kwargs
+) -> AbstractGooglePerspectiveProvider:
+    client = import_string(GOOGLE_PERSPECTIVE_CLIENT_CLASS)
+    secret = kwargs["secret"] if "secret" in kwargs else None
+    if provider_path.startswith("google_perspective:"):
+        path_parts = provider_path.split(":")
+        model_name = path_parts[0]
+        model_type = path_parts[1]
+        if model_type == "analyze":
+            print(f"Connected to {provider_path}")
+            return client("analye", secret)
+        elif model_type == "suggest":
+            raise NotImplementedError
         else:
             raise ValueError(f"Unknown OpenAI model type: {model_type}")
     else:

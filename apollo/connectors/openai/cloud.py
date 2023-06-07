@@ -19,8 +19,6 @@ import os
 
 from apollo.connectors.openai.base import AbstractOpenAIProvider
 
-# from typing import Any, Dict, List, Optional, Union
-
 
 class OpenAiGenericProvider(AbstractOpenAIProvider):
     temp_val = os.environ.get("OPENAI_TEMPERATURE", 0)

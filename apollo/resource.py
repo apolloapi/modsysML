@@ -18,6 +18,7 @@ from apollo.manager import (
     FirebaseConnectionManager,
     JSONConnectionManager,
     OpenAIConnectionManager,
+    GoogleAIConnectionManager,
 )
 from apollo.const import QUERY_CONTEXT
 
@@ -47,7 +48,6 @@ class JSONService:
     _auth_token = None
 
 
-# NOTE similar implementation for Apollo & Google implementation
 class OpenAI:
 
     # connection manager
@@ -57,7 +57,18 @@ class OpenAI:
     _provider_path = None
 
 
-class General(Postgres, JSONService, OpenAI):
+class GoogleAI:
+    # connection manager
+    _googleai_manager = GoogleAIConnectionManager()
+
+    # model type definition
+    _google_perspective_provider_path = None
+
+    # API key
+    _google_perspective_auth_token = None
+
+
+class General(Postgres, JSONService, OpenAI, GoogleAI):
 
     # Current LLM to be used
     model = None
