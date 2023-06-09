@@ -15,12 +15,9 @@
 
 
 class AbstractRestClient:
-    def make_http_request(self, body, header, endpoint):
-        return NotImplementedError
-
     def make_https_request(self, body, header, endpoint):
         return NotImplementedError
 
-    # general request module
+    # general request module for connectors, integrations or more.
     def call_api(self):
         raise NotImplementedError

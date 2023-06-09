@@ -13,7 +13,18 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-from .cloud import GooglePerspectiveProvider
-from .local import FakeGooglePerspectiveProvider
+from apollo.service.json.base import AbstractRestClient
 
-__all__ = ["GooglePerspectiveProvider", "FakeGooglePerspectiveProvider"]
+
+class AbstractGooglePerspectiveProvider(AbstractRestClient):
+    def id(self) -> str:
+        raise NotImplementedError
+
+    def to_string(self) -> str:
+        raise NotImplementedError
+
+    def i18n(self) -> str:
+        raise NotImplementedError
+
+    def persist_settings(self) -> str:
+        raise NotImplementedError

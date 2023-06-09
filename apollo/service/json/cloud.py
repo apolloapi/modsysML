@@ -23,14 +23,12 @@ class RestClient(AbstractRestClient):
     def __init__(self, api_key):
         self.api_key = api_key
 
-    @staticmethod
-    def make_http_request():
-        return None
-
+    # NOTE: implement static method
     @staticmethod
     def call_api(self):
         return None
 
+    # TODO: change this to http and update this to be sending us content ( can rename and shrink to two functions)
     def make_https_request(self, body):
         response = requests.post(
             "https://api.apolloapi.io/api/v1/sandbox/",  # Access to sandbox env
