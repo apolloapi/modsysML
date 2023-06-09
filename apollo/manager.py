@@ -61,5 +61,7 @@ class OpenAIConnectionManager:
 
 class GoogleAIConnectionManager:
     @staticmethod
-    def load_google_provider(provider_path: str, secret=None):
-        return get_google_client(provider_path, secret)
+    def load_google_provider(provider_path: str, *args, **kwargs):
+        return get_google_client(
+            provider_path, secret=kwargs["secret"] if "secret" in kwargs else None
+        )

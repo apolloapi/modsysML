@@ -133,7 +133,7 @@ class Apollo(General):
             )
             return cls._googleai_manager.load_google_provider(
                 cls._google_perspective_provider_path,
-                cls._google_perspective_auth_token,
+                secret=cls._google_perspective_auth_token,
             )
         else:
             return f"Provider {provider} not found"

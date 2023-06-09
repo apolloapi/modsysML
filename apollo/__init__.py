@@ -65,7 +65,7 @@ def get_openai_client(provider_path: str) -> AbstractOpenAIProvider:
 
 
 def get_google_client(
-    provider_path: str, **kwargs
+    provider_path: str, *args, **kwargs
 ) -> AbstractGooglePerspectiveProvider:
     client = import_string(GOOGLE_PERSPECTIVE_CLIENT_CLASS)
     secret = kwargs["secret"] if "secret" in kwargs else None
@@ -74,8 +74,8 @@ def get_google_client(
         model_name = path_parts[0]
         model_type = path_parts[1]
         if model_type == "analyze":
-            print(f"Connected to {provider_path}")
-            return client("analye", secret)
+            print(f"Connected to {model_name}")
+            return client(model_type, secret)
         elif model_type == "suggest":
             raise NotImplementedError
         else:

@@ -16,23 +16,24 @@
 from apollo.connectors.google.base import AbstractGooglePerspectiveProvider
 from apollo.exceptions import AuthorizationFailure
 
+import os
+import requests
+
 
 class GooglePerspectiveProvider(AbstractGooglePerspectiveProvider):
     api_key_val = os.environ.get("PERSPECTIVE_API_KEY", None)
-    i18n = os.environ.get("PERSPECTIVE_i18n", ["en"])
     cache = os.environ.get("PERSPECTIVE_CACHE_OUTPUT", True)
 
     def __init__(self, model_name: str, secret=None) -> None:
         self.model_name = model_name  # analyze or suggest
-
+        self.secret = secret
         if self.api_key_val is None and self.secret is None:
             raise AuthorizationFailure
         elif self.secret is None and self.api_key_val is not None:
             self.api_key = self.api_key_val
         else:
-            self.api_key = secret
+            self.api_key = self.secret
 
-        self.lang = list(self.i18n)
         self.cache = bool(self.cache)
 
     def id(self) -> str:
@@ -40,9 +41,6 @@ class GooglePerspectiveProvider(AbstractGooglePerspectiveProvider):
 
     def to_string(self) -> str:
         return f"[Google Perspective Provider {self.model_name}]"
-
-    def i18n(self) -> str:
-        return f"Language set to {self.i18n}"
 
     def cache_settings(self) -> str:
         return f"Persist model output set to {self.cache}"
@@ -60,7 +58,6 @@ class GooglePerspectiveProvider(AbstractGooglePerspectiveProvider):
                 "SEXUALLY_EXPLICIT": {},
                 "SPAM": {},
             },
-            "languages": self.lang,
             "doNotStore": self.cache,
             "clientToken": content_id,
             "communityId": community_id,
@@ -72,15 +69,14 @@ class GooglePerspectiveProvider(AbstractGooglePerspectiveProvider):
         response = requests.post(
             f"https://commentanalyzer.googleapis.com/v1alpha1/comments:{self.model_name}?key={self.api_key}",
             headers=headers,
-            data=body,
+            json=body,
         )
-        if response.json():
+        if response.status_code == 200:
             data = response.json()
-            return {
-                "output": data["attributeScores"],
-                "metadata": {data["clientToken"], data["languages"]},
-            }
+            print(data)
+            return data
         else:
+            print(response.json())
             raise Exception(
-                f"Google Perspective API call failed with status code {response.json()}"
+                f"Google Perspective API call failed with status code {response.status_code}"
             )
