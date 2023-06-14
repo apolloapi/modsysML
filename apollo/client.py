@@ -139,7 +139,24 @@ class Apollo(General):
             return f"Provider {provider} not found"
 
     @classmethod
-    def detectText(cls, text, operator, threshold, *args, **kwargs):
+    def detectText(cls, *args, **kwargs):
+        """
+        Detect text
+
+        Args:
+            cls
+
+        Kwargs:
+            text:
+            operator:
+            threshold:
+            prompt:
+            content_id:
+            community_id:
+        """
+        text = kwargs.get("text")
+        operator = kwargs.get("operator")
+        threshold = kwargs.get("threshold")
         if cls.model == "Apollo":  # TODO: changes with sandbox update
             # print(cls.model)
             conn = cls._service_manager.connect(cls._auth_token)
