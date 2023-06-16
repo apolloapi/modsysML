@@ -198,9 +198,12 @@ You can also use `apollo` client as a library in your project by importing the `
 - **[Setting up an model test](https://docs.apolloapi.io)**: Learn more about how to set up prompt files, vars file, output, etc.
 <!-- - **[Configuring test cases]()**: Learn more about how to configure expected outputs and test assertions. -->
 
-### Building Automated Pipelines
+### Building Automated Pipelines in the User Interface or Programmatically
 
 ##### [View full documentation »](https://docs.apolloapi.io/)
+
+![image](https://github.com/apolloapi/apolloapi/assets/72639210/602234c2-f855-4514-8188-505c0d6c39c1)
+
 
 Let's setup your first Integration!
 
