@@ -11,7 +11,7 @@
 </div>
 
 <div align="center">
-Apollo is an open-source automation framework to evaluate and compare LLM outputs and build decision making workflows. Test prompt quality, catch regressions and backtest your automated systems.
+Apollo is an open-source validation framework to deploy guardrails for improved user experience and responsiveness of your AI systems..
 </div>
 
 <p align="center">
