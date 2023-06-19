@@ -141,18 +141,18 @@ class Apollo(General):
     @classmethod
     def detectText(cls, *args, **kwargs):
         """
-        Detect text
+        Detects text using the appropriate provider based on the `model` attribute of the class.
 
-        Args:
-            cls
+        :param text: The text to be detected (optional).
+        :type text: str
+        :param operator: The operator to be used (optional).
+        :type operator: str
+        :param threshold: The threshold value to be used (optional).
+        :type threshold: float
 
-        Kwargs:
-            text:
-            operator:
-            threshold:
-            prompt:
-            content_id:
-            community_id:
+        :return: The result of the text detection operation.
+        :rtype: str
+
         """
         text = kwargs.get("text")
         operator = kwargs.get("operator")
