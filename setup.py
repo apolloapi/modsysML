@@ -25,8 +25,8 @@ with open("requirements.txt") as f:
 
 setup(
     name="apollo-sdk",
-    version="0.2.10",
-    description="A radically simple framework for continuous ML validation and performance.",
+    version="0.2.11",
+    description="A radically simple framework for ML/AI model management",
     author="Apollo API",
     author_email="adrbrownx@gmail.com",
     packages=find_packages(),

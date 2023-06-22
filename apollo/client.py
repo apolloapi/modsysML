@@ -119,7 +119,9 @@ class Apollo(General):
                 print(
                     "Please set a auth token or use the sandbox: Apollo.sandbox_test()"
                 )
-        elif provider.startswith("openai:"):
+        elif provider.startswith(
+            "openai:"
+        ):  # NOTE update the return method to detectText
             cls.model = "OpenAI"
             cls._provider_path = provider
             return cls._openai_manager.load_openai_provider(cls._provider_path)
@@ -131,9 +133,20 @@ class Apollo(General):
                 if "google_perspective_api_key" in kwargs
                 else None
             )
-            return cls._googleai_manager.load_google_provider(
-                cls._google_perspective_provider_path,
-                secret=cls._google_perspective_auth_token,
+        elif provider.startswith("sightengine:"):
+            cls.model = "Sightengine"
+            cls._sightengine_provider_path = (
+                provider  # provider = "sightengine:[<model/s>]"
+            )
+            cls._sightengine_auth_token = (
+                kwargs["sightengine_api_key"]
+                if "sightengine_api_key" in kwargs
+                else None
+            )
+            cls._sightengine_api_user = (
+                kwargs["sightengine_api_user"]
+                if "sightengine_api_user" in kwargs
+                else None
             )
         else:
             return f"Provider {provider} not found"
@@ -173,6 +186,18 @@ class Apollo(General):
             )
         else:
             return "No provider connected"
+
+    @classmethod
+    def detectImage(cls, url, *args, **kwargs):
+        if cls.model == "Sightengine":
+            conn = cls._sightengine_manager.load_sightengine_provider(
+                cls._sightengine_provider_path,
+                cls._sightengine_auth_token,
+                cls._sightengine_api_user,
+            )
+            return conn.call_api(url)
+        else:
+            raise NotImplementedError
 
     @classmethod
     def evaluate(providers, options):

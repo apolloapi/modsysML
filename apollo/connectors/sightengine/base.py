@@ -12,26 +12,19 @@
 #    WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 #    License for the specific language governing permissions and limitations
 #    under the License.
-import requests
 
 from apollo.service.json.base import AbstractRestClient
-from apollo.const import test_token
 
 
-class RestClient(AbstractRestClient):
-    def __init__(self, api_key):
-        self.api_key = api_key
+class AbstractSightengineProvider(AbstractRestClient):
+    def id(self) -> str:
+        raise NotImplementedError
 
-    @staticmethod
-    def call_api(self):
-        return None
+    def to_string(self) -> str:
+        raise NotImplementedError
 
-    # TODO: change this to http and update this to be sending us content ( can rename and shrink to two functions)
-    def make_https_request(self, body):
-        response = requests.post(
-            "https://api.apolloapi.io/api/v1/sandbox/",  # Access to sandbox env
-            # headers={"Authorization": f"Token {self.api_key}"},
-            json=body,
-            timeout=10,
-        )
-        return response.json()
+    def i18n(self) -> str:
+        raise NotImplementedError
+
+    def persist_settings(self) -> str:
+        raise NotImplementedError

@@ -19,6 +19,11 @@ import os
 
 load_dotenv()
 
+# Sightengine support
+SIGHTENGINE_CLIENT_CLASS = os.environ.get(
+    "SIGHTENGINE_CLIENT_CLASS", "apollo.connectors.sightengine.SightengineProvider"
+)
+
 # Google Perspective support
 GOOGLE_PERSPECTIVE_CLIENT_CLASS = os.environ.get(
     "GOOGLE_PERSPECTIVE_CLIENT_CLASS",

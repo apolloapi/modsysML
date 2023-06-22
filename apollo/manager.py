@@ -19,6 +19,7 @@ from apollo import (
     get_json_client,
     get_openai_client,
     get_google_client,
+    get_sightengine_client,
 )
 from apollo.exceptions import EmptyResultsWarning
 
@@ -65,3 +66,9 @@ class GoogleAIConnectionManager:
         return get_google_client(
             provider_path, secret=kwargs["secret"] if "secret" in kwargs else None
         )
+
+
+class SightengineConnectionManager:
+    @staticmethod
+    def load_sightengine_provider(provider_path, secret, api_user):
+        return get_sightengine_client(provider_path, secret=secret, api_user=api_user)

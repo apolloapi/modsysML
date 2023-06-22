@@ -19,6 +19,7 @@ from apollo.manager import (
     JSONConnectionManager,
     OpenAIConnectionManager,
     GoogleAIConnectionManager,
+    SightengineConnectionManager,
 )
 from apollo.const import QUERY_CONTEXT
 
@@ -68,7 +69,14 @@ class GoogleAI:
     _google_perspective_auth_token = None
 
 
-class General(Postgres, JSONService, OpenAI, GoogleAI):
+class SightengineAI:
+    _sightengine_manager = SightengineConnectionManager()
+    _sightengine_provider_path = None
+    _sightengine_auth_token = None
+    _sightengine_api_user = None
+
+
+class General(Postgres, JSONService, OpenAI, GoogleAI, SightengineAI):
 
     # Current LLM to be used
     model = None
