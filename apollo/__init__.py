@@ -12,13 +12,16 @@
 #    WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 #    License for the specific language governing permissions and limitations
 #    under the License.
+
 import importlib
+import ast
 
 from apollo.database.supabase.base import AbstractSupabaseClient
 from apollo.database.firebase.base import AbstractFirebaseClient
 from apollo.service.json.base import AbstractRestClient
 from apollo.connectors.openai.base import AbstractOpenAIProvider
 from apollo.connectors.google.base import AbstractGooglePerspectiveProvider
+from apollo.connectors.sightengine.base import AbstractSightengineProvider
 
 from .const import (
     SUPABASE_CLIENT_CLASS,
@@ -26,6 +29,7 @@ from .const import (
     REST_CLIENT_CLASS,
     OPENAI_CLIENT_CLASS,
     GOOGLE_PERSPECTIVE_CLIENT_CLASS,
+    SIGHTENGINE_CLIENT_CLASS,
 )
 
 from django.utils.module_loading import import_string
@@ -55,7 +59,6 @@ def get_openai_client(provider_path: str) -> AbstractOpenAIProvider:
         if model_type == "chat":
             raise NotImplementedError
         elif model_type == "completion":
-            print(f"Connected to {provider_path}")
             return client("text-davinci-003")
         else:
             raise ValueError(f"Unknown OpenAI model type: {model_type}")
@@ -73,11 +76,28 @@ def get_google_client(
         model_name = path_parts[0]
         model_type = path_parts[1]
         if model_type == "analyze":
-            print(f"Connected to {model_name}")
             return client(model_type, secret)
         elif model_type == "suggest":
             raise NotImplementedError
         else:
             raise ValueError(f"Unknown OpenAI model type: {model_type}")
+    else:
+        return importlib.import_module(provider_path).default()
+
+
+def get_sightengine_client(
+    provider_path, secret: str, api_user: str
+) -> AbstractSightengineProvider:
+    client = import_string(SIGHTENGINE_CLIENT_CLASS)
+    if provider_path.startswith("sightengine:"):
+        path_parts = provider_path.split(":")
+        model_name = path_parts[0]
+        model_type = ast.literal_eval(path_parts[1])
+
+        if len(model_type) > 0:
+            return client(model_type, secret=secret, api_user=api_user)
+        else:
+            raise ValueError(f"No model type set for Sightengine: {model_name}")
+        return path_parts
     else:
         return importlib.import_module(provider_path).default()
