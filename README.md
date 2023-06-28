@@ -233,6 +233,9 @@ from apollo.client import Apollo
 # Use any provider
 Apollo.use("google_perspective:<model name>", secret="YOUR_API_TOKEN_HERE")
 
+# An option for image detection
+Apollo.detectImage('https://example.com/some-endpoint') # Image Analysis/OCR
+
 # Lets check to see if a phrase contains threats
 Apollo.detectText(prompt="Phrase1", content_id="content-id", community_id="user-id")
 ```
