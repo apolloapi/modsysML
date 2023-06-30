@@ -162,6 +162,8 @@ class Modsys(General):
         :type operator: str
         :param threshold: The threshold value to be used (optional).
         :type threshold: float
+        :param scores: A dict of attributes with their respective scores that you'd like to suggest (optional).
+        :type threshold: dict
 
         :return: The result of the text detection operation.
         :rtype: str
@@ -181,6 +183,7 @@ class Modsys(General):
             )
             return conn.call_api(
                 kwargs["prompt"] if "prompt" in kwargs else None,
+                kwargs["scores"] if "scores" in kwargs else None,
                 kwargs["content_id"] if "content_id" in kwargs else None,
                 kwargs["community_id"] if "community_id" in kwargs else None,
             )
