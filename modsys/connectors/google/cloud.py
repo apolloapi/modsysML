@@ -71,7 +71,7 @@ class GooglePerspectiveProvider(AbstractGooglePerspectiveProvider):
                 "communityId": community_id,
             }
             url = f"https://commentanalyzer.googleapis.com/v1alpha1/comments:{self.model_name}?key={self.api_key}"
-            return {url, body}
+            return {"url": url, "body": body}
         elif self.model_name == "suggest":
             if scores is None:
                 raise Exception(
@@ -87,23 +87,23 @@ class GooglePerspectiveProvider(AbstractGooglePerspectiveProvider):
                 "communityId": community_id,
             }
 
-            url = (
-                f"https://commentanalyzer.googleapis.com/v1alpha1/comments:suggestscore?key={self.api_key}",
-            )
-            return {url, body}
+            url = f"https://commentanalyzer.googleapis.com/v1alpha1/comments:suggestscore?key={self.api_key}"
+            return {"url": url, "body": body}
         else:
             raise Exception(
                 f"Invailid model_name. Expected 'suggest' or 'analyze' but got {self.model_name}"
             )
 
     def call_api(self, prompt: str, content_id: str, community_id: str, scores: dict):
-        url, body = self.transform(prompt, content_id, community_id, scores)
+        transformed_data = self.transform(prompt, content_id, community_id, scores)
+        url = transformed_data["url"]
+        body = transformed_data["body"]
 
         headers = {
             "Content-Type": "application/json",
         }
         response = requests.post(
-            url,
+            url=url,
             headers=headers,
             json=body,
         )
