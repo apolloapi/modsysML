@@ -1,4 +1,5 @@
-# Copyright 2023 Apollo API, Inc.
+# Copyright: (c) 2022, Adrian Brown <adrbrownx@gmail.com>
+# Copyright: (c) 2023, ModsysML Project
 # All Rights Reserved.
 #
 #    Licensed under the Apache License, Version 2.0 (the "License"); you may
@@ -12,6 +13,7 @@
 #    WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 #    License for the specific language governing permissions and limitations
 #    under the License.
+
 import requests
 
 from modsys.service.json.base import AbstractRestClient

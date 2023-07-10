@@ -16,7 +16,7 @@ ModsysML is an upstream open-source validation framework for testing, automating
 
 <p align="center">
     <br />
-    <a href="https://docs.apolloapi.io/" rel="dofollow"><strong>Docs »</strong></a>
+    <a href="#" rel="dofollow"><strong>Docs [Coming soon]»</strong></a>
     <br />
 
   <br/>
@@ -62,8 +62,6 @@ pip install modsys
 
 #### Usage (command line)
 
-##### [View full documentation »](https://docs.apolloapi.io/)
-
 _Support for user interface coming soon_
 
 **It works on the command line, you can output to [`json`, `csv`, `yaml`]:**
@@ -97,15 +95,7 @@ If you're looking to customize your usage, you have a wide set of parameters at 
 | `--table-cell-max-length <number>` _coming soon_ | Truncate console table cells to this length                                                                                                            |
 | `--grader` _coming soon_                         | Provider that will grade outputs, if you are using                                                                                                     |
 
-<!-- After running a test against your model output, you may optionally use the `view` command to open the web viewer:
-
-```
-modsys show
-``` -->
-
 ### Examples
-
-##### [View full documentation »](https://docs.apolloapi.io/)
 
 #### Prompt quality
 
@@ -173,35 +163,11 @@ _Model quality tests & python package for model testing is a beta feature at the
 modsys -p prompts.txt -r hiveai:hate google:safety -o output.json
 ```
 
-<!-- ## Usage (python package)
-
-You can also use `apollo` client as a library in your project by importing the `test` function. The function takes the following parameters:
-
-- `providers`: a list of provider strings or `AIProvider` objects as a connector, or just a single string or `Connector` (connectors = providers).
-- `options`: the prompts and variables you want to test:
-
-  ```python
-  {
-    prompts: [str];
-    vars: [];
-  }
-  ```
-
-### Example
-
-`modsys` exports a `test` function that you can use to run prompt evaluations.
-
-```
-``` -->
-
 #### Configuration
 
-- **[Setting up an model test](https://docs.apolloapi.io)**: Learn more about how to set up prompt files, vars file, output, etc.
-<!-- - **[Configuring test cases]()**: Learn more about how to configure expected outputs and test assertions. -->
+- **Setting up an model test**: Learn more about how to set up prompt files, vars file, output, etc.
 
 ### Building Automated Pipelines in the User Interface or Programmatically
-
-##### [View full documentation »](https://docs.apolloapi.io/)
 
 ![image](https://github.com/apolloapi/apolloapi/assets/72639210/602234c2-f855-4514-8188-505c0d6c39c1)
 
@@ -223,8 +189,6 @@ Modsys.query("desc", "table", "column")
 ```
 
 ...and create a workflow with a simple command:
-
-_Note: you can use our sandbox api and skip providing a token or obtain a Auth token [here](https://docs.apolloapi.io/docs/api/authentication), sign up today on our [Site](https://use.apolloapi.io/admin/)_
 
 ```python
 # import the package
@@ -279,7 +243,6 @@ _Experimental inputs_:
 # Create custom rules which creates a task!
 Modsys.rule('Phrase1', '>=', '0.8')
 
-# https://docs.apolloapi.io/docs/features
 Modsys.detectImage('Image1', 'contains', 'VERY_LIKELY') # Image Analysis/OCR
 Modsys.detectSpeech('Audio1', 'contains', 'UNLIKELY') # Audio Processing
 Modsys.detectVideo('Video1', 'contains', 'POSSIBLE') # Video Analysis
@@ -347,8 +310,7 @@ The first line should not be longer than 75 characters, the second line is alway
 ⭐ Follow our development by starring us here on GitHub ⭐
 
 - Share feedback or chat with us on the [Discord community](https://discord.gg/ZUH7f7AzUY)
-- Look at our docs on how to get started [here!](https://docs.apolloapi.io/)
 
 ## AI Providers
 
-We support OpenAI as well as a number of models. It's also possible to set up your own custom AI provider. **[See Provider documentation](https://docs.apolloapi.io/providers)** for more details.
+We support OpenAI as well as a number of models. It's also possible to set up your own custom AI provider.
