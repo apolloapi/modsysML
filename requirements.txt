@@ -86,7 +86,7 @@ termcolor==2.3.0
 toml==0.10.2
 tomli==2.0.0
 tqdm==4.65.0
-typing-inspect==0.8.0
+typing-inspect==0.9.0
 typing_extensions==4.4.0
 tzdata==2022.7
 uritemplate==4.1.1
