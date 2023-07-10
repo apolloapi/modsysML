@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
-# Copyright 2023 Apollo API, Inc.
+# Copyright: (c) 2022, Adrian Brown <adrbrownx@gmail.com>
+# Copyright: (c) 2023, ModsysML Project
 # All Rights Reserved.
 #
 #    Licensed under the Apache License, Version 2.0 (the "License"); you may

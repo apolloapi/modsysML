@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
-# Copyright 2023 Apollo API, Inc.
+# Copyright: (c) 2022, Adrian Brown <adrbrownx@gmail.com>
+# Copyright: (c) 2023, ModsysML Project
 # All Rights Reserved.
 #
 #    Licensed under the Apache License, Version 2.0 (the "License"); you may
@@ -26,7 +27,7 @@ with open("requirements.txt") as f:
 
 setup(
     name="modsys",
-    version="0.2.13",
+    version="0.3.0",
     description="A radically simple framework for ML/AI model management",
     author="ModsysML",
     author_email="adrbrownx@gmail.com",
