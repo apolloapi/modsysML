@@ -36,7 +36,7 @@ Before modsys, running proactive intelligence & insights through testing data qu
 Lets install the SDK first...
 
 ```bash
-pip install modsys-cli
+pip install modsys
 ```
 
 ## Regression tests vs Automated pipelines
