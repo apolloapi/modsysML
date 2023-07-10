@@ -13,7 +13,7 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-from apollo import (
+from modsys import (
     get_supabase_client,
     get_firebase_client,
     get_json_client,
@@ -21,7 +21,7 @@ from apollo import (
     get_google_client,
     get_sightengine_client,
 )
-from apollo.exceptions import EmptyResultsWarning
+from modsys.exceptions import EmptyResultsWarning
 
 
 class PostgresConnectionManager:

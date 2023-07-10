@@ -17,8 +17,8 @@ import psycopg as pgi_connector
 import psycopg2
 import psycopg2.extras
 
-from apollo.database.supabase.base import AbstractSupabaseClient
-from apollo.exceptions import PostgresConnectionError, PostgresExecutionError
+from modsys.database.supabase.base import AbstractSupabaseClient
+from modsys.exceptions import PostgresConnectionError, PostgresExecutionError
 
 
 class SupabaseClient(AbstractSupabaseClient):

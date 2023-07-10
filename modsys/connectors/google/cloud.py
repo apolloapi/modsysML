@@ -13,8 +13,8 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-from apollo.connectors.google.base import AbstractGooglePerspectiveProvider
-from apollo.exceptions import AuthorizationFailure
+from modsys.connectors.google.base import AbstractGooglePerspectiveProvider
+from modsys.exceptions import AuthorizationFailure
 
 import os
 import requests

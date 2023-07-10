@@ -16,12 +16,12 @@
 import importlib
 import ast
 
-from apollo.database.supabase.base import AbstractSupabaseClient
-from apollo.database.firebase.base import AbstractFirebaseClient
-from apollo.service.json.base import AbstractRestClient
-from apollo.connectors.openai.base import AbstractOpenAIProvider
-from apollo.connectors.google.base import AbstractGooglePerspectiveProvider
-from apollo.connectors.sightengine.base import AbstractSightengineProvider
+from modsys.database.supabase.base import AbstractSupabaseClient
+from modsys.database.firebase.base import AbstractFirebaseClient
+from modsys.service.json.base import AbstractRestClient
+from modsys.connectors.openai.base import AbstractOpenAIProvider
+from modsys.connectors.google.base import AbstractGooglePerspectiveProvider
+from modsys.connectors.sightengine.base import AbstractSightengineProvider
 
 from .const import (
     SUPABASE_CLIENT_CLASS,

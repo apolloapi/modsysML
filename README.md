@@ -1,17 +1,17 @@
-# apollo-sdk: model management tool
+# modsys: model management tool
 
 [![python](https://img.shields.io/pypi/pyversions/3)](https://www.python.org/downloads/)
-![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/apolloapi/apolloapi/pre-commit.yml)
-![Release](https://img.shields.io/github/v/release/apolloapi/apolloapi)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/modsysML/modsys/pre-commit.yml)
+![Release](https://img.shields.io/github/v/release/modsysML/modsys)
 
-<div align="center">
+<!-- <div align="center">
 
 ![HowItWorks](https://uploads-ssl.webflow.com/640ca38ad086fde245b76c9d/645e8d8ad611b140135e11bb_GraphicOne.png)
 
-</div>
+</div> -->
 
 <div align="center">
-Apollo is an open-source validation framework to deploy guardrails for improved user experience and responsiveness of your AI systems..
+ModsysML is an upstream open-source validation framework for testing, automating and data analytics.
 </div>
 
 <p align="center">
@@ -22,30 +22,30 @@ Apollo is an open-source validation framework to deploy guardrails for improved 
   <br/>
     <a href="https://www.apolloapi.io/">Join the waitlist</a>
     ·
-    <a href="https://github.com/apolloapi/apolloapi/issues">Report Bug</a>
+    <a href="https://github.com/modsysML/modsys/issues">Report Bug</a>
     ·
     <a href="https://discord.gg/ZUH7f7AzUY">Community Discord</a>
 </p>
 
-## Why Apollo API?
+## Why ModsysML?
 
-Before Apollo, testing model quality and automating workloads was time-consuming, with Apollo, you can simplify, accelerate and backtest the entire process. This makes it easier to train classifiers, handle real-time changes and make data driven decisions.
+Before modsys, running proactive intelligence & insights through testing data quality and automating workloads was time-consuming, with modsys, you can simplify, accelerate and backtest the entire process. This makes it easier to train classifiers, handle real-time changes and make data driven decisions.
 
 ## 🚀 Interesting, how can I try it?
 
 Lets install the SDK first...
 
 ```bash
-pip install apollo-sdk
+pip install modsys-cli
 ```
 
 ## Regression tests vs Automated pipelines
 
-`apollo-sdk` helps you tune LLM prompts systematically across many relevant test cases. By evaluating and comparing LLM outputs to build decision making workflows. Users can test prompt quality and catch regressions faster.
+`modsys` helps you tune LLM prompts systematically across many relevant test cases. By evaluating and comparing LLM outputs to build decision making workflows. Users can test prompt quality and catch regressions faster.
 
 ### Evaluating prompt quality
 
-**With Apollo python library and CLI toolkit, you can:**
+**With Modsys python library and CLI toolkit, you can:**
 
 - **Detecting real-time changes** in your data
 - Automating tasks against **image, video, audio or text**
@@ -58,7 +58,7 @@ pip install apollo-sdk
 - Use as a **command line tool, or integrate into your workflow with our library**
 - **Use any** AI provider, API or database under one API
 
-`apollo-sdk` produces table views that allow you to quickly review prompt outputs across many inputs. The goal: tune prompts systematically across all relevant test cases, instead of testing prompts by trial and error.
+`modsys` produces table views that allow you to quickly review prompt outputs across many inputs. The goal: tune prompts systematically across all relevant test cases, instead of testing prompts by trial and error.
 
 #### Usage (command line)
 
@@ -69,18 +69,19 @@ _Support for user interface coming soon_
 **It works on the command line, you can output to [`json`, `csv`, `yaml`]:**
 
 ![Prompt eval](https://github.com/apolloapi/apolloapi/assets/72639210/c65b4565-5d17-4b32-971c-d4a51d9d137e)
+
 To get started, run the following command:
 
 ```
-apollo-sdk init
+modsys init
 ```
 
 This will create some templates in your current directory: `prompts.txt`, `vars.csv`, and `config.json`.
 
-After editing the prompts and variables to your desired state, `apollo-sdk` command to kick off an prompt evaluation test:
+After editing the prompts and variables to your desired state, `modsys` command to kick off an prompt evaluation test:
 
 ```
-apollo-sdk -p ./prompts.txt -v ./vars.csv -r openai:completion
+modsys -p ./prompts.txt -v ./vars.csv -r openai:completion
 ```
 
 If you're looking to customize your usage, you have a wide set of parameters at your disposal. See the [Configuration docs](https://docs.apolloapi.io/docs/api/configuration_tests) for more detail:
@@ -99,7 +100,7 @@ If you're looking to customize your usage, you have a wide set of parameters at 
 <!-- After running a test against your model output, you may optionally use the `view` command to open the web viewer:
 
 ```
-apollo-sdk show
+modsys show
 ``` -->
 
 ### Examples
@@ -111,7 +112,7 @@ apollo-sdk show
 In this example, we evaluate whether adding adjectives to the personality of an chat bot affects the responses:
 
 ```bash
-apollo-sdk -p prompts.txt -v vars.csv -r openai:gpt-3.5-turbo
+modsys -p prompts.txt -v vars.csv -r openai:gpt-3.5-turbo
 ```
 
 ![Prompt eval](https://uploads-ssl.webflow.com/640ca38ad086fde245b76c9d/647411b456031b5145019909_Screenshot%202023-05-28%20at%2010.44.48%20PM.png)
@@ -121,7 +122,7 @@ This command will evaluate the prompts in `prompts.txt`, substituing the variabl
 Have a look at the setup and full output in another format:
 
 ```
-apollo-sdk -p prompts.txt -v vars.csv -r openai:gpt-3.5-turbo -o output.json
+modsys -p prompts.txt -v vars.csv -r openai:gpt-3.5-turbo -o output.json
 ```
 
 You can also output a nice **spreadsheet, JSON, or YAML** file:
@@ -169,7 +170,7 @@ You can evaluate the difference between safety outputs for a specific context:
 _Model quality tests & python package for model testing is a beta feature at the moment, open an issue and tag us to setup_
 
 ```bash
-apollo-sdk -p prompts.txt -r hiveai:hate google:safety -o output.json
+modsys -p prompts.txt -r hiveai:hate google:safety -o output.json
 ```
 
 <!-- ## Usage (python package)
@@ -188,7 +189,7 @@ You can also use `apollo` client as a library in your project by importing the `
 
 ### Example
 
-`apollo-sdk` exports a `test` function that you can use to run prompt evaluations.
+`modsys` exports a `test` function that you can use to run prompt evaluations.
 
 ```
 ``` -->
@@ -204,22 +205,21 @@ You can also use `apollo` client as a library in your project by importing the `
 
 ![image](https://github.com/apolloapi/apolloapi/assets/72639210/602234c2-f855-4514-8188-505c0d6c39c1)
 
-
 Let's setup your first Integration!
 
 It will pull from your local database (and keep it in sync).
 
 ```python
 # import the package
-from apollo.client import Apollo
+from modsys.client import Modsys
 
 # sync data from your database instance
 # (we support supabase at the current moment or postgresql via uri format)
-Apollo.connect("postgres://username:password@hostname:port/database_name")
+Modsys.connect("postgres://username:password@hostname:port/database_name")
 
 # If you want to test out operation on your external connection
-Apollo.fetch_tables()
-Apollo.query("desc", "table", "column")
+Modsys.fetch_tables()
+Modsys.query("desc", "table", "column")
 ```
 
 ...and create a workflow with a simple command:
@@ -228,16 +228,16 @@ _Note: you can use our sandbox api and skip providing a token or obtain a Auth t
 
 ```python
 # import the package
-from apollo.client import Apollo
+from modsys.client import Modsys
 
 # Use any provider
-Apollo.use("google_perspective:<model name>", secret="YOUR_API_TOKEN_HERE")
+Modsys.use("google_perspective:<model name>", google_perspective_api_key="YOUR_API_TOKEN_HERE")
 
-# An option for image detection
-Apollo.detectImage('https://example.com/some-endpoint') # Image Analysis/OCR
+# An option for image detection, connect to sightengine provider or other image service first
+Modsys.detectImage('https://example.com/some-endpoint') # Image Analysis/OCR
 
 # Lets check to see if a phrase contains threats
-Apollo.detectText(prompt="Phrase1", content_id="content-id", community_id="user-id")
+Modsys.detectText(prompt="Phrase1", content_id="content-id", community_id="user-id")
 ```
 
 **Example response**:
@@ -277,25 +277,25 @@ _Experimental inputs_:
 
 ```python
 # Create custom rules which creates a task!
-Apollo.rule('Phrase1', '>=', '0.8')
+Modsys.rule('Phrase1', '>=', '0.8')
 
 # https://docs.apolloapi.io/docs/features
-Apollo.detectImage('Image1', 'contains', 'VERY_LIKELY') # Image Analysis/OCR
-Apollo.detectSpeech('Audio1', 'contains', 'UNLIKELY') # Audio Processing
-Apollo.detectVideo('Video1', 'contains', 'POSSIBLE') # Video Analysis
-Apollo.detectText('Phrase1', 'contains', 'UNKNOWN') # Text Analysis
-Apollo.test('prompt', 'expected_output') # ML Validation
+Modsys.detectImage('Image1', 'contains', 'VERY_LIKELY') # Image Analysis/OCR
+Modsys.detectSpeech('Audio1', 'contains', 'UNLIKELY') # Audio Processing
+Modsys.detectVideo('Video1', 'contains', 'POSSIBLE') # Video Analysis
+Modsys.detectText('Phrase1', 'contains', 'UNKNOWN') # Text Analysis
+Modsys.test('prompt', 'expected_output') # ML Validation
 ```
 
 That's all it takes!
 
-In practice, you probably want to use one of our native SDKs to interact with Apollo's API or use our custom browser client so you dont have to write code. If so, sign up at [Apollo API](https://use.apolloapi.io/admin/)!
+In practice, you probably want to use one of our native SDKs to interact with different AI providers or use our custom browser client so you dont have to write code. If so, sign up for the downstream [Apollo ModsysML Console](https://use.apolloapi.io/admin/)!
 
 ##### Cool, what can I build with it?
 
-- Apollo can help you **quickly automate tasks** for model management, performance, labeling, object detection and more.
-- Teams can use Apollo to **build native in-app connections** related to active response, content moderation, risk management, fraud detection, etc.
-- Some **automate their personal lives** with Apollo by integrating against discord communities or their personal lives
+- Modsys can help you **quickly automate tasks** for model management, performance, labeling, object detection and more.
+- Teams can use Modsys to **build native in-app connections** related to active response, content moderation, risk management, fraud detection, etc.
+- Some **automate their personal lives** with Modsys by integrating against discord communities or their personal lives
 
 ## Development
 
@@ -303,13 +303,13 @@ Contributions are welcome! Please feel free to submit a pull request or open an 
 
 ### 📦 pre-commit config
 
-As an open source project, Apollo welcomes contributions from the community at large. This isn’t an exhaustive reference and is a living document subject to change as needed when the project formalizes any practice or pattern.
+As an open source project, Modsys welcomes contributions from the community at large. This isn’t an exhaustive reference and is a living document subject to change as needed when the project formalizes any practice or pattern.
 
-Clone the repo and start Apollo locally...
+Clone the repo and start Modsys locally...
 
 ```bash
-git clone https://github.com/apolloapi/apolloapi.git
-cd apolloapi && python3 -m venv env && source env/bin/activate && pip install -r requirements.txt
+git clone https://github.com/modsysML/modsys.git
+cd modsys && python3 -m venv env && source env/bin/activate && pip install -r requirements.txt
 ```
 
 - After installing system dependencies be sure to install pre-commit for lint checks
@@ -322,7 +322,7 @@ pre-commit install
 pre-commit run --all-files
 ```
 
-Apollo uses commit messages for automated generation of project changelog. For every pull request we request contributors to be compliant with the following commit message notation.
+Modsys uses commit messages for automated generation of project changelog. For every pull request we request contributors to be compliant with the following commit message notation.
 
 ```
 <type>: <summary>
@@ -346,10 +346,8 @@ The first line should not be longer than 75 characters, the second line is alway
 
 ⭐ Follow our development by starring us here on GitHub ⭐
 
-- Share feedback or ask questions on the [Discord community](https://discord.gg/ZUH7f7AzUY)
-- [Chat with a member of the team](https://apolloapi.io) 👋
-- Check our [blog on Trust & Safety](https://www.thebriefnewsletter.com)
-- Look at our docs on how to get started [here!](https://apolloapi-doc.vercel.app/)
+- Share feedback or chat with us on the [Discord community](https://discord.gg/ZUH7f7AzUY)
+- Look at our docs on how to get started [here!](https://docs.apolloapi.io/)
 
 ## AI Providers
 

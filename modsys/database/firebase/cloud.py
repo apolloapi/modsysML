@@ -17,9 +17,9 @@ import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
 
-from apollo.exceptions import FirebaseConnectionError
-from apollo.database.firebase.base import AbstractFirebaseClient
-from apollo.const import TEST_ACCOUNT
+from modsys.exceptions import FirebaseConnectionError
+from modsys.database.firebase.base import AbstractFirebaseClient
+from modsys.const import TEST_ACCOUNT
 
 
 # https://firebase.google.com/docs/admin/setup?authuser=0#python

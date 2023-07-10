@@ -1,8 +1,8 @@
 .DEFAULT_GOAL := build
 SHELL := /bin/bash
 # ROOT_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
-APOLLOAPI := $(HOME)/apolloapi
-export APOLLOAPI
+MODSYS := $(HOME)/modsys
+export MODSYS
 
 # LINTS
 lint-commit-messages:

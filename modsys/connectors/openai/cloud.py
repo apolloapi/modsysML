@@ -17,7 +17,7 @@ import requests
 import openai
 import os
 
-from apollo.connectors.openai.base import AbstractOpenAIProvider
+from modsys.connectors.openai.base import AbstractOpenAIProvider
 
 
 class OpenAiGenericProvider(AbstractOpenAIProvider):
