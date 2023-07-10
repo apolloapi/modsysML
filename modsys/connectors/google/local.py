@@ -13,18 +13,18 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-from apollo.service.json.base import AbstractRestClient
+from modsys.connectors.google.base import AbstractGooglePerspectiveProvider
 
 
-class AbstractSightengineProvider(AbstractRestClient):
+class FakeGooglePerspectiveProvider(AbstractGooglePerspectiveProvider):
     def id(self) -> str:
-        raise NotImplementedError
+        pass
 
     def to_string(self) -> str:
-        raise NotImplementedError
+        pass
 
     def i18n(self) -> str:
-        raise NotImplementedError
+        pass
 
     def persist_settings(self) -> str:
-        raise NotImplementedError
+        pass

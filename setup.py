@@ -16,6 +16,7 @@
 #    under the License.
 
 from setuptools import setup, find_packages
+from modsys.const import BASE_DIR
 
 with open("README.md", encoding="utf-8") as f:
     long_description = f.read()
@@ -24,14 +25,14 @@ with open("requirements.txt") as f:
     requirements = f.read().splitlines()
 
 setup(
-    name="apollo-sdk",
-    version="0.2.11",
+    name="modsys",
+    version="0.2.13",
     description="A radically simple framework for ML/AI model management",
-    author="Apollo API",
+    author="ModsysML",
     author_email="adrbrownx@gmail.com",
     packages=find_packages(),
-    py_modules=["cli", "apollo"],
-    url="https://github.com/apolloapi/apolloapi",
+    py_modules=["cli", "modsys"],
+    url="https://github.com/modsysML/modsys",
     license="Apache License, Version 2.0",
     classifiers=[
         "Operating System :: OS Independent",
@@ -41,5 +42,5 @@ setup(
     install_requires=requirements,
     long_description_content_type="text/markdown",
     long_description=long_description,
-    entry_points={"console_scripts": ["apollo-sdk=cli:run_console"]},
+    entry_points={"console_scripts": ["modsys=cli:run_console"]},
 )

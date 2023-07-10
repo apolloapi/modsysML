@@ -14,8 +14,8 @@
 #    under the License.
 import requests
 
-from apollo.service.json.base import AbstractRestClient
-from apollo.const import test_token
+from modsys.service.json.base import AbstractRestClient
+from modsys.const import test_token
 
 
 class RestClient(AbstractRestClient):

@@ -13,18 +13,9 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-from apollo.connectors.google.base import AbstractGooglePerspectiveProvider
+from modsys.database.supabase.base import AbstractSupabaseClient
 
 
-class FakeGooglePerspectiveProvider(AbstractGooglePerspectiveProvider):
-    def id(self) -> str:
-        pass
-
-    def to_string(self) -> str:
-        pass
-
-    def i18n(self) -> str:
-        pass
-
-    def persist_settings(self) -> str:
-        pass
+class FakeSupabaseClient(AbstractSupabaseClient):
+    def execute(self, sql):
+        return sql

@@ -13,9 +13,18 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-from apollo.database.supabase.base import AbstractSupabaseClient
+from modsys.service.json.base import AbstractRestClient
 
 
-class FakeSupabaseClient(AbstractSupabaseClient):
-    def execute(self, sql):
-        return sql
+class AbstractGooglePerspectiveProvider(AbstractRestClient):
+    def id(self) -> str:
+        raise NotImplementedError
+
+    def to_string(self) -> str:
+        raise NotImplementedError
+
+    def i18n(self) -> str:
+        raise NotImplementedError
+
+    def persist_settings(self) -> str:
+        raise NotImplementedError

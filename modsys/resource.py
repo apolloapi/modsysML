@@ -13,7 +13,7 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-from apollo.manager import (
+from modsys.manager import (
     PostgresConnectionManager,
     FirebaseConnectionManager,
     JSONConnectionManager,
@@ -21,7 +21,7 @@ from apollo.manager import (
     GoogleAIConnectionManager,
     SightengineConnectionManager,
 )
-from apollo.const import QUERY_CONTEXT
+from modsys.const import QUERY_CONTEXT
 
 
 class Postgres:

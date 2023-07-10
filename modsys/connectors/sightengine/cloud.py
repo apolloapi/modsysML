@@ -14,7 +14,7 @@
 #    under the License.
 
 from .base import AbstractSightengineProvider
-from apollo.exceptions import AuthorizationFailure
+from modsys.exceptions import AuthorizationFailure
 
 import os
 import requests

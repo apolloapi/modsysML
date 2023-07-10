@@ -16,38 +16,41 @@
 from dotenv import load_dotenv
 
 import os
+import os
+import os.path
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 load_dotenv()
 
 # Sightengine support
 SIGHTENGINE_CLIENT_CLASS = os.environ.get(
-    "SIGHTENGINE_CLIENT_CLASS", "apollo.connectors.sightengine.SightengineProvider"
+    "SIGHTENGINE_CLIENT_CLASS", "modsys.connectors.sightengine.SightengineProvider"
 )
 
 # Google Perspective support
 GOOGLE_PERSPECTIVE_CLIENT_CLASS = os.environ.get(
     "GOOGLE_PERSPECTIVE_CLIENT_CLASS",
-    "apollo.connectors.google.GooglePerspectiveProvider",
+    "modsys.connectors.google.GooglePerspectiveProvider",
 )
 
 # Supabase support
 SUPABASE_CLIENT_CLASS = os.environ.get(
-    "SUPABASE_CLIENT_CLASS", "apollo.database.supabase.SupabaseClient"
+    "SUPABASE_CLIENT_CLASS", "modsys.database.supabase.SupabaseClient"
 )
 
 # Firebase support
 FIREBASE_CLIENT_CLASS = os.environ.get(
-    "FIREBASE_CLIENT_CLASS", "apollo.database.firebase.FirebaseClient"
+    "FIREBASE_CLIENT_CLASS", "modsys.database.firebase.FirebaseClient"
 )
 
 # Service client
 REST_CLIENT_CLASS = os.environ.get(
-    "REST_CLIENT_CLASS", "apollo.service.json.RestClient"
+    "REST_CLIENT_CLASS", "modsys.service.json.RestClient"
 )
 
 # OPENAI Provider
 OPENAI_CLIENT_CLASS = os.environ.get(
-    "OPENAI_CLIENT_CLASS", "apollo.connectors.openai.OpenAiGenericProvider"
+    "OPENAI_CLIENT_CLASS", "modsys.connectors.openai.OpenAiGenericProvider"
 )
 
 # Hard code sql queries to prevent injection

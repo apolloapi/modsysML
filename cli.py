@@ -15,7 +15,7 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-from apollo.plugins.validation import PromptEngine
+from modsys.plugins.validation import PromptEngine
 
 
 def run_console():

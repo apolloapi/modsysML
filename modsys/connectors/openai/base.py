@@ -13,12 +13,18 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-from apollo.service.json.base import AbstractRestClient
+from modsys.service.json.base import AbstractRestClient
 
 
-class FakeRestClient(AbstractRestClient):
-    def make_https_request(self, body, header, endpoint):
-        pass
+class AbstractOpenAIProvider(AbstractRestClient):
+    def id(self) -> str:
+        raise NotImplementedError
 
-    def call_api(self):
-        pass
+    def to_string(self) -> str:
+        raise NotImplementedError
+
+    def token_settings(self) -> str:
+        raise NotImplementedError
+
+    def temp_settings(self) -> str:
+        raise NotImplementedError

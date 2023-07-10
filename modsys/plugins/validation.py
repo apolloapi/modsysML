@@ -23,7 +23,7 @@ from termcolor import colored, cprint
 from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
 
 from .utils import read_vars, read_prompts, evaluate, write_output
-from apollo.manager import OpenAIConnectionManager
+from modsys.manager import OpenAIConnectionManager
 
 
 class PromptEngine(object):

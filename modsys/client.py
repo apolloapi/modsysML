@@ -13,8 +13,8 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-from apollo.resource import General
-from apollo.exceptions import ExecutionError, EmptyResultsWarning
+from modsys.resource import General
+from modsys.exceptions import ExecutionError, EmptyResultsWarning
 
 # from evaluator import evaluate as do_evaluate
 # from providers import load_api_provider
@@ -24,7 +24,7 @@ from apollo.exceptions import ExecutionError, EmptyResultsWarning
 import itertools
 
 
-class Apollo(General):
+class Modsys(General):
     @classmethod
     def set_context(cls, query_type, table, col):
         # oldest order
@@ -177,7 +177,7 @@ class Apollo(General):
         elif cls.model == "Google":
             conn = cls._googleai_manager.load_google_provider(
                 cls._google_perspective_provider_path,
-                cls._google_perspective_auth_token,
+                secret=cls._google_perspective_auth_token,
             )
             return conn.call_api(
                 kwargs["prompt"] if "prompt" in kwargs else None,
