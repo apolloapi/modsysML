@@ -21,6 +21,7 @@ from modsys import (
     get_openai_client,
     get_google_client,
     get_sightengine_client,
+    get_provider_client,
 )
 from modsys.exceptions import EmptyResultsWarning
 
@@ -73,3 +74,11 @@ class SightengineConnectionManager:
     @staticmethod
     def load_sightengine_provider(provider_path, secret, api_user):
         return get_sightengine_client(provider_path, secret=secret, api_user=api_user)
+
+
+class ProviderConnectionManager:
+    @staticmethod
+    def load_provider(provider_path, *args, **kwargs):
+        secret = kwargs["secret"] if "secret" in kwargs else None
+        api_user = kwargs["api_user"] if "api_user" in kwargs else None
+        return get_provider_client(provider_path, secret=secret, api_user=api_user)

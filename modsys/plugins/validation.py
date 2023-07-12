@@ -24,7 +24,7 @@ from termcolor import colored, cprint
 from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
 
 from .utils import read_vars, read_prompts, evaluate, write_output
-from modsys.manager import OpenAIConnectionManager
+from modsys.manager import ProviderConnectionManager
 
 
 class PromptEngine(object):
@@ -45,7 +45,7 @@ class PromptEngine(object):
             "--provider",
             type=str,
             action="append",
-            help="One of: openai:chat, openai:completion, openai:<model name>, or path to custom API caller module",
+            help="One of: openai:<model name>, google_perspective:<model name> or path to custom API caller module",
         )
         self.parser.add_argument(
             "-o",
@@ -80,7 +80,7 @@ class PromptEngine(object):
         )
 
         self.args = self.parser.parse_args()
-        self.provider = OpenAIConnectionManager()
+        self.provider = ProviderConnectionManager()
 
     def init(self):
         config = {
@@ -139,7 +139,7 @@ class PromptEngine(object):
                 delimiter=self.args.delimiter if self.args.delimiter else ",",
             )
 
-        providers = [self.provider.load_openai_provider(p) for p in self.args.provider]
+        providers = [self.provider.load_provider(p) for p in self.args.provider]
 
         options = {
             "prompts": read_prompts(self.args.prompt),
@@ -151,58 +151,64 @@ class PromptEngine(object):
         # TODO update once you support multiple providers
         summary = evaluate(options, providers[0])
         results = summary["results"]
-        if self.args.output:
-            print_light_grey_on_yellow = lambda x: cprint(x, "black", "on_yellow")
-            print_light_grey_on_yellow(f"Writing output to {self.args.output}")
-            table_data = [
-                [
-                    result["prompt"][:60] + "..."
-                    if len(result["prompt"]) > 60
-                    else result["prompt"],
-                    result["output"],
-                    result.get("name", ""),
-                    result["question"],
-                ]
-                for result in results
-            ]
-            write_output(self.args.output, summary["results"], summary["table"])
-        else:
-            # Output table by default
-            headers = list(results[0].keys()) + ["state [pass/fail]"]
-            print(headers)
-            table_data = [
-                [
-                    result["prompt"][:60] + "..."
-                    if len(result["prompt"]) > 60
-                    else result["prompt"],
-                    result["output"],
-                    result.get("name", ""),
-                    result["question"],
-                ]
-                for result in results
-            ]
-            num_headers = len(headers)
-            min_width = 30
-            max_width = 50
 
-            # Calculate the width for each column based on the number of headers
-            column_width = max(
-                min_width, min(max_width, (max_width - min_width) // num_headers)
-            )
+        # FIXME: delete once done testing
+        print(summary)
 
-            table = tabulate(
-                table_data,
-                headers=headers,
-                # showindex="always",
-                tablefmt="rounded_grid",
-                maxcolwidths=column_width,
-            )
-            print(table)
+        # NOTE: Table formation
+        # if self.args.output:
+        #     print_light_grey_on_yellow = lambda x: cprint(x, "black", "on_yellow")
+        #     print_light_grey_on_yellow(f"Writing output to {self.args.output}")
+        #     table_data = [
+        #         [
+        #             result["prompt"][:60] + "..."
+        #             if len(result["prompt"]) > 60
+        #             else result["prompt"],
+        #             result["output"],
+        #             result.get("name", ""),
+        #             result["question"],
+        #         ]
+        #         for result in results
+        #     ]
+        #     write_output(self.args.output, summary["results"], summary["table"])
+        # else:
+        #     # Output table by default
+        #     headers = list(results[0].keys()) + ["state [pass/fail]"]
+        #     print(headers)
+        #     table_data = [
+        #         [
+        #             result["prompt"][:60] + "..."
+        #             if len(result["prompt"]) > 60
+        #             else result["prompt"],
+        #             result["output"],
+        #             result.get("name", ""),
+        #             result["question"],
+        #         ]
+        #         for result in results
+        #     ]
+        #     num_headers = len(headers)
+        #     min_width = 30
+        #     max_width = 50
 
-        print_yellow = lambda x: cprint(x, "yellow")
-        print_yellow(f'Evaluation complete: {json.dumps(summary["stats"], indent=4)}')
+        #     # Calculate the width for each column based on the number of headers
+        #     column_width = max(
+        #         min_width, min(max_width, (max_width - min_width) // num_headers)
+        #     )
+
+        #     table = tabulate(
+        #         table_data,
+        #         headers=headers,
+        #         # showindex="always",
+        #         tablefmt="rounded_grid",
+        #         maxcolwidths=column_width,
+        #     )
+        #     print(table)
+
+        # print_yellow = lambda x: cprint(x, "yellow")
+        # print_yellow(f'Evaluation complete: {json.dumps(summary["stats"], indent=4)}')
 
     def setup(self):
+        # function ran in cli.py at root
         if self.args.init == "init":
             self.init()
         else:

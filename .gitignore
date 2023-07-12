@@ -9,6 +9,7 @@ tmp/
 
 # django
 .env
+sdk-env
 django_apolloapi/*
 django_apolloapi/
 
