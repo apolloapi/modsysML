@@ -27,7 +27,7 @@ with open("requirements.txt") as f:
 
 setup(
     name="modsys",
-    version="0.3.0",
+    version="0.3.1",
     description="A radically simple framework for ML/AI model management",
     author="ModsysML",
     author_email="adrbrownx@gmail.com",
