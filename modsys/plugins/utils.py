@@ -97,6 +97,9 @@ def evaluate(options, provider):
         try:
             result = provider.call_api(rendered_prompt)
 
+            # FIXME: delete once done testing
+            print(result)
+
             results.append(
                 {
                     "prompt": prompt,
@@ -125,21 +128,26 @@ def evaluate(options, provider):
             (prompt_content, {}) for prompt_content in options["prompts"]
         ]
 
-    total_evaluations = len(prompt_var_combinations)
-    with tqdm(total=total_evaluations, desc="Evaluating", unit="evaluation") as pbar:
-        for i, (prompt_content, row) in enumerate(prompt_var_combinations):
-            run_eval(prompt_content, row)
-            pbar.update(1)
-            # # Generate a random number between 1 and 10
-            # random_increment = random.randint(1, 10)
+    # FIXME: delete once done testing
+    print(options)
+    print(prompt_var_combinations)
+    print(provider)
 
-            # # Increment the progress bar by the random number
-            # pbar.update(random_increment)
+    # total_evaluations = len(prompt_var_combinations)
+    # with tqdm(total=total_evaluations, desc="Evaluating", unit="evaluation") as pbar:
+    #     for i, (prompt_content, row) in enumerate(prompt_var_combinations):
+    #         run_eval(prompt_content, row)
+    #         pbar.update(1)
+    # # Generate a random number between 1 and 10
+    # random_increment = random.randint(1, 10)
 
-            # If it's the last iteration, update the progress bar to reach 100
-            # if i == total_evaluations - 1:
-            #     remaining = total_evaluations - (pbar.n - random_increment)
-            #     pbar.update(remaining)
+    # # Increment the progress bar by the random number
+    # pbar.update(random_increment)
+
+    # If it's the last iteration, update the progress bar to reach 100
+    # if i == total_evaluations - 1:
+    #     remaining = total_evaluations - (pbar.n - random_increment)
+    #     pbar.update(remaining)
 
     return {
         "results": results,
