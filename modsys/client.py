@@ -104,7 +104,7 @@ class Modsys(General):
             2. Apollo.query([desc/asc], [table], [column])
         """
         cls.psql_curs = cls._manager.connect_to_prefix(db_url)
-        return "Syncing data with Apollo"
+        return "Syncing data with ModsysML"
 
     @classmethod
     def use(cls, provider, token="Beta_token123", *args, **kwargs):
