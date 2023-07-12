@@ -34,6 +34,7 @@ def read_prompts(path):
 
 
 def read_vars(path, delimiter):
+    # Defaults to using csv vars file, support for json needed
     variables = []
     with open(path, "r") as f:
         reader = csv.reader(f, delimiter=delimiter)
