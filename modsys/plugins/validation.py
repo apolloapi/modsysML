@@ -19,18 +19,21 @@ import json
 import csv
 import os
 
-from tabulate import tabulate
+from time import sleep
+from tqdm import tqdm
+
 from termcolor import colored, cprint
 from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
 
-from .utils import read_vars, read_prompts, evaluate, write_output
+from .utils import read_vars, read_prompts, write_output
+from .evaluations import evaluate
 from modsys.manager import ProviderConnectionManager
 
 
 class PromptEngine(object):
     def __init__(self):
         self.parser = ArgumentParser(
-            description="Evaluate prompts",
+            description="Evaluate data quality",
             formatter_class=ArgumentDefaultsHelpFormatter,
         )
         self.parser.add_argument(
@@ -50,7 +53,7 @@ class PromptEngine(object):
         self.parser.add_argument(
             "-o",
             "--output",
-            type=str,
+            type=pathlib.Path,
             help="Path to output file (csv, json, yaml)",
         )
         self.parser.add_argument(
@@ -77,6 +80,13 @@ class PromptEngine(object):
             const="init",
             default=None,
             help="Initialize environment with configuration scripts",
+        )
+        self.parser.add_argument(
+            "--eval",
+            action="store_const",
+            const="eval",
+            default=None,
+            help="Execute an evaluation job",
         )
 
         self.args = self.parser.parse_args()
@@ -143,73 +153,32 @@ class PromptEngine(object):
 
         options = {
             "prompts": read_prompts(self.args.prompt),
-            "vars": vars,  # NOTE: I think this is suppowed to be output not a path
+            "vars": vars,
             "providers": providers,
             **config,
         }
 
-        # TODO update once you support multiple providers
         summary = evaluate(options, providers[0])
         results = summary["results"]
+        for j in tqdm(range(100), desc="Evaluation"):
+            sleep(0.01)
 
-        # FIXME: delete once done testing
-        print(summary)
+        if self.args.output:
+            print_light_grey_on_yellow = lambda x: cprint(x, "black", "on_yellow")
+            print_light_grey_on_yellow(f"Writing output to {self.args.output}")
+            write_output(output_path=self.args.output, results=summary["results"])
+        else:
+            # Output table by default
+            print_light_grey_on_yellow = lambda x: cprint(x, "black", "on_yellow")
+            print_light_grey_on_yellow("Writing output to table")
+            write_output(output_path=None, results=summary["results"])
 
-        # NOTE: Table formation
-        # if self.args.output:
-        #     print_light_grey_on_yellow = lambda x: cprint(x, "black", "on_yellow")
-        #     print_light_grey_on_yellow(f"Writing output to {self.args.output}")
-        #     table_data = [
-        #         [
-        #             result["prompt"][:60] + "..."
-        #             if len(result["prompt"]) > 60
-        #             else result["prompt"],
-        #             result["output"],
-        #             result.get("name", ""),
-        #             result["question"],
-        #         ]
-        #         for result in results
-        #     ]
-        #     write_output(self.args.output, summary["results"], summary["table"])
-        # else:
-        #     # Output table by default
-        #     headers = list(results[0].keys()) + ["state [pass/fail]"]
-        #     print(headers)
-        #     table_data = [
-        #         [
-        #             result["prompt"][:60] + "..."
-        #             if len(result["prompt"]) > 60
-        #             else result["prompt"],
-        #             result["output"],
-        #             result.get("name", ""),
-        #             result["question"],
-        #         ]
-        #         for result in results
-        #     ]
-        #     num_headers = len(headers)
-        #     min_width = 30
-        #     max_width = 50
-
-        #     # Calculate the width for each column based on the number of headers
-        #     column_width = max(
-        #         min_width, min(max_width, (max_width - min_width) // num_headers)
-        #     )
-
-        #     table = tabulate(
-        #         table_data,
-        #         headers=headers,
-        #         # showindex="always",
-        #         tablefmt="rounded_grid",
-        #         maxcolwidths=column_width,
-        #     )
-        #     print(table)
-
-        # print_yellow = lambda x: cprint(x, "yellow")
-        # print_yellow(f'Evaluation complete: {json.dumps(summary["stats"], indent=4)}')
+        print_yellow = lambda x: cprint(x, "yellow")
+        print_yellow(f'Evaluation complete: {json.dumps(summary["stats"], indent=4)}')
 
     def setup(self):
         # function ran in cli.py at root
         if self.args.init == "init":
             self.init()
-        else:
+        elif self.args.eval == "eval":
             self.eval()

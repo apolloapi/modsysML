@@ -45,24 +45,50 @@ def read_vars(path, delimiter):
     return variables
 
 
-def write_output(output_path, results, table=None):
+def write_output(output_path=None, results=None):
     output_extension = os.path.splitext(output_path)[1].lower()
-    if output_extension == ".csv":
+    table_data = [
+        [
+            result["prompt"][:60] + "..."
+            if len(result["prompt"]) > 60
+            else result["prompt"],
+            result["output"],
+            result.get("__expected", ""),
+            result.get("__comparison", ""),
+            "pass" if result["passed"]["state"] else "fail",
+        ]
+        for result in results
+    ]
+    if output_path is None:
+        headers = list(results[0].keys()) + ["state [pass/fail]"]
+        print(headers)
+
+        num_headers = len(headers)
+        min_width = 30
+        max_width = 50
+
+        # Calculate the width for each column based on the number of headers
+        column_width = max(
+            min_width, min(max_width, (max_width - min_width) // num_headers)
+        )
+
+        table = tabulate(
+            table_data,
+            headers=headers,
+            # showindex="always",
+            tablefmt="rounded_grid",
+            maxcolwidths=column_width,
+        )
+        print(table)
+    elif output_extension == ".csv":
         with open(output_path, "w") as f:
             writer = csv.writer(f)
-            writer.writerows(table)
-    if output_extension == ".json":
+            writer.writerows(table_data)
+    elif output_extension == ".json":
         with open(output_path, "w") as f:
             r = json.dump(results, f, indent=4)
     elif output_extension == ".yaml":
         with open(output_path, "w") as f:
             yaml.dump(results, f)
-    # else: TODO: test this
-    # if os.getenv('CLI') is not None:
-    # print(
-    #     tabulate(
-    #         table, headers=["Prompt", "Variables", "Result"], tablefmt="fancy_grid"
-    #     )
-    # )
-    # else:
-    #     raise ValueError('Unsupported output file format. Use CSV, JSON, or YAML.')
+    else:
+        raise ValueError("Unsupported output file format. Use CSV, JSON, or YAML.")

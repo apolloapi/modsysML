@@ -14,10 +14,16 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+import json
+
 DEFAULT_SEVERITY_SIMILARITY_THRESHOLD = 0.89
 
 
-def matches_expected_val(expected, output, options):
+# NOTE: add in robust type checks and organize logic
+def matches_expected_val(expected, output, options, *args, **kwargs):
+    provider = options["providers"][0]
+    provider_path = provider.id()
+
     if expected.startswith("def:"):
         raise NotImplementedError
     elif expected.startswith("grade:"):
@@ -25,12 +31,37 @@ def matches_expected_val(expected, output, options):
     elif expected.startswith("semantic:"):
         raise NotImplementedError
     else:
-        if options == ">=" or options == ">":
-            boolean = expected >= output
-        elif options == "<=" or options == "<":
-            boolean = expected <= output
+        # eval: or no prefix specified this option comes with an optional
+        # __comprision variable as well.
+        if provider_path.startswith("google_perspective:"):
+            # Update expected if we're running eval: so that way we can format
+            # a dict to pull its value
+            expected = json.loads(expected)
+
+            comparison = kwargs["comparison"] if "comparison" in kwargs else None
+            output_dict = list(output.values())
+            output_value = round(output_dict[0]["value"] * 100, 2)
+            expected_dict = list(expected.values())
+            expected_value = round(float(expected_dict[0]["value"]) * 100, 2)
+
+            if comparison == "<":
+                boolean = output_value < expected_value
+            elif comparison == "<=":
+                boolean = output_value <= expected_value
+            elif comparison == ">=":
+                boolean = output_value >= expected_value
+            elif comparison == ">":
+                boolean = output_value > expected_value
+            else:
+                raise ValueError("Unsupported assertion, use <: <=: >: or >=:")
+        elif provider_path.startswith("openai:"):
+            raise NotImplementedError
+        elif provider_path.startswith("sightengine:"):
+            raise NotImplementedError
+        else:
+            raise NotImplementedError
 
         return {
-            "pass": boolean,
-            "reason": f"Expected {expected} but the output is {output}",
+            "state": boolean,
+            "reason": f"Expected {expected} {comparison} {output}",
         }
