@@ -31,22 +31,38 @@ def read_prompts(path):
     return prompts
 
 
-def read_vars(path, delimiter):
-    # Defaults to using csv vars file, support for json needed
+def read_vars(output_path, delimiter=None):
+    # Defaults to using csv vars file
     variables = []
-    with open(path, "r") as f:
-        reader = csv.reader(f, delimiter=delimiter)
-        header = next(reader)  # skip the header elements
-        for row in reader:
-            if len(row) == len(
-                header
-            ):  # Check if the row has the same number of elements as the header
-                variables.append(dict(zip(header, row)))
+    output_extension = os.path.splitext(output_path)[1].lower()
+    if output_extension == ".csv":
+        if delimiter is None:
+            raise ValueError(
+                "You haven't set delimiters for the csv vars file, do this using -d or --delimiter"
+            )
+        with open(output_path, "r") as f:
+            reader = csv.reader(f, delimiter=delimiter)
+            header = next(reader)  # skip the header elements
+            for row in reader:
+                if len(row) == len(
+                    header
+                ):  # Check if the row has the same number of elements as the header
+                    variables.append(dict(zip(header, row)))
+    elif output_extension == ".json":
+        with open(output_path, "r") as f:
+            variables = json.load(f)
+    elif output_extension == ".yaml":
+        raise NotImplementedError
+    else:
+        raise ValueError("Unsupported output file format. Use CSV or JSON.")
+
     return variables
 
 
-def write_output(output_path=None, results=None):
-    output_extension = os.path.splitext(output_path)[1].lower()
+def write_output(results, output_path=None):
+    output_extension = (
+        os.path.splitext(output_path)[1].lower() if output_path is not None else None
+    )
     table_data = [
         [
             result["prompt"][:60] + "..."
@@ -59,8 +75,18 @@ def write_output(output_path=None, results=None):
         ]
         for result in results
     ]
-    if output_path is None:
+    if output_extension is None:
         headers = list(results[0].keys()) + ["state [pass/fail]"]
+
+        if results[0]["__expected"]:
+            headers = [
+                "prompt",
+                "output",
+                "expected",
+                "comparison",
+                "state [pass/fail]",
+            ]
+
         print(headers)
 
         num_headers = len(headers)

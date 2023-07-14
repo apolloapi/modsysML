@@ -21,6 +21,7 @@ import os
 
 from time import sleep
 from tqdm import tqdm
+from tabulate import tabulate
 
 from termcolor import colored, cprint
 from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
@@ -166,12 +167,12 @@ class PromptEngine(object):
         if self.args.output:
             print_light_grey_on_yellow = lambda x: cprint(x, "black", "on_yellow")
             print_light_grey_on_yellow(f"Writing output to {self.args.output}")
-            write_output(output_path=self.args.output, results=summary["results"])
+            write_output(results, output_path=self.args.output)
         else:
             # Output table by default
             print_light_grey_on_yellow = lambda x: cprint(x, "black", "on_yellow")
             print_light_grey_on_yellow("Writing output to table")
-            write_output(output_path=None, results=summary["results"])
+            write_output(results, output_path=None)
 
         print_yellow = lambda x: cprint(x, "yellow")
         print_yellow(f'Evaluation complete: {json.dumps(summary["stats"], indent=4)}')
