@@ -1,0 +1,26 @@
+- __comparison: <
+  __expected:
+    TOXICITY:
+      value: "0.99"
+  output:
+    TOXICITY:
+      value: 0.7675452
+  passed:
+    reason: "Expected {'TOXICITY': {'value': '0.99'}} < {'TOXICITY': {'value':
+      0.7675452}}"
+    state: true
+  prompt: "The user posted: This is a toxic post."
+  text: I hate black people.
+- __comparison: <
+  __expected:
+    TOXICITY:
+      value: "0.50"
+  output:
+    TOXICITY:
+      value: 0.85333383
+  passed:
+    reason: "Expected {'TOXICITY': {'value': '0.50'}} < {'TOXICITY': {'value':
+      0.85333383}}"
+    state: false
+  prompt: "The user posted: You suck at this game."
+  text: You suck at this game.

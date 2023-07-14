@@ -1,0 +1,7 @@
+{
+    "provider": [
+        "openai:completion"
+    ],
+    "vars": "/vars.csv",
+    "prompts": "/prompts.txt"
+}

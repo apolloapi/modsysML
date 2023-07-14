@@ -1,4 +1,0 @@
-{
-    "provider": "openai:completion",
-    "vars": "Path to vars file"
-}

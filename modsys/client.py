@@ -14,15 +14,14 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+from termcolor import colored, cprint
+
 from modsys.resource import General
 from modsys.exceptions import ExecutionError, EmptyResultsWarning
-
-# from evaluator import evaluate as do_evaluate
-# from providers import load_api_provider
-
-# from typing import List, Optional, Union
+from modsys.plugins.evaluations import evaluate
 
 import itertools
+import json
 
 
 class Modsys(General):
@@ -201,29 +200,39 @@ class Modsys(General):
             raise NotImplementedError
 
     @classmethod
-    def evaluate(providers, options):
-        """Evaluates prompts using the specified providers.
-
-        Args:
-            providers: The providers to use. Can be a string, a list of strings, or a list of `ApiProvider` objects.
-            options: Optional keyword arguments to pass to the `evaluate` function.
-        TODO:
+    def evaluate(cls, vars: list):
         """
+        After setting up the connection criteria for google_perspecitve
+        run the evaluation.
 
-        # if not options:
-        #     options = {}
+        vars (json): [
+            {
+                "item": "You suck at this game.",
+                "__expected": {
+                    "TOXICITY": {
+                        "value": "0.50"
+                    }
+                },
+                "__comparison": "<"
+            }
+        ] - responsible for setting up test run
 
-        # api_providers = []
+        provider (str): "google_perspective:analyze"
+        """
+        if cls.model == "Google":
+            conn = cls._api_manager.load_provider(
+                cls._google_perspective_provider_path,
+                secret=cls._google_perspective_auth_token,
+            )
+        else:
+            raise NotImplementedError
 
-        # if isinstance(providers, str):
-        #     api_providers.append(load_api_provider(providers))
-        # elif isinstance(providers, list):
-        #     for provider in providers:
-        #         if isinstance(provider, str):
-        #             api_providers.append(load_api_provider(provider))
-        #         else:
-        #             api_providers.append(provider)
-        # else:
-        #     raise ValueError(f"providers must be a string, a list of strings, or a list of ApiProvider objects, but got {providers!r}")
+        options = {"prompts": ["evaluate: {{item}}"], "vars": vars, "providers": [conn]}
 
-        # return do_evaluate(options, api_providers)
+        # Evaluation
+        summary = evaluate(options, conn)
+        print_yellow = lambda x: cprint(x, "yellow")
+        print_yellow(f"Evaluation complete: {json.dumps(summary['stats'], indent=4)}")
+
+        # Output
+        return summary["results"]

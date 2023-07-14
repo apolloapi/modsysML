@@ -21,7 +21,7 @@ import yaml
 from tabulate import tabulate
 
 
-def read_prompts(path):
+def read_prompts(path, *args, **kwargs):
     prompts = []
     for p in path:
         with open(p, "r") as f:
@@ -31,7 +31,7 @@ def read_prompts(path):
     return prompts
 
 
-def read_vars(output_path, delimiter=None):
+def read_vars(output_path, delimiter=None, *args, **kwargs):
     # Defaults to using csv vars file
     variables = []
     output_extension = os.path.splitext(output_path)[1].lower()
@@ -59,10 +59,13 @@ def read_vars(output_path, delimiter=None):
     return variables
 
 
-def write_output(results, output_path=None):
+def write_output(results, output_path=None, *args, **kwargs):
     output_extension = (
         os.path.splitext(output_path)[1].lower() if output_path is not None else None
     )
+    summary = results
+    results = results["results"]
+
     table_data = [
         [
             result["prompt"][:60] + "..."
@@ -75,6 +78,7 @@ def write_output(results, output_path=None):
         ]
         for result in results
     ]
+
     if output_extension is None:
         headers = list(results[0].keys()) + ["state [pass/fail]"]
 
@@ -112,9 +116,9 @@ def write_output(results, output_path=None):
             writer.writerows(table_data)
     elif output_extension == ".json":
         with open(output_path, "w") as f:
-            r = json.dump(results, f, indent=4)
+            r = json.dump(summary, f, indent=4)
     elif output_extension == ".yaml":
         with open(output_path, "w") as f:
-            yaml.dump(results, f)
+            yaml.dump(summary, f)
     else:
         raise ValueError("Unsupported output file format. Use CSV, JSON, or YAML.")

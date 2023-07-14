@@ -131,6 +131,7 @@ class PromptEngine(object):
             json.dump(config, f)
 
     def eval(self):
+        # Config
         config_path = self.args.config
         config = {}
         if config_path:
@@ -143,6 +144,7 @@ class PromptEngine(object):
             else:
                 raise Error(f"Unsupported configuration file format: {ext}")
 
+        # Vars
         vars = []
         if self.args.vars:
             vars = read_vars(
@@ -150,6 +152,7 @@ class PromptEngine(object):
                 delimiter=self.args.delimiter if self.args.delimiter else ",",
             )
 
+        # Providers
         providers = [self.provider.load_provider(p) for p in self.args.provider]
 
         options = {
@@ -159,15 +162,17 @@ class PromptEngine(object):
             **config,
         }
 
+        # Evaluation
         summary = evaluate(options, providers[0])
         results = summary["results"]
         for j in tqdm(range(100), desc="Evaluation"):
             sleep(0.01)
 
+        # Output
         if self.args.output:
             print_light_grey_on_yellow = lambda x: cprint(x, "black", "on_yellow")
             print_light_grey_on_yellow(f"Writing output to {self.args.output}")
-            write_output(results, output_path=self.args.output)
+            write_output(summary, output_path=self.args.output)
         else:
             # Output table by default
             print_light_grey_on_yellow = lambda x: cprint(x, "black", "on_yellow")

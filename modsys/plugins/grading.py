@@ -48,13 +48,13 @@ def matches_expected_val(expected, output, options, *args, **kwargs):
         expected_value = round(float(expected_dict[0]["value"]) * 100, 2)
 
         if comparison == "<":
-            boolean = output_value < expected_value
+            boolean = expected_value < output_value
         elif comparison == "<=":
-            boolean = output_value <= expected_value
+            boolean = expected_value <= output_value
         elif comparison == ">=":
-            boolean = output_value >= expected_value
+            boolean = expected_value >= output_value
         elif comparison == ">":
-            boolean = output_value > expected_value
+            boolean = expected_value > output_value
         else:
             raise ValueError("Unsupported assertion, use <: <=: >: or >=:")
     elif provider_path.startswith("openai:"):
