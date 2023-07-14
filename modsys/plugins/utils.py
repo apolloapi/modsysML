@@ -18,12 +18,10 @@ import os
 import csv
 import json
 import yaml
-from tqdm import tqdm
-from jinja2 import Template, Environment, meta
 from tabulate import tabulate
 
 
-def read_prompts(path):
+def read_prompts(path, *args, **kwargs):
     prompts = []
     for p in path:
         with open(p, "r") as f:
@@ -33,114 +31,94 @@ def read_prompts(path):
     return prompts
 
 
-def read_vars(path, delimiter):
+def read_vars(output_path, delimiter=None, *args, **kwargs):
+    # Defaults to using csv vars file
     variables = []
-    with open(path, "r") as f:
-        reader = csv.reader(f, delimiter=delimiter)
-        header = next(reader)  # skip the header elements
-        for row in reader:
-            if len(row) == len(
-                header
-            ):  # Check if the row has the same number of elements as the header
-                variables.append(dict(zip(header, row)))
+    output_extension = os.path.splitext(output_path)[1].lower()
+    if output_extension == ".csv":
+        if delimiter is None:
+            raise ValueError(
+                "You haven't set delimiters for the csv vars file, do this using -d or --delimiter"
+            )
+        with open(output_path, "r") as f:
+            reader = csv.reader(f, delimiter=delimiter)
+            header = next(reader)  # skip the header elements
+            for row in reader:
+                if len(row) == len(
+                    header
+                ):  # Check if the row has the same number of elements as the header
+                    variables.append(dict(zip(header, row)))
+    elif output_extension == ".json":
+        with open(output_path, "r") as f:
+            variables = json.load(f)
+    elif output_extension == ".yaml":
+        raise NotImplementedError
+    else:
+        raise ValueError("Unsupported output file format. Use CSV or JSON.")
+
     return variables
 
 
-def write_output(output_path, results, table):
-    output_extension = os.path.splitext(output_path)[1].lower()
-    if output_extension == ".csv":
-        with open(output_path, "w") as f:
-            writer = csv.writer(f)
-            writer.writerows(table)
-    if output_extension == ".json":
-        with open(output_path, "w") as f:
-            r = json.dump(results, f, indent=4)
-    elif output_extension == ".yaml":
-        with open(output_path, "w") as f:
-            yaml.dump(results, f)
-    # else: TODO: test this
-    # if os.getenv('CLI') is not None:
-    # print(
-    #     tabulate(
-    #         table, headers=["Prompt", "Variables", "Result"], tablefmt="fancy_grid"
-    #     )
-    # )
-    # else:
-    #     raise ValueError('Unsupported output file format. Use CSV, JSON, or YAML.')
+def write_output(results, output_path=None, *args, **kwargs):
+    output_extension = (
+        os.path.splitext(output_path)[1].lower() if output_path is not None else None
+    )
+    summary = results
+    results = results["results"]
 
+    table_data = [
+        [
+            result["prompt"][:60] + "..."
+            if len(result["prompt"]) > 60
+            else result["prompt"],
+            result["output"],
+            result.get("__expected", ""),
+            result.get("__comparison", ""),
+            "pass" if result["passed"]["state"] else "fail",
+        ]
+        for result in results
+    ]
 
-def evaluate(options, provider):
-    results = []
-    stats = {
-        "successes": 0,
-        "failures": 0,
-        "tokenUsage": {
-            "total": 0,
-            "prompt": 0,
-            "completion": 0,
-        },
-    }
+    if output_extension is None:
+        headers = list(results[0].keys()) + ["state [pass/fail]"]
 
-    def run_eval(prompt, vars):
+        if results[0]["__expected"]:
+            headers = [
+                "prompt",
+                "output",
+                "expected",
+                "comparison",
+                "state [pass/fail]",
+            ]
 
-        # Setup template and check for vars to connect prompt
-        vars = vars if vars else {}
-        template = Template(prompt)
-        env = Environment()
-        undeclared_vars = meta.find_undeclared_variables(env.parse(prompt))
-        context = {variable: vars.get(variable) for variable in undeclared_vars}
-        rendered_prompt = (
-            template.render(context) if undeclared_vars else template.render()
+        print(headers)
+
+        num_headers = len(headers)
+        min_width = 30
+        max_width = 50
+
+        # Calculate the width for each column based on the number of headers
+        column_width = max(
+            min_width, min(max_width, (max_width - min_width) // num_headers)
         )
 
-        try:
-            result = provider.call_api(rendered_prompt)
-
-            results.append(
-                {
-                    "prompt": prompt,
-                    "output": result["output"],
-                    **vars,
-                }
-            )
-
-            stats["successes"] += 1
-            stats["tokenUsage"]["total"] += result["tokenUsage"].get("total", 0) or 0
-            stats["tokenUsage"]["prompt"] += result["tokenUsage"].get("prompt", 0) or 0
-            stats["tokenUsage"]["completion"] += (
-                result["tokenUsage"].get("completion", 0) or 0
-            )
-        except Exception as err:
-            stats["failures"] += 1
-
-    if options["vars"]:
-        prompt_var_combinations = [
-            (prompt_content, row)
-            for row in options["vars"]
-            for prompt_content in options["prompts"]
-        ]
+        table = tabulate(
+            table_data,
+            headers=headers,
+            # showindex="always",
+            tablefmt="rounded_grid",
+            maxcolwidths=column_width,
+        )
+        print(table)
+    elif output_extension == ".csv":
+        with open(output_path, "w") as f:
+            writer = csv.writer(f)
+            writer.writerows(table_data)
+    elif output_extension == ".json":
+        with open(output_path, "w") as f:
+            r = json.dump(summary, f, indent=4)
+    elif output_extension == ".yaml":
+        with open(output_path, "w") as f:
+            yaml.dump(summary, f)
     else:
-        prompt_var_combinations = [
-            (prompt_content, {}) for prompt_content in options["prompts"]
-        ]
-
-    total_evaluations = len(prompt_var_combinations)
-    with tqdm(total=total_evaluations, desc="Evaluating", unit="evaluation") as pbar:
-        for i, (prompt_content, row) in enumerate(prompt_var_combinations):
-            run_eval(prompt_content, row)
-            pbar.update(1)
-            # # Generate a random number between 1 and 10
-            # random_increment = random.randint(1, 10)
-
-            # # Increment the progress bar by the random number
-            # pbar.update(random_increment)
-
-            # If it's the last iteration, update the progress bar to reach 100
-            # if i == total_evaluations - 1:
-            #     remaining = total_evaluations - (pbar.n - random_increment)
-            #     pbar.update(remaining)
-
-    return {
-        "results": results,
-        "stats": stats,
-    }
+        raise ValueError("Unsupported output file format. Use CSV, JSON, or YAML.")

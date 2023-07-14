@@ -21,6 +21,7 @@ from modsys.manager import (
     OpenAIConnectionManager,
     GoogleAIConnectionManager,
     SightengineConnectionManager,
+    ProviderConnectionManager,
 )
 from modsys.const import QUERY_CONTEXT
 
@@ -81,3 +82,6 @@ class General(Postgres, JSONService, OpenAI, GoogleAI, SightengineAI):
 
     # Current LLM to be used
     model = None
+
+    # Class instance connection manager to AI providers
+    _api_manager = ProviderConnectionManager()
