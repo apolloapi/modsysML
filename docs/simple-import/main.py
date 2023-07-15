@@ -23,12 +23,12 @@ def evaluate():
     return sdk.evaluate(
         [
             {
-                "text": "This is hate speech",
+                "item": "This is hate speech",
                 "__expected": {"TOXICITY": {"value": "0.78"}},
                 "__trend": "lower",
             },
             {
-                "text": "You suck at this game.",
+                "item": "You suck at this game.",
                 "__expected": {"TOXICITY": {"value": "0.50"}},
                 "__trend": "higher",
             },

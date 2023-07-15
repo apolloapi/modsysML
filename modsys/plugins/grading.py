@@ -42,30 +42,38 @@ def matches_expected_val(expected, output, options, *args, **kwargs):
             expected = json.loads(expected)
 
         trend = kwargs["trend"] if "trend" in kwargs else "lower"
+        output_policy = list(output.keys())
         output_dict = list(output.values())
         output_value = round(output_dict[0]["value"] * 100, 2)
+        expected_policy = list(expected.keys())
         expected_dict = list(expected.values())
         expected_value = round(float(expected_dict[0]["value"]) * 100, 2)
         accuracy = (
-            min(expected_value, output_value) / max(expected_value, output_vale)
+            min(expected_value, output_value) / max(expected_value, output_value)
         ) * 100
+        accuracy = round(accuracy, 3)
 
-        if trend == "lower":
-            boolean = bool(accuracy >= 90)
-        elif trend == "higher":
-            boolean = bool(accuracy >= 70)
+        if output_policy[0] == expected_policy[0]:
+            if trend == "lower":
+                boolean = bool(accuracy >= 90)
+            elif trend == "higher":
+                boolean = bool(accuracy >= 70)
+            else:
+                raise ValueError(
+                    "Unsupported assertion, use lower or higher to denote a wider acceptance criteria"
+                )
+            return {
+                "state": boolean,
+                "reason": f"Precision is at {accuracy}%, if trend is lower the acceptance criteria is >=90%, higher is >=70%",
+            }
         else:
-            raise ValueError(
-                "Unsupported assertion, use lower or higher to denote a wider acceptance criteria"
-            )
+            return {
+                "state": False,
+                "reason": f"Output and expected policy category didn't match. {output_policy[0]} != {expected_policy[0]}",
+            }
     elif provider_path.startswith("openai:"):
         raise NotImplementedError
     elif provider_path.startswith("sightengine:"):
         raise NotImplementedError
     else:
         raise NotImplementedError
-
-    return {
-        "state": boolean,
-        "reason": f"Output {output} for provider has a precision rate of {accuracy}% for the expected value {expected}",
-    }
