@@ -7,5 +7,5 @@ modsys --eval
 Here's the full command:
 
 ```
-promptfoo --eval --prompts prompts.txt --vars vars.csv --providers openai:chat --output output.json
+modsys --eval --prompts prompts.txt --vars vars.csv --providers openai:chat --output output.json
 ```
