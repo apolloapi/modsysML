@@ -25,12 +25,12 @@ def evaluate():
             {
                 "text": "This is hate speech",
                 "__expected": {"TOXICITY": {"value": "0.78"}},
-                "__comparison": "<",
+                "__trend": "lower",
             },
             {
                 "text": "You suck at this game.",
                 "__expected": {"TOXICITY": {"value": "0.50"}},
-                "__comparison": "<",
+                "__trend": "higher",
             },
         ]
     )

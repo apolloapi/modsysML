@@ -1,5 +1,5 @@
-text,__expected,__comparison
-This is a toxic post.,{"TOXICITY": {"value": "0.99"}},>
-You suck at this game.,{"TOXICITY": {"value": "0.50"}},<
-This is a sexually explicity post.,{"SEXUALLY_EXPLICIT": {"value": "0.78"}},<=
-Hello hello hello hello.,{"SPAM": {"value": "0.78"}},>=
+text,__expected,__trend
+This is a toxic post.,{"TOXICITY": {"value": "0.99"}},lower
+You suck at this game.,{"TOXICITY": {"value": "0.50"}},higher
+This is a sexually explicity post.,{"SEXUALLY_EXPLICIT": {"value": "0.78"}},lower
+Hello hello hello hello.,{"SPAM": {"value": "0.78"}},higher

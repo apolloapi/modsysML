@@ -16,7 +16,7 @@
                 "value": "0.50"
             }
         },
-        "__comparison": "<"
+        "__trend": "lower"
     },
     {
         "prompt": "The user posted: You suck at this game.",
@@ -35,6 +35,6 @@
                 "value": "0.50"
             }
         },
-        "__comparison": "<"
+        "__trend": "higher"
     }
 ]

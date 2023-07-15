@@ -73,7 +73,7 @@ def write_output(results, output_path=None, *args, **kwargs):
             else result["prompt"],
             result["output"],
             result.get("__expected", ""),
-            result.get("__comparison", ""),
+            result.get("__trend", ""),
             "pass" if result["passed"]["state"] else "fail",
         ]
         for result in results
@@ -87,7 +87,7 @@ def write_output(results, output_path=None, *args, **kwargs):
                 "prompt",
                 "output",
                 "expected",
-                "comparison",
+                "trend",
                 "state [pass/fail]",
             ]
 
