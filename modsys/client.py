@@ -210,10 +210,10 @@ class Modsys(General):
                 "item": "You suck at this game.",
                 "__expected": {
                     "TOXICITY": {
-                        "value": "0.50"
+                        "value": "0.83"
                     }
                 },
-                "__trend": "lower"
+                "__trend": "higher"
             }
         ] - responsible for setting up test run
 
