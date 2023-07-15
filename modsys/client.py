@@ -213,7 +213,7 @@ class Modsys(General):
                         "value": "0.50"
                     }
                 },
-                "__comparison": "<"
+                "__trend": "lower"
             }
         ] - responsible for setting up test run
 

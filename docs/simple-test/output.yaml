@@ -1,4 +1,4 @@
-- __comparison: <
+- __trend: lower
   __expected:
     TOXICITY:
       value: "0.99"
@@ -11,7 +11,7 @@
     state: true
   prompt: "The user posted: This is a toxic post."
   text: I hate black people.
-- __comparison: <
+- __trend: lower
   __expected:
     TOXICITY:
       value: "0.50"

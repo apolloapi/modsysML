@@ -95,7 +95,7 @@ def evaluate(options, provider):
 
                 # Make comparison - default to model evaluation
                 match = matches_expected_val(
-                    vars["__expected"], score, options, comparison=vars["__comparison"]
+                    vars["__expected"], score, options, trend=vars["__trend"]
                 )
 
                 # Update results

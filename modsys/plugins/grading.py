@@ -41,22 +41,23 @@ def matches_expected_val(expected, output, options, *args, **kwargs):
         if type(expected) == str:
             expected = json.loads(expected)
 
-        comparison = kwargs["comparison"] if "comparison" in kwargs else None
+        trend = kwargs["trend"] if "trend" in kwargs else "lower"
         output_dict = list(output.values())
         output_value = round(output_dict[0]["value"] * 100, 2)
         expected_dict = list(expected.values())
         expected_value = round(float(expected_dict[0]["value"]) * 100, 2)
+        accuracy = (
+            min(expected_value, output_value) / max(expected_value, output_vale)
+        ) * 100
 
-        if comparison == "<":
-            boolean = expected_value < output_value
-        elif comparison == "<=":
-            boolean = expected_value <= output_value
-        elif comparison == ">=":
-            boolean = expected_value >= output_value
-        elif comparison == ">":
-            boolean = expected_value > output_value
+        if trend == "lower":
+            boolean = bool(accuracy >= 90)
+        elif trend == "higher":
+            boolean = bool(accuracy >= 70)
         else:
-            raise ValueError("Unsupported assertion, use <: <=: >: or >=:")
+            raise ValueError(
+                "Unsupported assertion, use lower or higher to denote a wider acceptance criteria"
+            )
     elif provider_path.startswith("openai:"):
         raise NotImplementedError
     elif provider_path.startswith("sightengine:"):
@@ -66,5 +67,5 @@ def matches_expected_val(expected, output, options, *args, **kwargs):
 
     return {
         "state": boolean,
-        "reason": f"Expected {expected} {comparison} {output}",
+        "reason": f"Output {output} for provider has a precision rate of {accuracy}% for the expected value {expected}",
     }
