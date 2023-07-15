@@ -27,7 +27,7 @@ with open("requirements.txt") as f:
 
 setup(
     name="modsys",
-    version="0.4.3",
+    version="0.4.4",
     description="A radically simple framework for ML/AI model management",
     author="ModsysML",
     author_email="adrbrownx@gmail.com",
@@ -41,7 +41,7 @@ setup(
     ],
     platforms=["Any"],
     install_requires=[
-        "Django<=3.0",
+        "Django>3.0",
         "firebase-admin==6.2.0",
         "google-api-core==2.11.1",
         "google-api-python-client==2.92.0",
