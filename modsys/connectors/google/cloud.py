@@ -103,8 +103,8 @@ class GooglePerspectiveProvider(AbstractGooglePerspectiveProvider):
         prompt: str,
         content_id: str,
         community_id: str,
-        score: float,
-        category: str,
+        score=None,
+        category=None,
     ):
         transformed_data = self.transform(
             prompt, content_id, community_id, score, category
