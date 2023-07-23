@@ -46,13 +46,17 @@ class GooglePerspectiveProvider(AbstractGooglePerspectiveProvider):
     def cache_settings(self) -> str:
         return f"Persist model output set to {self.cache}"
 
-    def get_attribute_scores(self, scores: dict) -> dict:
-        attr_scores = {}
-        for key in scores:
-            attr_scores[key] = {"summaryScore": {"value": scores[key]}}
-        return attr_scores
+    def get_attribute_scores(self, category, score):
+        return {category: {"summaryScore": {"value": score}}}
 
-    def transform(self, prompt: str, content_id: str, community_id: str, scores: dict):
+    def transform(
+        self,
+        prompt: str,
+        content_id: str,
+        community_id: str,
+        score: float,
+        category: str,
+    ):
         if self.model_name == "analyze":
             body = {
                 "comment": {
@@ -73,7 +77,7 @@ class GooglePerspectiveProvider(AbstractGooglePerspectiveProvider):
             url = f"https://commentanalyzer.googleapis.com/v1alpha1/comments:{self.model_name}?key={self.api_key}"
             return {"url": url, "body": body}
         elif self.model_name == "suggest":
-            if scores is None:
+            if score is None:
                 raise Exception(
                     "'score' must be provided when the model name is 'suggest'"
                 )
@@ -82,7 +86,7 @@ class GooglePerspectiveProvider(AbstractGooglePerspectiveProvider):
                 "comment": {
                     "text": prompt,
                 },
-                "attributeScores": self.get_attribute_scores(scores),
+                "attributeScores": self.get_attribute_scores(category, score),
                 "clientToken": content_id,
                 "communityId": community_id,
             }
@@ -94,8 +98,17 @@ class GooglePerspectiveProvider(AbstractGooglePerspectiveProvider):
                 f"Invailid model_name. Expected 'suggest' or 'analyze' but got {self.model_name}"
             )
 
-    def call_api(self, prompt: str, content_id: str, community_id: str, scores: dict):
-        transformed_data = self.transform(prompt, content_id, community_id, scores)
+    def call_api(
+        self,
+        prompt: str,
+        content_id: str,
+        community_id: str,
+        score: float,
+        category: str,
+    ):
+        transformed_data = self.transform(
+            prompt, content_id, community_id, score, category
+        )
         url = transformed_data["url"]
         body = transformed_data["body"]
 

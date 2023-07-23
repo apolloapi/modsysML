@@ -154,7 +154,7 @@ class Modsys(General):
     @classmethod
     def detectText(cls, *args, **kwargs):
         """
-        Detects text using the appropriate provider based on the `model` attribute of the class.
+        Detects text using the appropriate provider based on the `model` attribute of the class. If using google_perspective can also suggest scores as well.
 
         :param text: The text to be detected (optional).
         :type text: str
@@ -183,9 +183,10 @@ class Modsys(General):
             )
             return conn.call_api(
                 kwargs["prompt"] if "prompt" in kwargs else None,
-                kwargs["scores"] if "scores" in kwargs else None,
                 kwargs["content_id"] if "content_id" in kwargs else None,
                 kwargs["community_id"] if "community_id" in kwargs else None,
+                kwargs["score"] if "score" in kwargs else None,
+                kwargs["category"] if "category" in kwargs else None,
             )
         else:
             return "No provider connected"
