@@ -32,7 +32,8 @@ def evaluate():
                 "__expected": {"TOXICITY": {"value": "0.50"}},
                 "__trend": "higher",
             },
-        ]
+        ],
+        "community_id_can_be_None",
     )
 
 

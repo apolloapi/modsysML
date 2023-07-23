@@ -200,7 +200,7 @@ class Modsys(General):
             raise NotImplementedError
 
     @classmethod
-    def evaluate(cls, vars: list):
+    def evaluate(cls, vars: list, community_id):
         """
         After setting up the connection criteria for google_perspecitve
         run the evaluation.
@@ -230,7 +230,7 @@ class Modsys(General):
         options = {"prompts": ["evaluate: {{item}}"], "vars": vars, "providers": [conn]}
 
         # Evaluation
-        summary = evaluate(options, conn)
+        summary = evaluate(options, conn, community_id=community_id)
         print_yellow = lambda x: cprint(x, "yellow")
         print_yellow(f"Evaluation complete: {json.dumps(summary['stats'], indent=4)}")
 
