@@ -18,8 +18,9 @@ from jinja2 import Template, Environment, meta
 from .grading import matches_expected_val
 
 
-def evaluate(options, provider):
+def evaluate(options, provider, *args, **kwargs):
     results = []
+    community_id = kwargs["community_id"] if "community_id" in kwargs else None
     stats = {
         "successes": 0,
         "failures": 0,
@@ -78,9 +79,12 @@ def evaluate(options, provider):
                 # NOTE default community_id and content_id's to modsysML since we
                 # don't care about them for this use-case (testing). We only care
                 # when it involves analyzing items for moderation and suggestions
+                if community_id is None:
+                    print("Using modsys as the community ID since its None")
+
                 result = provider.call_api(
                     prompt=rendered_prompt,
-                    community_id="ModsysML",
+                    community_id=community_id if community_id else "ModsysML",
                     content_id="ModsysML",
                 )
 
