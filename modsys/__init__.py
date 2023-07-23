@@ -79,7 +79,7 @@ def get_google_client(
         if model_type == "analyze":
             return client(model_type, secret)
         elif model_type == "suggest":
-            raise NotImplementedError
+            return client(model_type, secret)
         else:
             raise ValueError(f"Unknown OpenAI model type: {model_type}")
     else:

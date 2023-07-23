@@ -46,29 +46,77 @@ class GooglePerspectiveProvider(AbstractGooglePerspectiveProvider):
     def cache_settings(self) -> str:
         return f"Persist model output set to {self.cache}"
 
-    def call_api(self, prompt: str, content_id: str, community_id: str):
-        body = {
-            "comment": {
-                "text": prompt,
-            },
-            "requestedAttributes": {
-                "TOXICITY": {},
-                "SEVERE_TOXICITY": {},
-                "INSULT": {},
-                "THREAT": {},
-                "SEXUALLY_EXPLICIT": {},
-                "SPAM": {},
-            },
-            "doNotStore": self.cache,
-            "clientToken": content_id,
-            "communityId": community_id,
-        }
+    def get_attribute_scores(self, category, score):
+        return {category: {"summaryScore": {"value": score}}}
+
+    def transform(
+        self,
+        prompt: str,
+        content_id: str,
+        community_id: str,
+        score: float,
+        category: str,
+    ):
+        if self.model_name == "analyze":
+            body = {
+                "comment": {
+                    "text": prompt,
+                },
+                "requestedAttributes": {
+                    "TOXICITY": {},
+                    "SEVERE_TOXICITY": {},
+                    "INSULT": {},
+                    "THREAT": {},
+                    "SEXUALLY_EXPLICIT": {},
+                    "SPAM": {},
+                },
+                "doNotStore": self.cache,
+                "clientToken": content_id,
+                "communityId": community_id,
+            }
+            url = f"https://commentanalyzer.googleapis.com/v1alpha1/comments:{self.model_name}?key={self.api_key}"
+            return {"url": url, "body": body}
+        elif self.model_name == "suggest":
+            if score is None:
+                raise Exception(
+                    "'score' must be provided when the model name is 'suggest'"
+                )
+
+            body = {
+                "comment": {
+                    "text": prompt,
+                },
+                "attributeScores": self.get_attribute_scores(category, score),
+                "clientToken": content_id,
+                "communityId": community_id,
+            }
+
+            url = f"https://commentanalyzer.googleapis.com/v1alpha1/comments:suggestscore?key={self.api_key}"
+            return {"url": url, "body": body}
+        else:
+            raise Exception(
+                f"Invailid model_name. Expected 'suggest' or 'analyze' but got {self.model_name}"
+            )
+
+    def call_api(
+        self,
+        prompt: str,
+        content_id: str,
+        community_id: str,
+        score: float,
+        category: str,
+    ):
+        transformed_data = self.transform(
+            prompt, content_id, community_id, score, category
+        )
+        url = transformed_data["url"]
+        body = transformed_data["body"]
 
         headers = {
             "Content-Type": "application/json",
         }
         response = requests.post(
-            f"https://commentanalyzer.googleapis.com/v1alpha1/comments:{self.model_name}?key={self.api_key}",
+            url=url,
             headers=headers,
             json=body,
         )
