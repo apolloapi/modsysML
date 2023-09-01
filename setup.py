@@ -64,7 +64,7 @@ setup(
         "tabulate==0.9.0",
         "termcolor==2.3.0",
         "tqdm==4.65.0",
-        "virtualenv==20.21.0",
+        "virtualenv==20.24.4",
     ],
     long_description_content_type="text/markdown",
     long_description=long_description,
