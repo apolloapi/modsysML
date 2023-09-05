@@ -4,19 +4,19 @@
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/modsysML/modsys/pre-commit.yml)
 ![Release](https://img.shields.io/github/v/release/modsysML/modsys)
 
-<!-- <div align="center">
+<div align="center" style="max-width: 50%;">
 
-![HowItWorks](https://uploads-ssl.webflow.com/640ca38ad086fde245b76c9d/645e8d8ad611b140135e11bb_GraphicOne.png)
+![ModsysML_Media_Intro_docs](https://github.com/modsysML/documentation/assets/72639210/106b58fc-4dfe-4077-8a0d-089355612d01)
 
-</div> -->
+</div>
 
 <div align="center">
-ModsysML is an upstream open-source validation framework for testing, automating and data analytics.
+Framework for improving AI models
 </div>
 
 <p align="center">
     <br />
-    <a href="#" rel="dofollow"><strong>Docs [Coming soon]»</strong></a>
+    <a href="https://modsys.vercel.app/docs/intro" rel="dofollow"><strong>Docs»</strong></a>
     <br />
 
   <br/>
@@ -27,9 +27,12 @@ ModsysML is an upstream open-source validation framework for testing, automating
     <a href="https://discord.gg/ZUH7f7AzUY">Community Discord</a>
 </p>
 
-## Why ModsysML?
 
-Before modsys, running proactive intelligence & insights through testing data quality and automating workloads was time-consuming, with modsys, you can simplify, accelerate and backtest the entire process. This makes it easier to train classifiers, handle real-time changes and make data driven decisions.
+ModsysML is an open source toolbox for automating, building insights and evaluating model responses across relevant testcases. Prompt tuning is a way to fine-tune AI models with a small context window of data. Instead of foundational training, prompt tuning allows users to take pre-trained models and tweak them to a specific use-case. Instead of stopping here we've incorporated the ability to automate evaluations and even suggestions for model responses while giving users the ability to connect to any database/api resource for curating analytics alongside running evaluations.
+
+ModsysML provides a framework for building relevant test cases across 4 domains, semantic, LLM based, Human in the loop and programmatic tests. It's a collection of python plugins wrapped into an SDK that provide the basic functionality, but may not fit each use case out of the box. You can craft custom test cases, run evaluations on model responses, curate automated scripts and generate data frames.
+
+ModsysML strictly uses official provider integrations via API, psycopg and a few other modules to provide the building blocks. ModsysML is the upstream project to the Apollo API interface which serves as a UI for your development needs.
 
 ## 🚀 Interesting, how can I try it?
 
