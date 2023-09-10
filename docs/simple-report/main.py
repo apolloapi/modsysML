@@ -17,7 +17,7 @@
 from modsys.client import Modsys
 
 
-def evaluate():
+def evaluate_and_report():
     sdk = Modsys()
     sdk.use("google_perspective:analyze", google_perspective_api_key="#API-KEY")
     eval = sdk.evaluate(
@@ -37,7 +37,7 @@ def evaluate():
     )
 
     # send report based on output accuracy
-    return sdk.report(
+    return sdk.create_report(
         "provider_name",
         "ai-model",
         "dataset_name",

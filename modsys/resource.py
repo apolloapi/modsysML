@@ -22,8 +22,17 @@ from modsys.manager import (
     GoogleAIConnectionManager,
     SightengineConnectionManager,
     ProviderConnectionManager,
+    AVIDConnectionManager,
 )
 from modsys.const import QUERY_CONTEXT
+
+
+class AVID:
+    # connection manager
+    _avid_manager = AVIDConnectionManager()
+
+    # cursor
+    avid_curs = None
 
 
 class Postgres:
@@ -78,7 +87,14 @@ class SightengineAI:
     _sightengine_api_user = None
 
 
-class General(Postgres, JSONService, OpenAI, GoogleAI, SightengineAI):
+class General(
+    Postgres,
+    JSONService,
+    OpenAI,
+    GoogleAI,
+    SightengineAI,
+    AVID,
+):
 
     # Current LLM to be used
     model = None

@@ -65,7 +65,7 @@ class AVIDProvider(AbstractAVIDProvider):
                     "taxonomy_version": "0.2",
                 }
             },
-            "credit": "Apollo",
+            "credit": "ModsysML",
             "reported_date": current_date.strftime("%Y-%m-%d"),
         }
 

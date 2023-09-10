@@ -26,6 +26,30 @@ import json
 
 class Modsys(General):
     @classmethod
+    def report(
+        cls,
+        provider_name,
+        provider_model,
+        dataset_name,
+        dataset_link,
+        summary,
+        path_to_create_report,
+    ):
+        try:
+            response = cls.avid_curs.create_report(
+                provider_name,
+                provider_model,
+                dataset_name,
+                dataset_link,
+                summary,
+                path_to_create_report,
+            )
+        except Exception as err:
+            raise ExecutionError(err)
+
+        return response
+
+    @classmethod
     def set_context(cls, query_type, table, col):
         # oldest order
         if query_type == "asc":
@@ -102,7 +126,12 @@ class Modsys(General):
             1. Apollo.fetch_tables()
             2. Apollo.query([desc/asc], [table], [column])
         """
-        cls.psql_curs = cls._manager.connect_to_prefix(db_url)
+        if db_url == "avid":
+            cls.avid_curs = cls._avid_manager.connect_to_client()
+        else:
+            # default connection to postgres database
+            cls.psql_curs = cls._manager.connect_to_prefix(db_url)
+
         return "Syncing data with ModsysML"
 
     @classmethod
@@ -240,7 +269,3 @@ class Modsys(General):
 
         # Output
         return summary["results"]
-
-    @classmethod
-    def report(cls, vars: list, community_id):
-        pass
