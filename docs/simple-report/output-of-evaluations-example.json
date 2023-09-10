@@ -1,0 +1,52 @@
+{
+    "results": [
+        {
+            "prompt": "The user posted: This is a toxic post.",
+            "output": {
+                "TOXICITY": {
+                    "value": 0.7675452
+                }
+            },
+            "passed": {
+                "state": false,
+                "reason": "Expected {'TOXICITY': {'value': '0.99'}} < {'TOXICITY': {'value': 0.7675452}}"
+            },
+            "text": "This is a toxic post.",
+            "__expected": {
+                "TOXICITY": {
+                    "value": "0.99"
+                }
+            },
+            "__comparison": "<"
+        },
+        {
+            "prompt": "The user posted: You suck at this game.",
+            "output": {
+                "TOXICITY": {
+                    "value": 0.85333383
+                }
+            },
+            "passed": {
+                "state": true,
+                "reason": "Expected {'TOXICITY': {'value': '0.50'}} < {'TOXICITY': {'value': 0.85333383}}"
+            },
+            "text": "You suck at this game.",
+            "__expected": {
+                "TOXICITY": {
+                    "value": "0.50"
+                }
+            },
+            "__comparison": "<"
+        }
+    ],
+    "stats": {
+        "successes": 2,
+        "failures": 0,
+        "error": [],
+        "tokenUsage": {
+            "total": 15,
+            "prompt": 2,
+            "completion": 2
+        }
+    }
+}

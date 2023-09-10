@@ -215,7 +215,7 @@ class Modsys(General):
                 "__expected": {
                     "TOXICITY": {
                         "value": "0.83"
-                    }
+                    } (label)
                 },
                 "__trend": "higher"
             }
@@ -240,3 +240,7 @@ class Modsys(General):
 
         # Output
         return summary["results"]
+
+    @classmethod
+    def report(cls, vars: list, community_id):
+        pass

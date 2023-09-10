@@ -1,0 +1,52 @@
+{
+    "data_type": "AVID",
+    "data_version": null,
+    "metadata": null,
+    "affects": {
+        "developer": [],
+        "deployer": [
+            "test"
+        ],
+        "artifacts": [
+            {
+                "type": "Model",
+                "name": "test_model"
+            }
+        ]
+    },
+    "problemtype": {
+        "classof": "LLM Evaluation",
+        "type": "Detection",
+        "description": {
+            "lang": "eng",
+            "value": "testing report function"
+        }
+    },
+    "metrics": [],
+    "references": [
+        {
+            "label": "test_dataset",
+            "url": "link to datatset"
+        }
+    ],
+    "description": {
+        "lang": "eng",
+        "value": "testing report function"
+    },
+    "impact": {
+        "avid": {
+            "risk_domain": [
+                "Performance"
+            ],
+            "sep_view": [
+                "P0102: Accuracy"
+            ],
+            "lifecycle_view": [
+                "L05: Evaluation"
+            ],
+            "taxonomy_version": "0.2"
+        }
+    },
+    "credit": "Apollo",
+    "reported_date": "2023-09-10"
+}
