@@ -54,17 +54,17 @@ def matches_expected_val(expected, output, options, *args, **kwargs):
         accuracy = round(accuracy, 3)
 
         if output_policy[0] == expected_policy[0]:
-            if trend == "lower":
+            if trend == "higher":
                 boolean = bool(accuracy >= 90)
-            elif trend == "higher":
+            elif trend == "lower":
                 boolean = bool(accuracy >= 70)
             else:
                 raise ValueError(
-                    "Unsupported assertion, use lower or higher to denote a wider acceptance criteria"
+                    "Unsupported assertion, use lower or higher to denote a wider lower-bound acceptance criteria"
                 )
             return {
                 "state": boolean,
-                "reason": f"Precision is at {accuracy}%, if trend is lower the acceptance criteria is >=90%, higher is >=70%",
+                "reason": f"Lower-bound Precision is at {accuracy}%, if trend is higher the acceptance criteria is >=90%, lower is >=70%",
             }
         else:
             return {

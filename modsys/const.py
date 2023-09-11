@@ -66,3 +66,14 @@ TEST_ACCOUNT = os.environ.get("test_account", None)
 
 # Service SDK test token, THIS IS PUBLIC
 test_token = os.environ.get("test_token", None)
+
+# AVID Reporting taxanomies
+AVID_ACCURACY = "P0204"
+AVID_CONCEPT_DRIFT = "P0102"
+AVID_TOXICITY = "E0301"
+AVID_EXCLUSION = "E0302"
+AVID_DATA_LEAK = "S0301"
+AVID_REPORT_FREQUENCY_DETECT = "detection"
+AVID_CLIENT_CLASS = os.environ.get(
+    "AVID_CLIENT_CLASS", "modsys.connectors.avid.AVIDProvider"
+)

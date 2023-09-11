@@ -23,6 +23,7 @@ from modsys.service.json.base import AbstractRestClient
 from modsys.connectors.openai.base import AbstractOpenAIProvider
 from modsys.connectors.google.base import AbstractGooglePerspectiveProvider
 from modsys.connectors.sightengine.base import AbstractSightengineProvider
+from modsys.connectors.avid.base import AbstractAVIDProvider
 
 from .const import (
     SUPABASE_CLIENT_CLASS,
@@ -31,6 +32,7 @@ from .const import (
     OPENAI_CLIENT_CLASS,
     GOOGLE_PERSPECTIVE_CLIENT_CLASS,
     SIGHTENGINE_CLIENT_CLASS,
+    AVID_CLIENT_CLASS,
 )
 
 from django.utils.module_loading import import_string
@@ -104,6 +106,12 @@ def get_sightengine_client(
         return importlib.import_module(provider_path).default()
 
 
+def get_avid_client() -> AbstractAVIDProvider:
+    client = import_string(AVID_CLIENT_CLASS)
+    return client()
+
+
+# todo: integrate into client
 def get_provider_client(provider_path: str, *args, **kwargs):
     secret = kwargs["secret"] if "secret" in kwargs else None
     api_user = kwargs["api_user"] if "api_user" in kwargs else None

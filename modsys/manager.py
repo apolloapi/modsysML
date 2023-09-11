@@ -22,8 +22,15 @@ from modsys import (
     get_google_client,
     get_sightengine_client,
     get_provider_client,
+    get_avid_client,
 )
 from modsys.exceptions import EmptyResultsWarning
+
+
+class AVIDConnectionManager:
+    @staticmethod
+    def connect_to_client():
+        return get_avid_client()
 
 
 class PostgresConnectionManager:

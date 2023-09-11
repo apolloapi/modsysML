@@ -131,7 +131,7 @@ class ExecutionError(Exception):
     """
 
     def __init__(
-        self, obj, message="Unable to execute sql query, check your connection info"
+        self, obj, message="Unable to execute query, check your connection info"
     ):
         self.obj = obj
         self.message = message
