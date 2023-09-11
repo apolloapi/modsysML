@@ -81,5 +81,5 @@ AVID_CLIENT_CLASS = os.environ.get(
 # Scam advisor
 SCAMADVISOR_API_KEY = os.environ.get("SCAM_ADVISORS_API_KEY", None)
 SCAMADVISOR_CLIENT_CLASS = os.environ.get(
-    "modsys.connectors.scam_advisor.ScamAdvisorProvider"
+    "SCAMADVISOR_CLIENT_CLASS", "modsys.connectors.scam_advisor.ScamAdvisorProvider"
 )

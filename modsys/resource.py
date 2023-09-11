@@ -23,6 +23,7 @@ from modsys.manager import (
     SightengineConnectionManager,
     ProviderConnectionManager,
     AVIDConnectionManager,
+    ScamAdvisorConnectionManager,
 )
 from modsys.const import QUERY_CONTEXT
 
@@ -60,6 +61,12 @@ class JSONService:
     _auth_token = None
 
 
+class ScamAdvisor:
+    _scam_advisor_manager = ScamAdvisorConnectionManager()
+
+    _scam_advisor_token = None
+
+
 class OpenAI:
 
     # connection manager
@@ -94,6 +101,7 @@ class General(
     GoogleAI,
     SightengineAI,
     AVID,
+    ScamAdvisor,
 ):
 
     # Current LLM to be used

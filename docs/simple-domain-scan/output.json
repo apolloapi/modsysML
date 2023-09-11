@@ -1,0 +1,654 @@
+{
+    "_id": {
+        "$oid": "5f4e4d60db1bb73e2e0ad1d3"
+    },
+    "domain": "amazon.com",
+    "created_at": 1598967136,
+    "blacklisted": false,
+    "dnsblock": {
+        "threat": {
+            "count": 0
+        },
+        "adult": {
+            "count": 0
+        }
+    },
+    "ip_bad_count": {
+        "total": 1,
+        "bad": 0
+    },
+    "facebook_comments": {
+        "total_count": 148,
+        "negative": {
+            "comment_count": 9,
+            "unique_user_count": 9
+        },
+        "positive": {
+            "comment_count": 73,
+            "unique_user_count": 48
+        },
+        "neutral": {
+            "comment_count": 4,
+            "unique_user_count": 4
+        },
+        "unknown": {
+            "comment_count": 62,
+            "unique_user_count": 59
+        }
+    },
+    "popularity": {
+        "rank": 12,
+    },
+    "reviews": [
+        {
+            "source": "Trustpilot",
+            "source_url": "https://www.trustpilot.com/review/amazon.com",
+            "count": 12920,
+            "avg_score": 2.2,
+            "count_score_1": 4932,
+            "count_score_2": 803,
+            "count_score_3": 691,
+            "count_score_4": 1330,
+            "count_score_5": 5164
+        },
+        {
+            "source": "Scamadviser",
+            "source_url": "https://www.scamadviser.com/check-website/amazon.com",
+            "count": 18,
+            "avg_score": 3.1,
+            "count_score_1": 108,
+            "count_score_2": 0,
+            "count_score_3": 54,
+            "count_score_4": 72,
+            "count_score_5": 90
+        },
+        {
+            "source": "Sitejabber",
+            "source_url": "https://www.sitejabber.com/reviews/amazon.com",
+            "count": 8715,
+            "avg_score": 4.26,
+            "count_score_1": 891,
+            "count_score_2": 268,
+            "count_score_3": 398,
+            "count_score_4": 1248,
+            "count_score_5": 5836
+        },
+        {
+            "source": "MyWOT",
+            "source_url": "https://www.mywot.com/scorecard/amazon.com",
+            "count": 1294,
+            "avg_score": 4.7
+        }
+    ],
+    "scamadviser_votes": {
+        "source": "Scamadviser",
+        "source_url": "https://www.scamadviser.com/check-website/amazon.com",
+        "count_legit": 13,
+        "count_scam": 7,
+        "count_fake": 3
+    },
+    "whois": {
+        "source": "whois.markmonitor.com",
+        "domain_result": "amazon.com",
+        "domain_extension": "com",
+        "domain_status": [
+            "clientdeleteprohibited",
+            "clienttransferprohibited",
+            "clientupdateprohibited",
+            "serverdeleteprohibited",
+            "servertransferprohibited",
+            "serverupdateprohibited"
+        ],
+        "name_servers": [
+            "ns1.p31.dynect.net",
+            "ns2.p31.dynect.net",
+            "ns3.p31.dynect.net",
+            "ns4.p31.dynect.net",
+            "pdns1.ultradns.net",
+            "pdns6.ultradns.co.uk"
+        ],
+        "registration_created": "1994-11-01",
+        "registration_updated": "2019-05-07",
+        "registration_expires": "2024-10-31",
+        "anonymous_whois": false,
+        "registrant": {
+            "name": "Hostmaster, Amazon Legal Dept.",
+            "company": "Amazon Technologies, Inc.",
+            "address": "P.O. Box 8102 89507 Reno NV",
+            "country": "US",
+            "email": "hostmaster@amazon.com",
+            "valid_email": true,
+            "valid_mx_record": true,
+            "phone": "+1.2062664064"
+        },
+        "administrative": {
+            "name": "Hostmaster, Amazon Legal Dept.",
+            "company": "Amazon Technologies, Inc.",
+            "address": "P.O. Box 8102 89507 Reno NV",
+            "country": "US",
+            "email": "hostmaster@amazon.com",
+            "valid_email": true,
+            "valid_mx_record": true,
+            "phone": "+1.2062664064"
+        },
+        "technical": {
+            "name": "Hostmaster, Amazon Legal Dept.",
+            "company": "Amazon Technologies, Inc.",
+            "address": "P.O. Box 8102 89507 Reno NV",
+            "country": "US",
+            "email": "hostmaster@amazon.com",
+            "valid_email": true,
+            "valid_mx_record": true,
+            "phone": "+1.2062664064"
+        },
+        "registrar": {
+            "name": "MarkMonitor, Inc.",
+            "iana_id": "292",
+            "website": "http://www.markmonitor.com",
+            "email": "abusecomplaints@markmonitor.com",
+            "valid_email": true,
+            "valid_mx_record": true,
+            "phone": "+1.2083895770"
+        }
+    },
+    "ssl": {
+        "valid": true,
+        "type": "OV",
+        "issuer": "DigiCert Inc"
+    },
+    "networkinfo": {
+        "request_http_status": 200,
+        "request_duration": 692,
+        "http_headers": {
+            "Content-Type": [
+                "text/html"
+            ],
+            "Content-Length": [
+                "6591"
+            ],
+            "Connection": [
+                "keep-alive"
+            ],
+            "Server": [
+                "Server"
+            ],
+            "Date": [
+                "Wed, 07 Oct 2020 08:00:11 GMT"
+            ],
+            "x-amz-rid": [
+                "WE7905GG34EXRAQAE95A"
+            ],
+            "Vary": [
+                "Content-Type,Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent"
+            ],
+            "X-Cache": [
+                "Miss from cloudfront"
+            ],
+            "Via": [
+                "1.1 a4ec4286876b8f2d9edb0dca00a1a9b4.cloudfront.net (CloudFront)"
+            ],
+            "X-Amz-Cf-Pop": [
+                "LHR3-C1"
+            ],
+            "X-Amz-Cf-Id": [
+                "mIDUg_3KQ1bAu4WsmJZzwYlVzJs5zpcgnoFcaOMa1y3L4miKon8lxw=="
+            ]
+        },
+        "ip": {
+            "address": "176.32.103.205",
+            "isp": "Amazon Data Services Ireland Ltd",
+            "country": "US"
+        },
+        "nameservers": [
+            {
+                "hostname": "pdns1.ultradns.net.",
+                "ip": {
+                    "address": "204.74.108.1",
+                    "isp": "UltraDNS Corp",
+                    "country": "US"
+                }
+            },
+            {
+                "hostname": "ns4.p31.dynect.net.",
+                "ip": {
+                    "address": "204.13.251.31",
+                    "isp": "Dynamic Network Services Inc.",
+                    "country": "US"
+                }
+            },
+            {
+                "hostname": "ns3.p31.dynect.net.",
+                "ip": {
+                    "address": "208.78.71.31",
+                    "isp": "Dynamic Network Services Inc.",
+                    "country": "US"
+                }
+            },
+            {
+                "hostname": "ns2.p31.dynect.net.",
+                "ip": {
+                    "address": "204.13.250.31",
+                    "isp": "Dynamic Network Services Inc.",
+                    "country": "US"
+                }
+            },
+            {
+                "hostname": "ns1.p31.dynect.net.",
+                "ip": {
+                    "address": "208.78.70.31",
+                    "isp": "Dynamic Network Services Inc.",
+                    "country": "US"
+                }
+            },
+            {
+                "hostname": "pdns6.ultradns.co.uk.",
+                "ip": {
+                    "address": "204.74.115.1",
+                    "isp": "Internet Media Network",
+                    "country": "US"
+                }
+            }
+        ]
+    },
+    "meta": {
+        "url": "amazon.com",
+        "title": "Amazon.com: Online Shopping for Electronics, Apparel, Computers, Books, DVDs & more",
+        "description": "Free delivery on millions of items with Prime. Low prices across earth's biggest selection of books, music, DVDs, electronics, computers, software, apparel & accessories, shoes, jewelry, tools & hardware, housewares, furniture, sporting goods, beauty & personal care, groceries & just about anything else.",
+        "keywords": [
+            "Amazon",
+            "Amazon.com",
+            "Books",
+            "Online Shopping",
+            "Book Store",
+            "Magazine",
+            "Subscription",
+            "Music",
+            "CDs",
+            "DVDs",
+            "Videos",
+            "Electronics",
+            "Video Games",
+            "Computers",
+            "Cell Phones",
+            "Toys",
+            "Games",
+            "Apparel",
+            "Accessories",
+            "Shoes",
+            "Jewelry",
+            "Watches",
+            "Office Products",
+            "Sports & Outdoors",
+            "Sporting Goods",
+            "Baby Products",
+            "Health",
+            "Personal Care",
+            "Beauty",
+            "Home",
+            "Garden",
+            "Bed & Bath",
+            "Furniture",
+            "Tools",
+            "Hardware",
+            "Vacuums",
+            "Outdoor Living",
+            "Automotive Parts",
+            "Pet Supplies",
+            "Broadband",
+            "DSL"
+        ]
+    },
+    "tags": {
+        "url": "amazon.com",
+        "tags": [
+            {
+                "id": 1068,
+                "name": "Industry - Media - Books",
+                "keywords": [
+                    {
+                        "id": 473,
+                        "value": "books"
+                    },
+                    {
+                        "id": 2019,
+                        "value": "book"
+                    }
+                ],
+                "internal": false
+            },
+            {
+                "id": 1071,
+                "name": "Industry - Media - Music",
+                "keywords": [
+                    {
+                        "id": 471,
+                        "value": "music"
+                    },
+                    {
+                        "id": 2022,
+                        "value": "music"
+                    }
+                ],
+                "internal": false
+            },
+            {
+                "id": 1072,
+                "name": "Industry - Media - Movies",
+                "keywords": [
+                    {
+                        "id": 469,
+                        "value": "video"
+                    },
+                    {
+                        "id": 472,
+                        "value": "movies"
+                    }
+                ],
+                "internal": false
+            },
+            {
+                "id": 1042,
+                "name": "Media - Music - High Risk",
+                "keywords": [
+                    {
+                        "id": 504,
+                        "value": "mp3"
+                    }
+                ],
+                "internal": true
+            },
+            {
+                "id": 1046,
+                "name": "Helpdesk",
+                "keywords": [
+                    {
+                        "id": 559,
+                        "value": "support"
+                    },
+                    {
+                        "id": 1683,
+                        "value": "Contact us"
+                    },
+                    {
+                        "id": 560,
+                        "value": "customer service"
+                    }
+                ],
+                "internal": false
+            },
+            {
+                "id": 49,
+                "name": "Deals",
+                "keywords": [
+                    {
+                        "id": 296,
+                        "value": "outlet"
+                    },
+                    {
+                        "id": 876,
+                        "value": "gift card"
+                    }
+                ],
+                "internal": false
+            },
+            {
+                "id": 1069,
+                "name": "Brands",
+                "keywords": [
+                    {
+                        "id": 1258,
+                        "value": "Philips"
+                    },
+                    {
+                        "id": 1210,
+                        "value": "iphone"
+                    },
+                    {
+                        "id": 594,
+                        "value": "Calvin Klein"
+                    }
+                ],
+                "internal": false
+            },
+            {
+                "id": 1055,
+                "name": "Populair Products",
+                "keywords": [
+                    {
+                        "id": 988,
+                        "value": "iphone"
+                    },
+                    {
+                        "id": 992,
+                        "value": "gift card"
+                    }
+                ],
+                "internal": false
+            },
+            {
+                "id": 1076,
+                "name": "REACT",
+                "keywords": [
+                    {
+                        "id": 996,
+                        "value": "samsung"
+                    }
+                ],
+                "internal": true
+            },
+            {
+                "id": 111,
+                "name": "Industry - Financial Services - High Risk",
+                "keywords": [
+                    {
+                        "id": 365,
+                        "value": "gold"
+                    }
+                ],
+                "internal": true
+            },
+            {
+                "id": 24,
+                "name": "Industry - Drugstore",
+                "keywords": [
+                    {
+                        "id": 327,
+                        "value": "pharmacy"
+                    }
+                ],
+                "internal": false
+            },
+            {
+                "id": 1080,
+                "name": "Corona Virus",
+                "keywords": [
+                    {
+                        "id": 1457,
+                        "value": "COVID-19"
+                    },
+                    {
+                        "id": 1769,
+                        "value": "covid"
+                    }
+                ],
+                "internal": true
+            },
+            {
+                "id": 1062,
+                "name": "Sports",
+                "keywords": [
+                    {
+                        "id": 574,
+                        "value": "sports"
+                    }
+                ],
+                "internal": false
+            },
+            {
+                "id": 1035,
+                "name": "Industry - Media - Games",
+                "keywords": [
+                    {
+                        "id": 468,
+                        "value": "games"
+                    },
+                    {
+                        "id": 482,
+                        "value": "gaming"
+                    },
+                    {
+                        "id": 480,
+                        "value": "playstation"
+                    },
+                    {
+                        "id": 484,
+                        "value": "xbox"
+                    },
+                    {
+                        "id": 479,
+                        "value": "nintendo"
+                    },
+                    {
+                        "id": 476,
+                        "value": "PS4"
+                    }
+                ],
+                "internal": false
+            },
+            {
+                "id": 1058,
+                "name": "Registration Possible",
+                "keywords": [
+                    {
+                        "id": 589,
+                        "value": "register"
+                    },
+                    {
+                        "id": 1179,
+                        "value": "start here"
+                    },
+                    {
+                        "id": 1124,
+                        "value": "sign in"
+                    }
+                ],
+                "internal": false
+            },
+            {
+                "id": 1078,
+                "name": "Adult - Dating - High Risk",
+                "keywords": [
+                    {
+                        "id": 2011,
+                        "value": "entertainment"
+                    }
+                ],
+                "internal": true
+            },
+            {
+                "id": 1066,
+                "name": "Industry - Financial Service - Very High Risk",
+                "keywords": [
+                    {
+                        "id": 377,
+                        "value": "make money"
+                    }
+                ],
+                "internal": true
+            },
+            {
+                "id": 1070,
+                "name": "Industry - Media - Software",
+                "keywords": [
+                    {
+                        "id": 489,
+                        "value": "windows 10"
+                    }
+                ],
+                "internal": false
+            },
+            {
+                "id": 1110,
+                "name": "Language - English",
+                "keywords": [
+                    {
+                        "id": 2389,
+                        "value": "lang=\"en-us\""
+                    }
+                ],
+                "internal": false
+            },
+            {
+                "id": 11,
+                "name": "Industry - Shopping",
+                "internal": false
+            }
+        ]
+    },
+    "score": 100,
+    "scores": {
+        "domain": 1190,
+        "bad_ip": null
+    },
+    "updated_at": "1602057611",
+    "attributes": {
+        "score": 100,
+        "block_indicator": false,
+        "cannot_be_blacklisted": false,
+        "suspicious_feedback": true,
+        "source": ""
+    },
+    "pageview": 338,
+    "redirected_domains": [
+        "pizda.com",
+        "amazon123.com",
+        "aaxtech.com"
+    ],
+    "domain_mutations": {
+        "domain_mutations": [
+            {
+                "source": "anonymous",
+                "type": "Reported",
+                "reason": "Other",
+                "value": -50
+            },
+            {
+                "source": "Scamadviser",
+                "type": "Suspected",
+                "reason": "Phishing",
+                "value": -20
+            }
+        ]
+    },
+    "primarydomain": {
+        "primary_domain": null,
+        "score": null
+    },
+    "robotstxt": {
+        "request_id": "1689153555",
+        "blocks_search_engines": false
+    },
+    "gca_domain_trust": {
+        "request_id": "1655899514",
+        "provider": "ScamAdviser",
+        "provider_rating": "C",
+        "provider_role": "other",
+        "classification": -1,
+        "external_source": false,
+        "source_name": "scamadviser.com",
+        "activity": "A",
+        "type": "C",
+        "is_blocked": false,
+        "created_at": "2021-03-24T12:00:17Z",
+        "updated_at": "2022-03-03T16:21:46.565251Z"
+    },
+    "certnz": {
+        "request_id": "1689153555",
+        "labels": [],
+        "marking": ""
+    },
+    "antiphishing": {
+        "request_id": "1689153555",
+        "count": 0
+    }
+}
