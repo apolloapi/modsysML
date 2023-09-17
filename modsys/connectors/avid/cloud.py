@@ -16,10 +16,6 @@
 
 from modsys.connectors.avid.base import AbstractAVIDProvider
 
-from avidtools.datamodels.report import Report, Problemtype, LangValue
-from avidtools.datamodels.components import Affects, Artifact
-from avidtools.datamodels.enums import ClassEnum, TypeEnum, ArtifactTypeEnum
-
 from datetime import datetime
 import json
 
@@ -28,8 +24,8 @@ current_date = datetime.now()
 
 class AVIDProvider(AbstractAVIDProvider):
     def __init__(self):
-        self.report = Report()
-        self.status = TypeEnum.detection
+        self.report = None
+        self.status = None
 
     def create_report(
         self,
