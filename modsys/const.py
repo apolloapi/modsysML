@@ -77,3 +77,9 @@ AVID_REPORT_FREQUENCY_DETECT = "detection"
 AVID_CLIENT_CLASS = os.environ.get(
     "AVID_CLIENT_CLASS", "modsys.connectors.avid.AVIDProvider"
 )
+
+# Scam advisor
+SCAMADVISOR_API_KEY = os.environ.get("SCAM_ADVISORS_API_KEY", None)
+SCAMADVISOR_CLIENT_CLASS = os.environ.get(
+    "SCAMADVISOR_CLIENT_CLASS", "modsys.connectors.scam_advisor.ScamAdvisorProvider"
+)

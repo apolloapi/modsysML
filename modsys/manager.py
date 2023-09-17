@@ -23,6 +23,7 @@ from modsys import (
     get_sightengine_client,
     get_provider_client,
     get_avid_client,
+    get_scam_advisor_client,
 )
 from modsys.exceptions import EmptyResultsWarning
 
@@ -61,6 +62,12 @@ class JSONConnectionManager:
     @staticmethod
     def connect(api_key):
         return get_json_client(api_key)
+
+
+class ScamAdvisorConnectionManager:
+    @staticmethod
+    def connect(api_key):
+        return get_scam_advisor_client(api_key)
 
 
 class OpenAIConnectionManager:

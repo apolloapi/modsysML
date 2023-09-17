@@ -24,6 +24,7 @@ from modsys.connectors.openai.base import AbstractOpenAIProvider
 from modsys.connectors.google.base import AbstractGooglePerspectiveProvider
 from modsys.connectors.sightengine.base import AbstractSightengineProvider
 from modsys.connectors.avid.base import AbstractAVIDProvider
+from modsys.connectors.scam_advisor.base import AbstractScamAdvisorProvider
 
 from .const import (
     SUPABASE_CLIENT_CLASS,
@@ -33,6 +34,7 @@ from .const import (
     GOOGLE_PERSPECTIVE_CLIENT_CLASS,
     SIGHTENGINE_CLIENT_CLASS,
     AVID_CLIENT_CLASS,
+    SCAMADVISOR_CLIENT_CLASS,
 )
 
 from django.utils.module_loading import import_string
@@ -50,6 +52,11 @@ def get_firebase_client(service_account_key) -> AbstractFirebaseClient:
 
 def get_json_client(api_key) -> AbstractRestClient:
     client = import_string(REST_CLIENT_CLASS)
+    return client(api_key)
+
+
+def get_scam_advisor_client(api_key) -> AbstractScamAdvisorProvider:
+    client = import_string(SCAMADVISOR_CLIENT_CLASS)
     return client(api_key)
 
 

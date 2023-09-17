@@ -177,6 +177,13 @@ class Modsys(General):
                 if "sightengine_api_user" in kwargs
                 else None
             )
+        elif provider == "scam_advisor":
+            cls.model = "Scam Advisor"
+            cls._scam_advisor_token = (
+                kwargs["scam_advisor_api_key"]
+                if "scam_advisor_api_key" in kwargs
+                else None
+            )
         else:
             return f"Provider {provider} not found"
 
@@ -217,6 +224,9 @@ class Modsys(General):
                 kwargs["score"] if "score" in kwargs else None,
                 kwargs["category"] if "category" in kwargs else None,
             )
+        elif cls.model == "Scam Advisor":
+            conn = cls._scam_advisor_manager.connect(cls._scam_advisor_token)
+            return conn.call_api(kwargs["domain"] if "domain" in kwargs else None)
         else:
             return "No provider connected"
 
