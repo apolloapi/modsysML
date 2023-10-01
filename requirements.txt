@@ -71,7 +71,7 @@ tomli==2.0.0
 tqdm==4.65.0
 typing==3.7.4.3
 typing_extensions==4.7.1
-tzdata==2022.7
+tzdata==2023.3
 uritemplate==4.1.1
 urllib3==1.26.13
 virtualenv==20.21.0
