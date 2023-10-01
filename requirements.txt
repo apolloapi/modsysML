@@ -75,6 +75,6 @@ tzdata==2022.7
 uritemplate==4.1.1
 urllib3==1.26.13
 virtualenv==20.21.0
-wait-for-it==2.2.1
+wait-for-it==2.2.2
 yarl==1.9.2
 zope.interface==6.0
