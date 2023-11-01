@@ -46,7 +46,7 @@ setup(
         "google-api-core==2.11.1",
         "google-api-python-client==2.92.0",
         "google-auth==2.21.0",
-        "google-auth-httplib2==0.1.0",
+        "google-auth-httplib2==0.1.1",
         "google-cloud-core==2.3.3",
         "google-cloud-firestore==2.11.1",
         "google-cloud-storage==2.10.0",
