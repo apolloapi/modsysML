@@ -8,7 +8,7 @@ CacheControl==0.13.1
 cachetools==5.3.1
 certifi==2023.5.7
 cffi==1.15.1
-cfgv==3.3.1
+cfgv==3.4.0
 charset-normalizer==2.1.1
 click==8.1.4
 cryptography==41.0.1
