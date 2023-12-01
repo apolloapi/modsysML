@@ -63,7 +63,7 @@ setup(
         "requests==2.28.1",
         "tabulate==0.9.0",
         "termcolor==2.3.0",
-        "tqdm==4.65.0",
+        "tqdm==4.66.1",
         "virtualenv==20.21.0",
     ],
     long_description_content_type="text/markdown",
