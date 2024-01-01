@@ -76,5 +76,5 @@ uritemplate==4.1.1
 urllib3==1.26.13
 virtualenv==20.21.0
 wait-for-it==2.2.1
-yarl==1.9.2
+yarl==1.9.4
 zope.interface==6.0
