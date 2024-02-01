@@ -41,7 +41,7 @@ multidict==6.0.4
 nodeenv==1.8.0
 numpy==1.24.3
 nvdlib==0.7.4
-openai==0.27.7
+openai==1.10.0
 packaging==22.0
 platformdirs==3.2.0
 pre-commit==2.20.0

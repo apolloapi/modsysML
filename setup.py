@@ -54,7 +54,7 @@ setup(
         "google-resumable-media==2.5.0",
         "googleapis-common-protos==1.59.1",
         "Jinja2==3.1.2",
-        "openai==0.27.7",
+        "openai==1.10.0",
         "psycopg==3.1.6",
         "psycopg-binary==3.1.6",
         "psycopg-pool==3.1.7",
