@@ -49,7 +49,7 @@ setup(
         "google-auth-httplib2==0.1.0",
         "google-cloud-core==2.3.3",
         "google-cloud-firestore==2.11.1",
-        "google-cloud-storage==2.10.0",
+        "google-cloud-storage==2.17.0",
         "google-crc32c==1.5.0",
         "google-resumable-media==2.5.0",
         "googleapis-common-protos==1.59.1",
