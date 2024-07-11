@@ -70,7 +70,7 @@ toml==0.10.2
 tomli==2.0.0
 tqdm==4.65.0
 typing==3.7.4.3
-typing_extensions==4.7.1
+typing_extensions==4.12.2
 tzdata==2022.7
 uritemplate==4.1.1
 urllib3==1.26.13
