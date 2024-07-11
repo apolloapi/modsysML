@@ -29,7 +29,7 @@ google-crc32c==1.5.0
 google-resumable-media==2.5.0
 googleapis-common-protos==1.59.1
 grpcio==1.56.0
-grpcio-status==1.56.0
+grpcio-status==1.65.0
 httplib2==0.22.0
 identify==2.5.24
 idna==3.4
