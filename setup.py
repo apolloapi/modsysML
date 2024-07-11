@@ -57,7 +57,7 @@ setup(
         "openai==0.27.7",
         "psycopg==3.1.6",
         "psycopg-binary==3.1.6",
-        "psycopg-pool==3.1.7",
+        "psycopg-pool==3.2.2",
         "psycopg2-binary==2.9.6",
         "python-dotenv==1.0.0",
         "requests==2.28.1",
