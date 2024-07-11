@@ -40,7 +40,7 @@ def evaluate_and_report():
     sdk.connect("avid")
 
     # send report based on output accuracy
-    return sdk.create_report(
+    return sdk.report(
         "provider_name",
         "ai-model",
         "dataset_name",

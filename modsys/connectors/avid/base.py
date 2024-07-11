@@ -18,5 +18,5 @@ from modsys.service.json.base import AbstractRestClient
 
 
 class AbstractAVIDProvider(AbstractRestClient):
-    def create_eport(self):
+    def create_report(self):
         pass
