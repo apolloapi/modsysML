@@ -43,7 +43,7 @@ setup(
     install_requires=[
         "Django>3.0",
         "firebase-admin==6.2.0",
-        "google-api-core==2.11.1",
+        "google-api-core==2.19.1",
         "google-api-python-client==2.92.0",
         "google-auth==2.21.0",
         "google-auth-httplib2==0.1.0",
