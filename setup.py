@@ -59,7 +59,7 @@ setup(
         "psycopg-binary==3.1.6",
         "psycopg-pool==3.1.7",
         "psycopg2-binary==2.9.6",
-        "python-dotenv==1.0.0",
+        "python-dotenv==1.0.1",
         "requests==2.28.1",
         "tabulate==0.9.0",
         "termcolor==2.3.0",
