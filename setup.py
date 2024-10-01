@@ -55,7 +55,7 @@ setup(
         "googleapis-common-protos==1.59.1",
         "Jinja2==3.1.2",
         "openai==0.27.7",
-        "psycopg==3.1.6",
+        "psycopg==3.2.3",
         "psycopg-binary==3.1.6",
         "psycopg-pool==3.1.7",
         "psycopg2-binary==2.9.6",
